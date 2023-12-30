@@ -8,10 +8,10 @@ const Home = () => {
         Well-animated tailwindcss components inspired by Shadcn-UI & Material-UI
       </p>
       <div className="flex items-center justify-center">
-        <Button className="mr-4" size="lg">
+        <Button className="mr-4 w-[280px]" size="lg">
           View Components
         </Button>
-        <Button variant="outline" size="lg">
+        <Button className="w-[280px]" variant="outline" size="lg">
           See Docs
         </Button>
       </div>
