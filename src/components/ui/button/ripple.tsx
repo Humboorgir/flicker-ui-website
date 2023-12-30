@@ -22,7 +22,7 @@ interface Props {
   children?: React.ReactNode;
 }
 
-const Ripple = ({ duration = 600, rippleColor = "#aa00ff", children }: Props) => {
+const Ripple = ({ duration = 600, rippleColor = "hsl(var(--primary))", children }: Props) => {
   interface Ripple {
     y: number;
     x: number;
