@@ -1,3 +1,5 @@
+// TODO: implement color variant
+
 import * as React from "react";
 import Link from "next/link";
 
@@ -7,7 +9,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  `inline-flex items-center justify-center rounded-md text-sm font-base
+  `inline-flex items-center justify-center rounded-md font-base
   whitespace-nowrap ring-offset-background transition-colors focus-visible:outline-none 
    disabled:pointer-events-none disabled:opacity-50 relative overflow-hidden`,
   {
@@ -20,10 +22,9 @@ const buttonVariants = cva(
         link: "text-primary underline-offset-4 hover:underline",
       },
       size: {
-        default: "h-10 px-3 py-2",
-        sm: "h-9 rounded-md px-2",
-        lg: "h-11 rounded-md px-4",
-        icon: "h-10 w-10",
+        default: "text-base px-3 py-2",
+        sm: "text-sm rounded-md px-2 py-1.5",
+        lg: "text-xl rounded-md px-4 py-3",
       },
     },
     defaultVariants: {
