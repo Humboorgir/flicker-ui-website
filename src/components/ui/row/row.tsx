@@ -33,9 +33,15 @@ const rowVariants = cva(`flex`, {
 export type RowProps = React.HTMLProps<HTMLDivElement> & VariantProps<typeof rowVariants>;
 
 /** Flexbox container, used for more readability */
-const Row = React.forwardRef<HTMLDivElement, RowProps>(({ children, items, justify, className }, ref) => {
-  return <div className={cn(rowVariants({ items, justify, className }))}>{children}</div>;
-});
+const Row = React.forwardRef<HTMLDivElement, RowProps>(
+  ({ children, items, justify, className, ...props }, ref) => {
+    return (
+      <div className={cn(rowVariants({ items, justify, className }))} ref={ref} {...props}>
+        {children}
+      </div>
+    );
+  }
+);
 
 Row.displayName = "Row";
 
