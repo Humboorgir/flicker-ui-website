@@ -10,12 +10,12 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        foreground: "hsl(var(--foreground))",
-        background: "var(--background)",
+        foreground: { DEFAULT: "hsl(var(--foreground))", light: "hsl(var(--foreground-light))" },
+        background: "hsl(var(--background))",
         primary: "hsl(var(--primary))",
-        secondary: "var(--secondary)",
-        accent: "var(--accent)",
-        ring: "var(--ring)",
+        secondary: "hsl(var(--secondary))",
+        accent: "hsl(var(--accent))",
+        ring: "hsl(var(--ring))",
       },
       animation: {
         ripple: "ripple 600ms linear",
