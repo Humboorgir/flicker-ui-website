@@ -1,8 +1,8 @@
+import Theme from "./theme";
 import Button from "@/components/ui/button";
 import Row from "@/components/ui/row";
 
 import { FaGithub as Github } from "react-icons/fa";
-import { IoIosColorWand as Theme } from "react-icons/io";
 
 const Navbar = () => {
   const links = [
@@ -39,10 +39,7 @@ const Navbar = () => {
           </Button>
         );
       })}
-      <Button variant="ghost" className="flex items-center mr-2 ml-auto">
-        Theme
-        <Theme className="text-xl ml-1" />
-      </Button>
+      <Theme />
       <Button
         href="https://github.com/Humboorgir/flicker-ui"
         // @ts-ignore
