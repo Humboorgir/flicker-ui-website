@@ -16,13 +16,14 @@ const Sidebar = () => {
   ];
   return (
     <nav className="w-[280px] flex flex-col items-start pl-[50px] py-8">
-      {links.map((link) => {
+      {links.map((link, i) => {
         return (
           <Button
+            key={i}
             variant="link"
             href={link.href}
             className={cn(
-              "py-2 justify-start text-left text-foreground-light/80 p-1 text-[15px]",
+              "py-2 justify-start text-left text-foreground-light/80 p-1",
               !link.href && "text-foreground font-bold mb-1"
             )}>
             {link.title}

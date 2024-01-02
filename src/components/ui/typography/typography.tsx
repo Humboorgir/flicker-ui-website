@@ -6,12 +6,13 @@ import { cn } from "@/lib/utils";
 const typographyVariants = cva("", {
   variants: {
     variant: {
-      p: "text-foreground-light text-base",
-      h1: "text-foreground text-4xl lg:text-5xl tracking-tight font-black scroll-m-20",
-      h2: "text-foreground text-3xl font-bold",
-      h3: "text-foreground text-2xl font-bold",
-      h4: "text-foreground text-xl font-bold",
-      h5: "text-foreground text-lg font-bold",
+      h1: "text-foreground text-4xl lg:text-5xl tracking-tight font-extrabold my-2",
+      h2: "text-foreground text-3xl font-bold my-2",
+      h3: "text-foreground text-2xl font-bold my-1.5",
+      h4: "text-foreground text-xl font-semibold my-1.5",
+      h5: "text-foreground text-lg font-semibold my-1",
+      p: "text-foreground-light text-base my-0.5",
+      lead: "text-foreground-muted text-base my-0.5",
     },
   },
 });
@@ -24,7 +25,7 @@ export type TypographyProps = React.HTMLProps<Typography> & VariantProps<typeof 
 const Typography = React.forwardRef<Typography, TypographyProps>(
   ({ children, className, variant, ...props }, ref) => {
     if (!variant) throw new Error("[Typography] Variant is required");
-    const ElementType = variant;
+    const ElementType = variant == "lead" ? "p" : variant;
     return (
       // @ts-ignore
       <ElementType
