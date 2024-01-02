@@ -47,7 +47,7 @@ const Components = () => {
         <div
           className="relative flex items-center w-[170px] pl-2 h-[45px] bg-white
          shadow-md border border-neutral-300 rounded-md">
-          <span className="text-3xl font-black tracking-tigher">How to </span>
+          <span className="text-gray-900 text-3xl font-black tracking-tigher">How to </span>
           <div
             className="absolute right-0 h-[38px] w-[56px] border-l-[1.5px]
            border-l-black"
@@ -69,7 +69,7 @@ const Components = () => {
                 href={`/docs/${component.title.toLowerCase()}`}
                 className="flex flex-col mr-5 mb-4 border border-ring hover:bg-secondary rounded-md p-3 w-[280px] h-[260px]
                 duration-300 hover:-translate-y-1.5 transition-all cursor-pointer">
-                <div className="grid place-items-center bg-foreground/10 mb-2 w-[240px] h-[139px] rounded-md">
+                <div className="grid place-items-center bg-[#e9e9ea] dark:bg-opacity-80 mb-2 w-[240px] h-[139px] rounded-md">
                   {component.shape}
                 </div>
                 <Typography variant="h4" className="mb-0.5 px-2">
