@@ -15,10 +15,18 @@ type Props = Omit<React.HTMLProps<HTMLDivElement>, "onChange"> & {
   children: React.ReactNode;
   options: Option[];
   variant?: "default" | "secondary" | "outline" | "ghost" | "link";
+  scrollable?: boolean;
   onChange?: (option: Option) => void;
 };
 
-const Select = ({ children, options, variant = "default", className, onChange = () => {} }: Props) => {
+const Select = ({
+  variant = "default",
+  scrollable = false,
+  children,
+  options,
+  className,
+  onChange = () => {},
+}: Props) => {
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState<Option>({ name: "", value: "" });
 
@@ -36,7 +44,7 @@ const Select = ({ children, options, variant = "default", className, onChange = 
   return (
     <div className={cn("relative w-fit h-fit", className)}>
       <Button
-        className={cn("border-secondary text-secondary transition-all", open && "rounded-b-none")}
+        className={cn("text-foreground transition-all", open && "rounded-b-none")}
         rippleColor="#7C72FF"
         variant={variant}
         onClick={toggleOpen}>
@@ -46,9 +54,10 @@ const Select = ({ children, options, variant = "default", className, onChange = 
 
       <div
         className={cn(
-          `absolute invisible top-full left-[50%] translate-x-[-50%] min-w-full bg-neutral-900 z-20 scale-[.8]
-           opacity-0 transition-all duration-100 origin-top max-h-[200px] overflow-y-scroll delay-100 rounded-b-md
+          `absolute invisible top-full right-0 min-w-full bg-neutral-900 z-20 scale-[.8]
+           opacity-0 transition-all duration-100 origin-top max-h-[200px] delay-100 rounded-b-md
            border-b border-b-secondary`,
+          scrollable && "overflow-y-scroll",
           open && "scale-100 opacity-100 visible"
         )}>
         {options &&
@@ -56,7 +65,7 @@ const Select = ({ children, options, variant = "default", className, onChange = 
             <Button
               key={i}
               className={cn(
-                `w-full justify-start text-secondary border-secondary border-t-0 first-of-type:border-t rounded-none
+                `w-full justify-start border-secondary border-t-0 first-of-type:border-t rounded-none
             last-of-type:rounded-b-md`
               )}
               rippleColor="#7C72FF"

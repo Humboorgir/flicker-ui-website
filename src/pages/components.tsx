@@ -30,10 +30,10 @@ const Components = () => {
     },
   ];
   return (
-    <Container className="pt-20">
+    <Container className="pt-28">
       <Column>
         {/* I'll clean up the code here later  */}
-        <h2 className="text-3xl md:text-5xl font-bold text-foreground/50 mb-5">Most recent components</h2>
+        <h2 className="text-3xl md:text-5xl font-bold text-foreground/80 mb-5">Most recent components</h2>
         <Row justify="center" className="flex-wrap">
           {components.map((component, i) => {
             return (
@@ -42,7 +42,7 @@ const Components = () => {
                 href={`/docs/${component.title.toLowerCase()}`}
                 className="flex flex-col mr-5 mb-4 border border-ring hover:bg-secondary rounded-md p-3 w-[280px] h-[260px]
                 duration-300 hover:-translate-y-1.5 transition-all cursor-pointer">
-                <div className="grid place-items-center bg-black/10 mb-2 w-[240px] h-[139px] rounded-md">
+                <div className="grid place-items-center bg-foreground/10 mb-2 w-[240px] h-[139px] rounded-md">
                   <div className="flex w-[120px] h-[40px] bg-white rounded-md shadow-md" />
                 </div>
                 <Typography variant="h4" className="mb-0.5 px-2">

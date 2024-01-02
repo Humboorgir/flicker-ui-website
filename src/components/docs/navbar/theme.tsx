@@ -16,7 +16,7 @@ const ThemeComponent = () => {
 
   const options = [
     {
-      name: "Light theme",
+      name: `Light theme`,
       value: "light",
     },
     {
@@ -34,7 +34,6 @@ const ThemeComponent = () => {
       options={options}
       className="flex items-center mr-2 ml-auto"
       onChange={(option) => {
-        console.log(option.value);
         setTheme(option.value);
       }}>
       Theme
