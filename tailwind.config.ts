@@ -10,7 +10,11 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        foreground: { DEFAULT: "hsl(var(--foreground))", light: "hsl(var(--foreground-light))" },
+        foreground: {
+          DEFAULT: "hsl(var(--foreground))",
+          light: "hsl(var(--foreground-light))",
+          muted: "hsl(var(--foreground-muted))",
+        },
         background: "hsl(var(--background))",
         primary: "hsl(var(--primary))",
         secondary: "hsl(var(--secondary))",

@@ -9,7 +9,7 @@ type Props = React.HTMLProps<HTMLDivElement> & {
   displayedCode: string;
 };
 
-const PreviewBox = ({ children, displayedCode, className, ...props }: Props) => {
+const PreviewBox = ({ children, className, ...props }: Props) => {
   console.log();
   const [state, setState] = useState<"code" | "preview">("preview");
   return (
@@ -26,7 +26,7 @@ const PreviewBox = ({ children, displayedCode, className, ...props }: Props) => 
           {children}
         </div>
         <div className={cn("hidden place-items-center h-full w-full", state == "code" && "grid")}>
-          {displayedCode}
+          {/* displayed code (will handle this later) */}
         </div>
       </div>
     </Column>

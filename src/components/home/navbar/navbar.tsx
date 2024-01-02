@@ -22,9 +22,10 @@ const Navbar = () => {
   ];
   return (
     <Row items="center" justify="center" className="py-2">
-      {links.map((link) => {
+      {links.map((link, i) => {
         return (
           <Button
+            key={i}
             variant="link"
             size="lg"
             href={link.href}

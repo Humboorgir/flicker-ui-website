@@ -1,0 +1,63 @@
+import DocsLayout from "@/layouts/docsLayout";
+import Button from "@/components/ui/button";
+import Typography from "@/components/ui/typography";
+import PreviewBox from "@/components/docs/previewBox";
+
+## Button
+
+Displays a clickable button, comes with different sizes and variants
+
+<br />
+## Installation
+
+The following command will add the Button component into your `components/ui` folder
+
+```bash
+$ npx flicker-ui@latest add button
+```
+
+<br />
+
+### Default
+
+     <PreviewBox className="mb-8">
+        <Button>Button component </Button>
+      </PreviewBox>
+
+### Secondary
+
+      <PreviewBox className="mb-8">
+        <Button variant="secondary">Button component </Button>
+      </PreviewBox>
+
+### Outline
+
+      <PreviewBox className="mb-8">
+        <Button variant="outline">Button component </Button>
+      </PreviewBox>
+
+### Ghost
+
+      <PreviewBox className="mb-8">
+        <Button variant="ghost">Button component </Button>
+      </PreviewBox>
+
+### Link
+
+      <PreviewBox className="mb-8">
+        <Button variant="link">Button component </Button>
+      </PreviewBox>
+
+export default function Page({ children }) {
+  const tableOfContent = [
+    { title: "Button component", href: "#button" },
+    { title: "Installation", href: "#installation" },
+    { title: "Default", href: "#default" },
+    { title: "Secondary", href: "#secondary" },
+    { title: "Outline", href: "#outline" },
+    { title: "Ghost", href: "#ghost" },
+    { title: "Link", href: "#link" },
+  ];
+  // after failing to get toc plugins to work properly, i came up with this
+  return <DocsLayout tableOfContent={tableOfContent}>{children}</DocsLayout>;
+}

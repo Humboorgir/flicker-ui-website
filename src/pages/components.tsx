@@ -30,7 +30,7 @@ const Components = () => {
     },
   ];
   return (
-    <Container className="pt-12">
+    <Container className="pt-20">
       <Column>
         {/* I'll clean up the code here later  */}
         <h2 className="text-3xl md:text-5xl font-bold text-foreground/50 mb-5">Most recent components</h2>
