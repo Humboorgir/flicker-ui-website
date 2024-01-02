@@ -7,11 +7,11 @@ const typographyVariants = cva("", {
   variants: {
     variant: {
       p: "text-foreground-light text-base",
-      h1: "text-foreground text-4xl lg:text-5xl tracking-tight font-black scroll-m-20",
+      h1: "text-foreground text-4xl lg:text-5xl tracking-tight font-extrabold scroll-m-20",
       h2: "text-foreground text-3xl font-bold",
       h3: "text-foreground text-2xl font-bold",
-      h4: "text-foreground text-xl font-bold",
-      h5: "text-foreground text-lg font-bold",
+      h4: "text-foreground text-xl font-semibold",
+      h5: "text-foreground text-lg font-semibold",
     },
   },
 });
