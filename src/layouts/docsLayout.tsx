@@ -1,6 +1,6 @@
 import Container from "@/components/ui/container";
 // temporarily using components page's navbar & footer
-import Navbar from "@/components/components/navbar";
+import Navbar from "@/components/docs/navbar";
 import Sidebar from "@/components/docs/sidebar";
 import TableOfContent from "@/components/docs/tableOfContent";
 import Footer from "@/components/components/footer";

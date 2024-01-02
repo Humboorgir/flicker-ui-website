@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 
 const TableOfContent = ({ tableOfContent }: { tableOfContent: any }) => {
   return (
-    <nav className="w-[280px] flex flex-col items-start pl-[50px] py-8">
+    <nav className="w-[320px] flex flex-col items-start pl-[50px] py-8">
       <Typography variant="h5">On this page</Typography>
       {tableOfContent.map((content: any, i: string) => {
         return (
