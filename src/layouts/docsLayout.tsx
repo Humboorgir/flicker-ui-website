@@ -5,17 +5,30 @@ import Sidebar from "@/components/docs/sidebar";
 import TableOfContent from "@/components/docs/tableOfContent";
 import Footer from "@/components/components/footer";
 
-const DocsLayout = ({ children, tableOfContent }: { children: React.ReactNode; tableOfContent: any }) => {
+import Head from "next/head";
+
+type Props = {
+  children: React.ReactNode;
+  tableOfContent: any;
+  metadata: { title: string; description: string };
+};
+const DocsLayout = ({ children, tableOfContent, metadata }: Props) => {
   return (
-    <div className="grid grid-rows-[auto,1fr,auto] min-h-screen bg-background">
-      <Navbar />
-      <div className="flex pt-12">
-        <Sidebar />
-        <Container className="py-8 grow">{children}</Container>
-        <TableOfContent tableOfContent={tableOfContent} />
+    <>
+      <Head>
+        <title>{metadata.title}</title>
+        <meta name="description" content={metadata.description} />
+      </Head>
+      <div className="grid grid-rows-[auto,1fr,auto] min-h-screen bg-background">
+        <Navbar />
+        <div className="flex pt-12">
+          <Sidebar />
+          <Container className="py-8 grow">{children}</Container>
+          <TableOfContent tableOfContent={tableOfContent} />
+        </div>
+        <Footer />
       </div>
-      <Footer />
-    </div>
+    </>
   );
 };
 

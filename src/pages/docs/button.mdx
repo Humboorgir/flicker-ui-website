@@ -3,6 +3,11 @@ import Button from "@/components/ui/button";
 import Typography from "@/components/ui/typography";
 import PreviewBox from "@/components/docs/previewBox";
 
+export const metadata = {
+  title: "FlickerUI - Button",
+  author: "test",
+};
+
 ## Button
 
 Displays a clickable button, comes with different sizes and variants
@@ -49,6 +54,7 @@ $ npx flicker-ui@latest add button
       </PreviewBox>
 
 export default function Page({ children }) {
+  // after failing to get rehype toc plugins to work properly, i came up with this
   const tableOfContent = [
     { title: "Button component", href: "#button" },
     { title: "Installation", href: "#installation" },
@@ -58,6 +64,13 @@ export default function Page({ children }) {
     { title: "Ghost", href: "#ghost" },
     { title: "Link", href: "#link" },
   ];
-  // after failing to get toc plugins to work properly, i came up with this
-  return <DocsLayout tableOfContent={tableOfContent}>{children}</DocsLayout>;
+  const metadata = {
+    title: "FlickerUI ~ Button",
+    description: "Displays a clickable button, comes with different sizes and variants",
+  };
+  return (
+    <DocsLayout tableOfContent={tableOfContent} metadata={metadata}>
+      {children}
+    </DocsLayout>
+  );
 }
