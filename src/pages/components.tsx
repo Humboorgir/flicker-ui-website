@@ -67,9 +67,9 @@ const Components = () => {
               <Link
                 key={i}
                 href={`/docs/${component.title.toLowerCase()}`}
-                className="flex flex-col mr-5 mb-4 border border-ring hover:bg-secondary rounded-md p-3 w-[280px] h-[260px]
+                className="flex flex-col mr-5 mb-4 bg-secondary/70 hover:bg-foreground/10 rounded-md p-3 w-[280px] h-[260px]
                 duration-300 hover:-translate-y-1.5 transition-all cursor-pointer">
-                <div className="grid place-items-center bg-[#e9e9ea] dark:bg-opacity-80 mb-2 w-[240px] h-[139px] rounded-md">
+                <div className="grid place-items-center bg-[#d1d1d3] dark:bg-opacity-80 mb-2 w-full h-[139px] rounded-md">
                   {component.shape}
                 </div>
                 <Typography variant="h4" className="mb-0.5 px-2">
