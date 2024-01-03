@@ -3,7 +3,6 @@ import rehypePrettyCode from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
 
 import frontMatter from "front-matter";
-import stringifyObject from "stringify-object";
 import { createLoader } from "simple-functional-loader";
 
 import * as path from "path";
@@ -30,18 +29,30 @@ const nextConfig = {
         createLoader(function (source) {
           let { attributes: meta, body } = frontMatter(source);
 
+          const headings = getHeadings(source);
+          function getHeadings(source) {
+            const headingLines = source.split("\n").filter((line) => {
+              return line.match(/^##*\s/);
+            });
+            return headingLines.map((raw) => {
+              const text = raw.replace(/^##*\s/, "");
+              return text;
+            });
+          }
+
+          // didnt know what to call it lol
+          const slugize = (txt) => txt.replace(" ", "-").toLowerCase();
+
+          const tableOfContent = headings.map((heading) => {
+            return { title: heading, href: `#${slugize(heading)}` };
+          });
+          const titleHeading = { title: meta.title, href: `#${slugize(meta.title)}` };
+          tableOfContent.unshift(titleHeading);
+
           let codeTop = `import DocsLayout from "@/layouts/docsLayout";`;
 
           let codeBottom = `export default function Page({ children }) {
-            const tableOfContent = [
-              { title: "Button component", href: "#button" },
-              { title: "Installation", href: "#installation" },
-              { title: "Default", href: "#default" },
-              { title: "Secondary", href: "#secondary" },
-              { title: "Outline", href: "#outline" },
-              { title: "Ghost", href: "#ghost" },
-              { title: "Link", href: "#link" },
-            ];
+            const tableOfContent = ${JSON.stringify(tableOfContent)}
             return (
               <DocsLayout tableOfContent={tableOfContent} meta={${JSON.stringify(meta)}}>
                 {children}
