@@ -21,7 +21,7 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
 
   return (
     <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-      <main className={`${figtree.className}`}>{getLayout(<Component {...pageProps} />)}</main>
+      <main className={figtree.className}>{getLayout(<Component {...pageProps} />)}</main>
     </ThemeProvider>
   );
 }

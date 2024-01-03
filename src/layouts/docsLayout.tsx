@@ -6,24 +6,30 @@ import TableOfContent from "@/components/docs/tableOfContent";
 import Footer from "@/components/components/footer";
 
 import Head from "next/head";
+import Typography from "@/components/ui/typography";
 
 type Props = {
   children: React.ReactNode;
   tableOfContent: any;
-  metadata: { title: string; description: string };
+  meta: { title: string; description: string };
 };
-const DocsLayout = ({ children, tableOfContent, metadata }: Props) => {
+const DocsLayout = ({ children, tableOfContent, meta }: Props) => {
   return (
     <>
       <Head>
-        <title>{metadata.title}</title>
-        <meta name="description" content={metadata.description} />
+        <title>{meta.title}</title>
+        <meta name="description" content={meta.description} />
       </Head>
       <div className="grid grid-rows-[auto,1fr,auto] min-h-screen bg-background">
         <Navbar />
         <div className="flex pt-12">
           <Sidebar />
-          <Container className="py-8 grow">{children}</Container>
+          <Container className="py-8 grow">
+            <Typography variant="h2">{meta.title}</Typography>
+            <Typography variant="p">{meta.description}</Typography>
+            <br />
+            {children}
+          </Container>
           <TableOfContent tableOfContent={tableOfContent} />
         </div>
         <Footer />

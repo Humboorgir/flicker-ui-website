@@ -17,6 +17,7 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "framer-motion": "^10.16.16",
+    "front-matter": "^4.0.2",
     "geist": "^1.2.0",
     "next": "14.0.4",
     "next-themes": "^0.2.1",
@@ -26,6 +27,8 @@
     "rehype-pretty-code": "^0.12.3",
     "rehype-slug": "^6.0.0",
     "shikiji": "^0.9.0",
+    "simple-functional-loader": "^1.2.1",
+    "stringify-object": "^5.0.0",
     "tailwind-merge": "^2.2.0"
   },
   "devDependencies": {
