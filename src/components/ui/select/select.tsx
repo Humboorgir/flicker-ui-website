@@ -44,7 +44,7 @@ const Select = ({
   return (
     <div className={cn("relative w-fit h-fit", className)}>
       <Button
-        className={cn("text-foreground transition-all", open && "rounded-b-none")}
+        className={cn("transition-all", open && "rounded-b-none")}
         rippleColor="#7C72FF"
         variant={variant}
         onClick={toggleOpen}>
@@ -54,7 +54,7 @@ const Select = ({
 
       <div
         className={cn(
-          `absolute invisible top-full right-0 min-w-full bg-neutral-900 z-20 scale-[.8]
+          `absolute invisible top-full right-0 bg-neutral-900 z-20 scale-[.8]
            opacity-0 transition-all duration-100 origin-top max-h-[200px] delay-100 rounded-b-md
            border-b border-b-secondary`,
           scrollable && "overflow-y-scroll",
