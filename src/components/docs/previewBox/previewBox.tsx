@@ -21,7 +21,7 @@ const PreviewBox = ({ children, className, ...props }: Props) => {
         </Button>
         <Button variant="ghost">Code</Button>
       </Row>
-      <div className="w-[600px] h-[300px] border border-ring rounded-md place-items-center">
+      <div className="w-[600px] h-[300px] border border-ring rounded-md place-items-center p-5">
         <div className={cn("hidden place-items-center h-full w-full", state == "preview" && "grid")}>
           {children}
         </div>
