@@ -24,3 +24,7 @@
     --ring: 240 6% 23%;
   }
 }
+
+[data-highlighted-chars] {
+  @apply bg-zinc-600/60 rounded;
+}
