@@ -14,14 +14,16 @@ type AppPropsWithLayout = AppProps & {
   Component: PageWithLayout;
 };
 
-const figtree = Figtree({ subsets: ["latin"], weight: ["400", "600", "700", "800"] });
+const figtree = Figtree({ subsets: ["latin"], weight: ["400", "600", "700", "800"], display: "swap" });
 
 export default function App({ Component, pageProps }: AppPropsWithLayout) {
   const getLayout = Component.getLayout || ((page) => page);
 
   return (
-    <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-      <main className={figtree.className}>{getLayout(<Component {...pageProps} />)}</main>
-    </ThemeProvider>
+    <main className={figtree.className}>
+      <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+        {getLayout(<Component {...pageProps} />)}
+      </ThemeProvider>
+    </main>
   );
 }
