@@ -1,5 +1,4 @@
 import Container from "@/components/ui/container";
-// temporarily using components page's navbar & footer
 import Navbar from "@/components/docs/navbar";
 import Sidebar from "@/components/docs/sidebar";
 import TableOfContent from "@/components/docs/tableOfContent";
@@ -24,7 +23,7 @@ const DocsLayout = ({ children, tableOfContent, meta }: Props) => {
         <Navbar />
         <div className="flex pt-12">
           <Sidebar />
-          <Container className="py-8 grow">
+          <Container className="py-8 mx-0 grow">
             <Typography variant="h2">{meta.title}</Typography>
             <Typography variant="p">{meta.description}</Typography>
             <br />

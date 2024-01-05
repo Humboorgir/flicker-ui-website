@@ -14,14 +14,14 @@ const PreviewBox = ({ children, className, ...props }: Props) => {
   const [state, setState] = useState<"code" | "preview">("preview");
   return (
     // @ts-ignore
-    <Column items="start" className={cn("flex flex-col", className)} {...props}>
-      <Row className="w-[600px]">
+    <Column items="start" className={cn("flex flex-col max-w-[800px] w-[80%]", className)} {...props}>
+      <Row className="w-full">
         <Button className="border-b-2 border-b-foreground rounded-none" variant="ghost">
           Preview
         </Button>
         <Button variant="ghost">Code</Button>
       </Row>
-      <div className="w-[600px] h-[300px] border border-ring rounded-md place-items-center p-5">
+      <div className="w-full h-[1px] min-h-[300px] border border-ring rounded-md place-items-center p-5">
         <div className={cn("hidden place-items-center h-full w-full", state == "preview" && "grid")}>
           {children}
         </div>

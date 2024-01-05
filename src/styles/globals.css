@@ -28,3 +28,13 @@
 [data-highlighted-chars] {
   @apply bg-zinc-600/60 rounded;
 }
+
+pre {
+  font-size: 14px;
+}
+
+@media (min-width: 680px) {
+  pre {
+    font-size: 16px;
+  }
+}
