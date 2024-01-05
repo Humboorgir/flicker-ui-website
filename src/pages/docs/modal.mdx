@@ -1,0 +1,34 @@
+---
+title: "Modal"
+description: "A window that pops when triggered and attempts to draw the user's attention"
+---
+
+import Modal from '@/components/ui/modal';
+import Button from '@/components/ui/button';
+import ModalPreview from '@/components/docs/modalPreview';
+
+## Installation
+
+The following command will add the Modal component into your `components/ui` folder
+
+```bash
+$ npx flicker-ui@latest add modal
+```
+
+<br />
+
+## Usage
+
+The modal component takes two properties: `open` and `handleClose`, `open`
+determines whether the modal is open or not, and `handleClose` is a function that 
+sets `open` to false
+```js /items="center"/ /justify="center"/
+<Modal>
+</Modal>
+```
+
+<br/>
+<br/>
+
+### Simple example
+<ModalPreview/>

@@ -5,9 +5,7 @@ import { useState } from "react";
 import { cn } from "@/lib/utils";
 import Button from "@/components/ui/button";
 
-type Props = React.HTMLProps<HTMLDivElement> & {
-  displayedCode: string;
-};
+type Props = React.HTMLProps<HTMLDivElement>;
 
 const PreviewBox = ({ children, className, ...props }: Props) => {
   console.log();
