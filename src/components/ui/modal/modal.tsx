@@ -33,18 +33,18 @@ const Modal = ({ children, open, handleClose, className, ...props }: Props) => {
             <motion.div
               key="modal"
               initial={{
-                scale: 0.8,
+                scale: 0.9,
                 opacity: 0,
               }}
               animate={{
                 scale: 1,
                 opacity: 1,
               }}
-              exit={{ scale: 0.8, opacity: 0 }}
+              exit={{ scale: 0.9, opacity: 0 }}
               transition={{
-                duration: 0.1,
+                duration: 0.2,
                 delay: 0.1,
-                ease: "easeOut",
+                ease: "backOut",
               }}
               onClick={(e) => e.stopPropagation()}
               className={cn(
