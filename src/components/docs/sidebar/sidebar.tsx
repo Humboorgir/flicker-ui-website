@@ -13,6 +13,8 @@ const Sidebar = () => {
     { title: "Button", href: "/docs/button" },
     { title: "Row", href: "/docs/row" },
     { title: "Column", href: "/docs/column" },
+    { title: "Input", href: "/docs/input" },
+    { title: "Modal", href: "/docs/modal" },
   ];
   return (
     <nav className="w-[280px] flex flex-col items-start pl-[50px] py-8">
