@@ -1,0 +1,33 @@
+---
+title: "Input"
+description: "Allows users to enter and submit a piece of text"
+---
+
+import Input from '@/components/ui/input';
+import PreviewBox from '@/components/docs/previewBox';
+
+## Installation
+
+The following command will add the Input component into your `components/ui` folder
+
+```bash
+$ npx flicker-ui@latest add input
+```
+
+<br />
+
+## Usage
+
+Used just like the input element. You can specify properties like `name`, `id`, `className` etc.
+width is set to 200px by default
+```js /placeholder="Email address"/ /name="email"/ /id="email"/
+<Input placeholder="Email address" name="email" id="email"/>
+```
+
+<br />
+<br />
+
+### Simple text input
+<PreviewBox>
+<Input placeholder="email address"/>
+</PreviewBox>
