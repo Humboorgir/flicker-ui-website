@@ -1,0 +1,42 @@
+---
+title: "Container"
+description: "Centers elements horizontally, responsive by default"
+---
+
+import PreviewBox from '@/components/docs/previewBox';
+import Container from '@/components/ui/container';
+
+## Installation
+
+The following command will add the Container component into your `components/ui` folder
+
+```bash
+$ npx flicker-ui@latest add container
+```
+
+<br />
+
+## Usage
+
+The container component is treated as a div element,
+so you can add customizations like className to it
+
+```js /className="bg-red-500"/
+<Container className="bg-red-500">
+ {/** Page content */}
+</Container>
+```
+<br />
+<br />
+
+### Example
+<PreviewBox className="mb-12">
+  <Container>
+  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+   Dolor consequuntur a aspernatur dignissimos voluptatum 
+   vitae id eum quidem soluta dolorem non et inventore 
+   blanditiis laudantium laborum itaque, unde nihil 
+   aperiam dicta quam beatae placeat. Officiis 
+   rem nesciunt impedit. Sequi, excepturi.
+  </Container>
+</PreviewBox>
