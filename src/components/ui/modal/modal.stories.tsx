@@ -16,6 +16,7 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
+// @ts-ignore 
 export const ModalComponent: Story = {
   render: () => {
     const [open, setOpen] = useState(false);
