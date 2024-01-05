@@ -48,8 +48,8 @@ const Modal = ({ children, open, handleClose, className, ...props }: Props) => {
               }}
               onClick={(e) => e.stopPropagation()}
               className={cn(
-                `bg-background text-foreground p-6 max-w-[90vw] ease-out rounded-md 
-                flex flex-col items-center border border-ring`,
+                `bg-background text-foreground p-6 max-w-[90vw] md:max-w-[640px] w-fit ease-out rounded-md 
+                flex flex-col border border-ring`,
                 className
               )}
               {...props}>
