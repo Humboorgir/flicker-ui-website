@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 const Sidebar = () => {
   const links = [
     { title: "Getting started" },
-    { title: "Installation", href: "/docs/components/installation" },
+    { title: "Installation", href: "/docs/installation" },
     { title: "Components" },
     { title: "Typography", href: "/docs/components/typography" },
     { title: "Container", href: "/docs/components/container" },
@@ -25,7 +25,7 @@ const Sidebar = () => {
             href={link.href}
             className={cn(
               "py-2 justify-start text-left text-foreground-light/80 p-1 w-full",
-              !link.href && "text-foreground font-bold mb-1"
+              !link.href && "text-foreground font-bold mb-1 hover:no-underline hover:cursor-default"
             )}>
             {link.title}
           </Button>
