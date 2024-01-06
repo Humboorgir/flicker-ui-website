@@ -2,7 +2,7 @@ import Container from "@/components/ui/container";
 import Navbar from "@/components/docs/navbar";
 import Sidebar from "@/components/docs/sidebar";
 import TableOfContent from "@/components/docs/tableOfContent";
-import Footer from "@/components/components/footer";
+import Footer from "@/components/ui/footer";
 
 import Head from "next/head";
 import Typography from "@/components/ui/typography";
