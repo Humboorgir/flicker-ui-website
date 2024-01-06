@@ -1,20 +1,19 @@
 import Button from "@/components/ui/button";
-import Typography from "@/components/ui/typography";
+
 import { cn } from "@/lib/utils";
-import React from "react";
 
 const Sidebar = () => {
   const links = [
     { title: "Getting started" },
-    { title: "Installation", href: "/docs/installation" },
+    { title: "Installation", href: "/docs/components/installation" },
     { title: "Components" },
-    { title: "Typography", href: "/docs/typography" },
-    { title: "Container", href: "/docs/container" },
-    { title: "Button", href: "/docs/button" },
-    { title: "Row", href: "/docs/row" },
-    { title: "Column", href: "/docs/column" },
-    { title: "Input", href: "/docs/input" },
-    { title: "Modal", href: "/docs/modal" },
+    { title: "Typography", href: "/docs/components/typography" },
+    { title: "Container", href: "/docs/components/container" },
+    { title: "Button", href: "/docs/components/button" },
+    { title: "Row", href: "/docs/components/row" },
+    { title: "Column", href: "/docs/components/column" },
+    { title: "Input", href: "/docs/components/input" },
+    { title: "Modal", href: "/docs/components/modal" },
   ];
   return (
     <nav className="hidden md:flex w-[20vw] min-w-[180px] max-w-[240px] flex-col items-center pl-[50px] py-8">

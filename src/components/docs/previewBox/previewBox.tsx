@@ -12,7 +12,7 @@ const PreviewBox = ({ children, className, ...props }: Props) => {
   const [state, setState] = useState<"code" | "preview">("preview");
   return (
     // @ts-ignore
-    <Column items="start" className={cn("flex flex-col max-w-[800px] w-[80%]", className)} {...props}>
+    <Column items="start" className={cn("flex flex-col max-w-[800px] w-[100%]", className)} {...props}>
       <Row className="w-full">
         <Button className="border-b-2 border-b-foreground rounded-none" variant="ghost">
           Preview
