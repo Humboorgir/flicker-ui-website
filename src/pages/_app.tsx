@@ -3,6 +3,8 @@ import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import type { NextPage } from "next";
 
+import NextNProgress from "nextjs-progressbar";
+
 import { ThemeProvider } from "next-themes";
 import { Figtree } from "next/font/google";
 
@@ -22,6 +24,7 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
   return (
     <main className={figtree.className}>
       <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+        <NextNProgress options={{ showSpinner: false, template: '<div class="progressbar"></div>' }} />
         {getLayout(<Component {...pageProps} />)}
       </ThemeProvider>
     </main>
