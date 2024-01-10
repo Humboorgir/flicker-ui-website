@@ -24,7 +24,7 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
   return (
     <main className={figtree.className}>
       <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-        <NextNProgress options={{ showSpinner: false, template: '<div class="progressbar"></div>' }} />
+        <NextNProgress options={{ showSpinner: false }} />
         {getLayout(<Component {...pageProps} />)}
       </ThemeProvider>
     </main>
