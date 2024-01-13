@@ -5,7 +5,7 @@ description: "Displays a clickable button, comes with different sizes and varian
 
 import Button from "@/components/ui/button";
 import Typography from "@/components/ui/typography";
-import PreviewBox from "@/components/docs/previewBox";
+import { PreviewBox, PreviewCode, PreviewComponent } from "@/components/docs/previewBox";
 
 ## Installation
 
@@ -19,8 +19,15 @@ $ npx flicker-ui@latest add button
 
 ### Default
 
-     <PreviewBox className="mb-8">
-        <Button>Button component </Button>
+     <PreviewBox className="mb-8" component={<Button>Button component </Button>}>
+      ```tsx
+      import Button from '@/components/ui/button';
+
+      export default function Page() {
+        return <Button>Button component</Button>;
+      }
+
+      ```
       </PreviewBox>
 
 ### Secondary
