@@ -19,37 +19,20 @@ $ npx flicker-ui@latest add button
 
 ### Default
 
-     <PreviewBox className="mb-8" component={<Button>Button component </Button>}>
-      ```tsx
-      import Button from '@/components/ui/button';
-
-      export default function Page() {
-        return <Button>Button component</Button>;
-      }
-
-      ```
-      </PreviewBox>
+     <PreviewBox className="mb-8" component="button-default"/>
 
 ### Secondary
 
-      <PreviewBox className="mb-8">
-        <Button variant="secondary">Button component </Button>
-      </PreviewBox>
+      <PreviewBox className="mb-8" component="button-secondary"/>
 
 ### Outline
 
-      <PreviewBox className="mb-8">
-        <Button variant="outline">Button component </Button>
-      </PreviewBox>
+      <PreviewBox className="mb-8" component="button-outline"/>
 
 ### Ghost
 
-      <PreviewBox className="mb-8">
-        <Button variant="ghost">Button component </Button>
-      </PreviewBox>
+      <PreviewBox className="mb-8" component="button-ghost"/>
 
 ### Link
 
-      <PreviewBox className="mb-8">
-        <Button variant="link">Button component </Button>
-      </PreviewBox>
+      <PreviewBox className="mb-8" component="button-link"/>

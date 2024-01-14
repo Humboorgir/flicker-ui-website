@@ -8,6 +8,7 @@ import { useState } from "react";
 const ModalPreview = () => {
   const [open, setOpen] = useState(false);
   return (
+    // @ts-ignore
     <PreviewBox>
       <Button onClick={() => setOpen(true)}>Open modal</Button>
       <Modal className="items-start" open={open} handleClose={() => setOpen(false)}>
