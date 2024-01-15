@@ -26,6 +26,8 @@ const previews: Preview[] = [
     name: "button-link",
     component: React.lazy(() => import("@/components/preview/button-link")),
   },
+  {name: "container-default",
+component: React.lazy(() => import("@/components/preview/container-default"))}
 ];
 
 export default previews;

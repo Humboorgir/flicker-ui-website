@@ -1,18 +1,12 @@
 import Column from "@/components/ui/column";
 import Button from "@/components/ui/button";
 import Row from "@/components/ui/row";
-// This thing is killing the performance of the app
-// but I kinda need it
-// I have two work arounds for this:
-// 1- use App router (I hate it)
-// 2- use prismjs
-// switching everything to prism might take some time
-// but thats probably what im gonna be going for
-import { highlightCode } from "@/components/docs/code";
 
+import { highlightCode } from "@/components/docs/code";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
+
 import React from "react";
 import previews from "@/registry/previews";
 
