@@ -31,6 +31,15 @@ const previews: Preview[] = [
     component: React.lazy(() => import("@/components/preview/container-default")),
   },
   { name: "input-default", component: React.lazy(() => import("@/components/preview/input-default")) },
+  { name: "row-centered", component: React.lazy(() => import("@/components/preview/row-centered")) },
+  {
+    name: "row-horizontally-centered",
+    component: React.lazy(() => import("@/components/preview/row-horizontally-centered")),
+  },
+  {
+    name: "row-vertically-centered",
+    component: React.lazy(() => import("@/components/preview/row-vertically-centered")),
+  },
 ];
 
 export default previews;

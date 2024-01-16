@@ -75,7 +75,7 @@ ${code}`
               x: "0",
             }}
             transition={{ duration: 0.15 }}
-            className={cn("grid place-items-center h-full w-full border border-ring rounded-md")}>
+            className={cn("grid place-items-center h-full w-full border border-ring rounded-md p-3")}>
             {preview}
           </motion.div>
         )}
