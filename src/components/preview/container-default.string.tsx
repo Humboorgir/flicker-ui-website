@@ -1,4 +1,4 @@
-export default // @ts-ignore
+export default // @prettier-ignore
 `import Container from "@/components/ui/container";
 
 const Preview = () => {
