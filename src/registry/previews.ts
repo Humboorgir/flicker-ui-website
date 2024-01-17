@@ -40,6 +40,10 @@ const previews: Preview[] = [
     name: "row-vertically-centered",
     component: React.lazy(() => import("@/components/preview/row-vertically-centered")),
   },
+  {
+    name: "modal-default",
+    component: React.lazy(() => import("@/components/preview/modal-default")),
+  },
 ];
 
 export default previews;

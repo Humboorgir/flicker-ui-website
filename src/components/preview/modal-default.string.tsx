@@ -1,15 +1,14 @@
-import PreviewBox from "@/components/docs/previewBox";
+export default // @prettier-ignore
+`import Modal from "@/components/ui/modal";
 import Button from "@/components/ui/button";
-import Modal from "@/components/ui/modal";
 import Typography from "@/components/ui/typography";
 
 import { useState } from "react";
 
-const ModalPreview = () => {
+const Preview = () => {
   const [open, setOpen] = useState(false);
   return (
-    // @ts-ignore
-    <PreviewBox>
+    <>
       <Button onClick={() => setOpen(true)}>Open modal</Button>
       <Modal className="items-start" open={open} handleClose={() => setOpen(false)}>
         <Typography className="mb-2" variant="h3">
@@ -22,8 +21,8 @@ const ModalPreview = () => {
           Close
         </Button>
       </Modal>
-    </PreviewBox>
+    </>
   );
 };
 
-export default ModalPreview;
+export default Preview;`;
