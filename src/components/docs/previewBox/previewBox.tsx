@@ -77,8 +77,8 @@ ${code}`
         <div
           dangerouslySetInnerHTML={{ __html: code }}
           className={cn(
-            `absolute flex justify-center w-full h-full overflow-auto
-            [&_pre]:w-full [&_figure]:w-full [&_pre]:p-3 [&_pre]:rounded-md
+            `absolute flex w-full h-full overflow-auto
+            [&_pre]:w-full [&_figure]:grow [&_pre]:p-3 [&_pre]:rounded-md
             [&_pre]:text-base left-[20px] opacity-0 invisible transition-none`,
             state == "code" && "opacity-100 left-0 duration-[180ms] visible transition-all",
             textSmall && "[&_pre]:text-[15px]"
