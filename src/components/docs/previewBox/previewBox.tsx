@@ -3,7 +3,6 @@ import Button from "@/components/ui/button";
 import Row from "@/components/ui/row";
 
 import { highlightCode } from "@/components/docs/code";
-import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 
@@ -12,9 +11,10 @@ import previews from "@/registry/previews";
 
 type Props = React.HTMLProps<HTMLDivElement> & {
   component: string;
+  textSmall?: boolean;
 };
 
-const PreviewBox = ({ children, component, className, ...props }: Props) => {
+const PreviewBox = ({ children, component, textSmall = false, className, ...props }: Props) => {
   const [state, setState] = useState<"code" | "preview">("preview");
   const [code, setCode] = useState<any>();
 
@@ -65,37 +65,25 @@ ${code}`
           Code
         </Button>
       </Row>
-      <div className="pt-4 w-full h-[1px] min-h-[300px] place-items-center overflow-hidden">
-        {state == "preview" && (
-          <motion.div
-            key="previewComp"
-            initial={{ opacity: 0, x: "-20px" }}
-            animate={{
-              opacity: 1,
-              x: "0",
-            }}
-            transition={{ duration: 0.15 }}
-            className={cn("grid place-items-center h-full w-full border border-ring rounded-md p-3")}>
-            {preview}
-          </motion.div>
-        )}
-
-        {state == "code" && (
-          <motion.div
-            key="code"
-            dangerouslySetInnerHTML={{ __html: code }}
-            initial={{ opacity: 0, x: "20px" }}
-            animate={{
-              opacity: 1,
-              x: "0",
-            }}
-            transition={{ duration: 0.15 }}
-            className={cn(
-              `grid place-items-center w-full [&_pre]:overflow-auto
-            [&_pre]:w-full [&_figure]:w-full [&_pre]:p-3 [&_pre]:rounded-md`
-            )}
-          />
-        )}
+      <div className="relative pt-4 w-full min-w-[1] h-[1px] min-h-[340px] place-items-center">
+        <div
+          className={cn(
+            `absolute grid place-items-center h-full w-full border border-ring rounded-md p-3
+             opacity-0 -left-[20px] invisible transition-none`,
+            state == "preview" && "opacity-100 left-0 transition-all visible duration-[180ms]"
+          )}>
+          {preview}
+        </div>
+        <div
+          dangerouslySetInnerHTML={{ __html: code }}
+          className={cn(
+            `absolute flex justify-center w-full h-full overflow-auto
+            [&_pre]:w-full [&_figure]:w-full [&_pre]:p-3 [&_pre]:rounded-md
+            [&_pre]:text-base left-[20px] opacity-0 invisible transition-none`,
+            state == "code" && "opacity-100 left-0 duration-[180ms] visible transition-all",
+            textSmall && "[&_pre]:text-[15px]"
+          )}
+        />
       </div>
     </Column>
   );
