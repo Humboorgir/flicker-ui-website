@@ -11,9 +11,10 @@ import previews from "@/registry/previews";
 
 type Props = React.HTMLProps<HTMLDivElement> & {
   component: string;
+  textSmall?: boolean;
 };
 
-const PreviewBox = ({ children, component, className, ...props }: Props) => {
+const PreviewBox = ({ children, component, textSmall = false, className, ...props }: Props) => {
   const [state, setState] = useState<"code" | "preview">("preview");
   const [code, setCode] = useState<any>();
 
@@ -79,7 +80,8 @@ ${code}`
             `absolute flex justify-center w-full h-full overflow-auto
             [&_pre]:w-full [&_figure]:w-full [&_pre]:p-3 [&_pre]:rounded-md
             [&_pre]:text-base left-[20px] opacity-0 invisible transition-none`,
-            state == "code" && "opacity-100 left-0 duration-[180ms] visible transition-all"
+            state == "code" && "opacity-100 left-0 duration-[180ms] visible transition-all",
+            textSmall && "[&_pre]:text-[15px]"
           )}
         />
       </div>
