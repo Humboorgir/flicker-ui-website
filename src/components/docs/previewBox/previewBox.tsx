@@ -3,11 +3,12 @@ import Button from "@/components/ui/button";
 import Row from "@/components/ui/row";
 
 import { highlightCode } from "@/components/docs/code";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 
 import React from "react";
 import previews from "@/registry/previews";
+import Typography from "@/components/ui/typography";
 
 type Props = React.HTMLProps<HTMLDivElement> & {
   component: string;
@@ -24,7 +25,19 @@ const PreviewBox = ({ children, component, textSmall = false, className, ...prop
 
     const Component = registry.component;
 
-    return <Component />;
+    return (
+      // TODO: implement a good looking loading state for this (like a loading skeleton)
+      // I'll probably add a Skeleton component to the project
+      // because I use it in a lot of projects and its generally useful
+      <Suspense
+        fallback={
+          <Typography className="animate-pulse" variant="h3">
+            Loading...
+          </Typography>
+        }>
+        <Component />
+      </Suspense>
+    );
   }, [component]);
 
   useEffect(() => {
