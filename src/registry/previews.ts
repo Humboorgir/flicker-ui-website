@@ -44,6 +44,18 @@ const previews: Preview[] = [
     name: "modal-default",
     component: React.lazy(() => import("@/components/preview/modal-default")),
   },
+  {
+    name: "column-default",
+    component: React.lazy(() => import("@/components/preview/column-default")),
+  },
+  {
+    name: "column-vertically-centered",
+    component: React.lazy(() => import("@/components/preview/column-vertically-centered")),
+  },
+  {
+    name: "column-horizontally-centered",
+    component: React.lazy(() => import("@/components/preview/column-horizontally-centered")),
+  },
 ];
 
 export default previews;
