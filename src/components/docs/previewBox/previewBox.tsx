@@ -7,7 +7,6 @@ import { Suspense, useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 
 import React from "react";
-import previews from "@/registry/previews";
 import Typography from "@/components/ui/typography";
 
 type Props = React.HTMLProps<HTMLDivElement> & {
@@ -20,10 +19,10 @@ const PreviewBox = ({ children, component, textSmall = false, className, ...prop
   const [code, setCode] = useState<any>();
 
   const preview = React.useMemo(() => {
-    const registry = previews.find((x) => x.name == component);
-    if (!registry) return null;
-
-    const Component = registry.component;
+    if (!component) return;
+    const componentName = component.split("-")[0];
+    const componentType = component.split("-").slice(1).join("-");
+    const Component = React.lazy(() => import(`@/components/preview/${componentName}/${componentType}`));
 
     return (
       // TODO: implement a good looking loading state for this (like a loading skeleton)
@@ -41,16 +40,18 @@ const PreviewBox = ({ children, component, textSmall = false, className, ...prop
   }, [component]);
 
   useEffect(() => {
-    import(`../../preview/${component}.string`)
+    if (!component) return;
+    const componentName = component.split("-")[0];
+    const componentType = component.split("-").slice(1).join("-");
+    import(`@/components/preview/${componentName}/${componentType}.string`)
       .then((data) => data.default)
       .then((code) =>
-        highlightCode(
-          `\`\`\`tsx
-${code}`
-        )
+        highlightCode(`\`\`\`tsx
+${code}
+\`\`\``)
       )
       .then((code) => setCode(code));
-  }, []);
+  }, [component]);
 
   function openPreview() {
     setState("preview");
