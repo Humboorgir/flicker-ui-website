@@ -22,9 +22,24 @@ $ npx flicker-ui@latest add modal
 The modal component takes two properties: `open` and `handleClose`, `open`
 determines whether the modal is open or not, and `handleClose` is a function that 
 sets `open` to false
-```js /items="center"/ /justify="center"/
-<Modal>
-</Modal>
+```js /onClick={() => setOpen(true)}/ /open={open}/ /handleClose={() => setOpen(false)}/ /onClick={() => setOpen(false)}/
+const [open, setOpen] = useState(false);
+  return (
+    <>
+      <Button onClick={() => setOpen(true)}>Open modal</Button>
+      <Modal className="items-start" open={open} handleClose={() => setOpen(false)}>
+        <Typography className="mb-2" variant="h3">
+          Example Modal
+        </Typography>
+        <Typography className="mb-8" variant="p">
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+        </Typography>
+        <Button className="ml-auto" variant="outline" onClick={() => setOpen(false)}>
+          Close
+        </Button>
+      </Modal>
+    </>
+  );
 ```
 
 <br/>
