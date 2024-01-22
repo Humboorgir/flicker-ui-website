@@ -22,7 +22,9 @@ const PreviewBox = ({ children, component, textSmall = false, className, ...prop
     if (!component) return;
     const componentName = component.split("-")[0];
     const componentType = component.split("-").slice(1).join("-");
-    const Component = React.lazy(() => import(`@/components/preview/${componentName}/${componentType}`));
+    const Component = React.lazy(
+      () => import(`@/components/preview/${componentName}/${componentType}.tsx`)
+    );
 
     return (
       // TODO: implement a good looking loading state for this (like a loading skeleton)
@@ -43,7 +45,7 @@ const PreviewBox = ({ children, component, textSmall = false, className, ...prop
     if (!component) return;
     const componentName = component.split("-")[0];
     const componentType = component.split("-").slice(1).join("-");
-    import(`@/components/preview/${componentName}/${componentType}.string`)
+    import(`@/components/preview/${componentName}/${componentType}.string.tsx`)
       .then((data) => data.default)
       .then((code) =>
         highlightCode(`\`\`\`tsx
