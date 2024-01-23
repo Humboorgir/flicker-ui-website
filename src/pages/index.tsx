@@ -20,12 +20,14 @@ const Home = () => {
       </p>
 
       {/* Button group  */}
-      <div className="flex items-center justify-center">
-        <Button className="mr-4 w-[180px] md:w-[280px] md:text-xl md:py-3" href="/components">
+      <div className="flex w-[90%] flex-col md:flex-row items-center justify-center">
+        <Button
+          className="mb-3 md:mb-0 md:mr-4 w-full max-w-[380px] md:max-w-[280px] md:text-xl md:py-3"
+          href="/components">
           View Components
         </Button>
         <Button
-          className="w-[180px] md:w-[280px] md:text-xl md:py-3"
+          className="w-full max-w-[380px] md:max-w-[280px] md:text-xl md:py-3"
           href="/docs/installation"
           variant="outline">
           See Docs
