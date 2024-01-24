@@ -6,6 +6,8 @@ import Row from "@/components/ui/row";
 
 import Link from "next/link";
 
+import { LuTextCursor as TypingCursor } from "react-icons/lu";
+
 const Components = () => {
   const components = [
     {
@@ -20,7 +22,8 @@ const Components = () => {
     },
     {
       title: "Row",
-      description: "Flexbox container with flex-direction set to row. used for more improved readability",
+      description:
+        "Flexbox container with flex-direction set to row. used for more improved readability",
       shape: (
         <div className="flex">
           <div className="bg-white rounded-md shadow-md flex w-[55px] h-[45px] mr-1" />
@@ -31,7 +34,8 @@ const Components = () => {
     },
     {
       title: "Column",
-      description: "Flexbox container with flex-direction set to column. used for more improved readability",
+      description:
+        "Flexbox container with flex-direction set to column. used for more improved readability",
       shape: (
         <div className="flex flex-col">
           <div className="bg-white rounded-md shadow-md flex w-[60px] h-[30px] mb-1" />
@@ -52,6 +56,20 @@ const Components = () => {
             className="absolute right-0 h-[38px] w-[56px] border-l-[1.5px]
            border-l-black"
           />
+        </div>
+      ),
+    },
+    {
+      title: "Input",
+      description: "A part of ui where users can enter text. Animated",
+      shape: (
+        <div className="relative">
+          <div
+            className="top-0 left-0 translate-y-[-50%] translate-x-[-50%] text-lg text-black/30 shadow-md
+          absolute text-black bg-white rounded-lg border-2 border-black/30 py-2 px-5 whitespace-nowrap">
+            User Input
+          </div>
+          <TypingCursor className="top-0 left-0 translate-x-[250%] translate-y-[-50%] absolute text-black/80" />
         </div>
       ),
     },
@@ -83,8 +101,8 @@ const Components = () => {
               </Link>
             );
           })}
-          {[0, 0, 0].map((x) => (
-            <div className="mr-5 mb-4 w-[280px] h-[260px] hidden sm:block" />
+          {[0, 0].map((x, i) => (
+            <div key={i} className="mr-5 mb-4 w-[280px] h-[260px] hidden sm:block" />
           ))}
         </Row>
       </Column>
