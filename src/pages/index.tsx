@@ -8,7 +8,7 @@ const Home = () => {
       className="w-full min-w-[1px] flex flex-col items-center justify-center
      text-center py-12 pb-28">
       <h1
-        className="text-3xl text-white md:text-6xl 
+        className="text-3xl text-foreground md:text-6xl 
         font-extrabold mb-1 z-60 transition-all duration-400 ease-out">
         <span className="text-transparent bg-clip-text bg-gradient-to-br from-foreground to-primary">
           Your Own
