@@ -13,7 +13,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           className="absolute flex top-0 left-0 bottom-0 right-0 rounded-md bg-background px-3 py-2 text-sm
         ring-offset-background focus-visible:outline-none border border-ring
          disabled:cursor-not-allowed disabled:opacity-50 focus:ring-offset-3 focus:border-3
-         focus:border-primary transition-[border] placeholder:text-transparent pee text-foreground"
+         focus:border-primary transition-[border] placeholder:text-transparent peer text-foreground"
           placeholder={placeholder}
           ref={ref}
           {...props}
