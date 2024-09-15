@@ -21,7 +21,7 @@
     --foreground: 0 0% 98%;
     --foreground-light: 0 0% 83%;
     --foreground-muted: 0 0% 64%;
-    --background: 240 4% 9%;
+    --background: 0, 0%, 5%;
     --primary: 211 100% 50%;
     --secondary: 240 4% 18%;
     --accent: 240 4% 15%;
@@ -30,6 +30,29 @@
     scrollbar-color: #555 #101010 !important;
     scrollbar-width: 4px !important;
   }
+}
+
+.waves {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.waves svg {
+  object-fit: contain;
+  position: relative;
+  display: block;
+  width: 205%;
+  height: 368px;
+  color: #0069d935;
+  transform: rotateY(180deg);
+}
+
+.waves .shape-fill {
+  fill: url("#WaveGradient");
 }
 
 [data-highlighted-chars] {

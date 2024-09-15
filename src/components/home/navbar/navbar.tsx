@@ -33,14 +33,16 @@ const Navbar = () => {
   ];
 
   return (
-    // TODO: add fluid prop to Container
     <Container className="w-full">
       <Row items="center" justify="start" className="py-2 sm:justify-center">
         {/* mobile navbar */}
         <div className="relative w-fit h-fit">
           <Button
             onClick={toggleOpen}
-            className={cn("sm:hidden text-foreground text-5xl", open && "bg-accent")}
+            className={cn(
+              "sm:hidden text-foreground text-5xl",
+              open && "bg-accent"
+            )}
             size="sm"
             variant="ghost">
             <Bars />
@@ -67,20 +69,22 @@ const Navbar = () => {
         </div>
 
         {/* desktop navbar items */}
-        <div className="hidden sm:flex">
+        <ul className="hidden sm:flex">
           {links.map((link, i) => {
             return (
-              <Button
-                key={i}
-                variant="link"
-                size="lg"
-                href={link.href}
-                className="text-lg text-foreground decoration-foreground">
-                {link.title}
-              </Button>
+              <li>
+                <Button
+                  key={i}
+                  variant="ghost"
+                  size="lg"
+                  href={link.href}
+                  className="text-base text-foreground">
+                  {link.title}
+                </Button>
+              </li>
             );
           })}
-        </div>
+        </ul>
       </Row>
     </Container>
   );
