@@ -23,7 +23,7 @@ const DocsLayout = ({ children, tableOfContent, meta }: Props) => {
         <Navbar />
         <div className="flex pt-12">
           <Sidebar />
-          <Container className="py-8 mx-0 grow w-[1px] ">
+          <Container className="py-8 mx-0 grow w-[1px]">
             <Typography variant="h2">{meta.title}</Typography>
             <Typography variant="p">{meta.description}</Typography>
             <br />

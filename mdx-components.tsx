@@ -1,7 +1,7 @@
 import type { MDXComponents } from "mdx/types";
 
 import Typography from "@/components/ui/typography";
-type TTypography = Extract<keyof JSX.IntrinsicElements, "p" | "h1" | "h2" | "h3" | "h4" | "h5">;
+import { cn } from "@/lib/utils";
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
@@ -10,8 +10,8 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         {children}
       </Typography>
     ),
-    h2: ({ children, ...props }) => (
-      <Typography variant="h2" {...(props as any)}>
+    h2: ({ children, className, ...props }) => (
+      <Typography variant="h2" className="my-3.5" {...(props as any)}>
         {children}
       </Typography>
     ),
@@ -30,8 +30,11 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         {children}
       </Typography>
     ),
-    p: ({ children, ...props }) => (
-      <Typography variant="p" {...(props as any)}>
+    p: ({ children, className, ...props }) => (
+      <Typography
+        variant="p"
+        className={cn("my-2.5", className)}
+        {...(props as any)}>
         {children}
       </Typography>
     ),
