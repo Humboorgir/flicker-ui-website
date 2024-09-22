@@ -25,7 +25,8 @@ const Sidebar = () => {
             href={link.href}
             className={cn(
               "py-2 justify-start text-left text-foreground-light/80 p-1 w-full",
-              !link.href && "text-foreground font-bold mb-1 hover:no-underline hover:cursor-default"
+              !link.href &&
+                "text-foreground font-bold mb-1 hover:no-underline hover:cursor-default"
             )}>
             {link.title}
           </Button>

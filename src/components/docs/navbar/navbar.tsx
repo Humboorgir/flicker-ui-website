@@ -2,6 +2,8 @@ import Theme from "./theme";
 import Button from "@/components/ui/button";
 import Row from "@/components/ui/row";
 
+import Image from "next/image";
+
 import { FaGithub as Github } from "react-icons/fa";
 
 const Navbar = () => {
@@ -26,10 +28,9 @@ const Navbar = () => {
   return (
     <Row
       items="center"
-      className="py-2 px-4 md:px-12 fixed bg-background/60 w-full z-20 border-b border-b-ring backdrop-blur">
-      <span
-        className="font-bold mr-4 md:mr-10 text-xl bg-gradient-to-br from-primary 
-         to-foreground/50 text-transparent bg-clip-text">
+      className="py-2 px-4 md:px-12 sticky top-0 bg-background/60 w-full z-20 border-b border-b-ring backdrop-blur">
+      <Image width={20} height={32} src="/logo.svg" alt="logo" />
+      <span className="ml-2 font-bold tracking-wide text-foreground/90 mr-4 md:mr-10 text-[22px]">
         Flicker UI
       </span>
       {links.map((link, i) => {

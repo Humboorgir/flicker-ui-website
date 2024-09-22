@@ -11,7 +11,10 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       </Typography>
     ),
     h2: ({ children, className, ...props }) => (
-      <Typography variant="h2" className="my-3.5" {...(props as any)}>
+      <Typography
+        variant="h2"
+        className="my-3.5 text-2xl sm:text-3xl"
+        {...(props as any)}>
         {children}
       </Typography>
     ),

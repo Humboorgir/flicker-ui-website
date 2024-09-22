@@ -27,7 +27,7 @@ const Home = () => {
 
       <h1
         className="text-4xl leading-[1] sm:text-[40px] text-foreground md:text-6xl mb-6
-        font-extrabold max-w-sm md:max-w-xl">
+        font-black max-w-sm md:max-w-xl">
         <span className="text-transparent bg-clip-text bg-gradient-to-br from-foreground to-primary">
           Your Own
         </span>{" "}

@@ -26,8 +26,15 @@ const Footer = ({ className, ...props }: Props) => {
     { title: "Change log", url: "/changelog" },
   ];
   return (
-    <footer className={cn(`border-t-2 border-ring py-4 px-8 flex items-center`, className)} {...props}>
-      <Typography variant="p">Copyright &copy; FlickerUI 2024 - all rights reserved</Typography>
+    <footer
+      className={cn(
+        `border-t border-ring mt-28 py-5 px-8 flex items-center`,
+        className
+      )}
+      {...props}>
+      <Typography variant="p">
+        Copyright &copy; FlickerUI 2024 - all rights reserved
+      </Typography>
     </footer>
   );
 };
