@@ -39,7 +39,7 @@ const Navbar = () => {
             key={i}
             variant="link"
             href={link.href}
-            className="hidden md:flex text-foreground decoration-foreground">
+            className="hidden md:flex text-foreground-light text-[15px] decoration-foreground">
             {link.title}
           </Button>
         );

@@ -46,7 +46,10 @@ const nextConfig = {
           const tableOfContent = headings.map((heading) => {
             return { title: heading, href: `#${slugize(heading)}` };
           });
-          const titleHeading = { title: meta.title, href: `#${slugize(meta.title)}` };
+          const titleHeading = {
+            title: meta.title,
+            href: `#${slugize(meta.title)}`,
+          };
           tableOfContent.unshift(titleHeading);
 
           let codeTop = `import DocsLayout from "@/layouts/docsLayout";`;
@@ -54,7 +57,9 @@ const nextConfig = {
           let codeBottom = `export default function Page({ children }) {
             const tableOfContent = ${JSON.stringify(tableOfContent)}
             return (
-              <DocsLayout tableOfContent={tableOfContent} meta={${JSON.stringify(meta)}}>
+              <DocsLayout tableOfContent={tableOfContent} meta={${JSON.stringify(
+                meta
+              )}}>
                 {children}
               </DocsLayout>
             );

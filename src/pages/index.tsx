@@ -18,8 +18,8 @@ const Home = () => {
             className="shape-fill"></path>
           <defs>
             <linearGradient id="WaveGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="5%" stop-color="#0069d9" />
-              <stop offset="95%" stop-color="#0069d984" />
+              <stop offset="5%" stopColor="#0069d9" />
+              <stop offset="95%" stopColor="#0069d984" />
             </linearGradient>
           </defs>
         </svg>
