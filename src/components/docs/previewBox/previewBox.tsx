@@ -14,7 +14,13 @@ type Props = React.HTMLProps<HTMLDivElement> & {
   textSmall?: boolean;
 };
 
-const PreviewBox = ({ children, component, textSmall = false, className, ...props }: Props) => {
+const PreviewBox = ({
+  children,
+  component,
+  textSmall = false,
+  className,
+  ...props
+}: Props) => {
   const [state, setState] = useState<"code" | "preview">("preview");
   const [code, setCode] = useState<any>();
 
@@ -65,7 +71,10 @@ ${code}
 
   return (
     // @ts-ignore
-    <Column items="start" className={cn("flex flex-col max-w-[800px] w-[100%]", className)} {...props}>
+    <Column
+      items="start"
+      className={cn("flex flex-col w-[100%]", className)}
+      {...props}>
       <Row className="w-fit relative">
         <span
           className={cn(
@@ -86,7 +95,8 @@ ${code}
           className={cn(
             `absolute grid place-items-center h-full w-full border border-ring rounded-md p-3
              opacity-0 -left-[20px] invisible transition-none`,
-            state == "preview" && "opacity-100 left-0 transition-all visible duration-[180ms]"
+            state == "preview" &&
+              "opacity-100 left-0 transition-all visible duration-[180ms]"
           )}>
           {preview}
         </div>
@@ -96,7 +106,8 @@ ${code}
             `absolute flex w-full h-full overflow-auto
             [&_pre]:w-full [&_figure]:grow [&_pre]:p-3 [&_pre]:rounded-md
             [&_pre]:text-base left-[20px] opacity-0 invisible transition-none`,
-            state == "code" && "opacity-100 left-0 duration-[180ms] visible transition-all",
+            state == "code" &&
+              "opacity-100 left-0 duration-[180ms] visible transition-all",
             textSmall && "[&_pre]:text-[15px]"
           )}
         />

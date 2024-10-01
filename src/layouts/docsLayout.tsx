@@ -14,9 +14,11 @@ import Button from "@/components/ui/button";
 import PreviewBox from "@/components/docs/previewBox";
 
 import {
-  IoIosArrowForward as ArrowForward,
-  IoIosArrowBack as ArrowBack,
-} from "react-icons/io";
+  FaArrowLeftLong as ArrowBack,
+  FaArrowRight as ArrowForward,
+} from "react-icons/fa6";
+import { IoIosArrowForward as Arrow } from "react-icons/io";
+import Column from "@/components/ui/column";
 
 type Props = {
   children: React.ReactNode;
@@ -45,12 +47,12 @@ const DocsLayout = ({ children, tableOfContent, meta }: Props) => {
       </Head>
       <div className="grid grid-rows-[auto,1fr,auto] min-h-screen bg-background">
         <Navbar />
-        <div className="flex">
+        <Container className="flex w-full max-w-[90rem] px-0 md:px-0">
           <Sidebar />
-          <Container className="py-8 mx-0 grow w-[1px]">
+          <div className="py-8 px-6 md:px-12 mr-auto grow w-full">
             <Row className="mb-4 text-sm">
               <span className="flex items-center text-foreground-muted mr-2">
-                Docs <ArrowForward className="h-3 w-3 ml-2" />
+                Docs <Arrow className="h-3.5 w-3.5 ml-2" />
               </span>
               <span className="font-medium text-foreground">{meta.title}</span>
             </Row>
@@ -66,31 +68,41 @@ const DocsLayout = ({ children, tableOfContent, meta }: Props) => {
             )}
             {children}
 
-            <div className="mt-20 flex items-center">
+            <div className="mt-32 flex items-stretch">
               {prevPage && (
-                <Button
-                  href={prevPage.href}
-                  size="lg"
-                  className="text-base"
-                  variant="outline">
-                  <ArrowBack className="w-4 h-4 mr-auto" />
-                  {prevPage.label}
-                </Button>
+                <Column className="mr-auto" items="start">
+                  <Typography className="ml-1.5" variant="lead">
+                    Previous
+                  </Typography>
+                  <Button
+                    href={prevPage.href}
+                    size="lg"
+                    className="flex items-center bg-secondary/10 mr-auto"
+                    variant="outline">
+                    <ArrowBack className="w-4 h-4 mr-2" />
+                    {prevPage.label}
+                  </Button>
+                </Column>
               )}
               {nextPage && (
-                <Button
-                  href={nextPage.href}
-                  size="lg"
-                  className="text-base ml-auto"
-                  variant="outline">
-                  {nextPage.label}
-                  <ArrowForward className="w-4 h-4 ml-1" />
-                </Button>
+                <Column className="ml-auto" items="start">
+                  <Typography className="ml-1.5" variant="lead">
+                    Next
+                  </Typography>
+                  <Button
+                    href={nextPage.href}
+                    size="lg"
+                    className="flex items-center bg-secondary/10"
+                    variant="outline">
+                    {nextPage.label}
+                    <ArrowForward className="w-4 h-4 ml-2" />
+                  </Button>
+                </Column>
               )}
             </div>
-          </Container>
+          </div>
           <TableOfContent tableOfContent={tableOfContent} />
-        </div>
+        </Container>
         <Footer />
       </div>
     </>
