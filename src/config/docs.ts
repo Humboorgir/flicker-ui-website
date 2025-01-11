@@ -13,6 +13,18 @@ export const docsPages = [
       { label: "Column", href: "/docs/components/column" },
       { label: "Input", href: "/docs/components/input" },
       { label: "Modal", href: "/docs/components/modal" },
+      // TODO: implement this
+      { label: "Accordion", href: "/docs/components/accordion" },
+    ],
+  },
+  {
+    label: "Snippets",
+    items: [
+      // TODO: implement all of these
+      { label: "Alert", href: "/docs/snippets/alert" },
+      { label: "Navbar", href: "/docs/snippets/alert" },
+      { label: "Footer", href: "/docs/snippets/alert" },
+      { label: "Hero section", href: "/docs/snippets/alert" },
     ],
   },
 ];

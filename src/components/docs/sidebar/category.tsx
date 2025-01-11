@@ -22,7 +22,7 @@ const Category = ({ category }: CategoryProps) => {
   const router = useRouter();
   const [open, setOpen] = useState(true);
   const easeOut = [0, 0, 0.2, 1];
-
+  const duration = category.items.length > 3 ? 0.5 : 0.4;
   function toggleOpen() {
     setOpen((prev) => !prev);
   }
@@ -52,7 +52,7 @@ const Category = ({ category }: CategoryProps) => {
           <motion.div
             initial={{
               height: 0,
-              scale: 0.92,
+              scale: 0.97,
               opacity: 0,
             }}
             animate={{
@@ -60,9 +60,16 @@ const Category = ({ category }: CategoryProps) => {
               scale: 1,
               opacity: 1,
             }}
-            exit={{ height: 0, scale: 0.92, opacity: 0 }}
+            exit={{ height: 0, scale: 0.97, opacity: 0 }}
             transition={{
-              duration: 0.3,
+              opacity: {
+                delay: 0.2,
+              },
+              scale: {
+                delay: 0.3,
+                duration: 0.2,
+              },
+              duration: duration,
               delay: 0.1,
               ease: easeOut,
             }}>
