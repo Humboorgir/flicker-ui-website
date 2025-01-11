@@ -39,10 +39,7 @@ const Navbar = () => {
         <div className="relative w-fit h-fit">
           <Button
             onClick={toggleOpen}
-            className={cn(
-              "sm:hidden text-foreground text-5xl",
-              open && "bg-accent"
-            )}
+            className={cn("sm:hidden text-foreground text-5xl", open && "bg-accent")}
             size="sm"
             variant="ghost">
             <Bars />
@@ -72,13 +69,8 @@ const Navbar = () => {
         <ul className="hidden sm:flex">
           {links.map((link, i) => {
             return (
-              <li>
-                <Button
-                  key={i}
-                  variant="ghost"
-                  size="lg"
-                  href={link.href}
-                  className="text-base text-foreground">
+              <li key={i}>
+                <Button variant="ghost" size="lg" href={link.href} className="text-base text-foreground">
                   {link.title}
                 </Button>
               </li>

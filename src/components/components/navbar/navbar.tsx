@@ -25,9 +25,9 @@ const Navbar = () => {
       <span className="font-bold text-xl mr-auto bg-gradient-to-br from-primary to-foreground/50 text-transparent bg-clip-text">
         Flicker UI
       </span>
-      {links.map((link) => {
+      {links.map((link, i) => {
         return (
-          <Button variant="link" href={link.href} className="text-foreground decoration-foreground">
+          <Button key={i} variant="link" href={link.href} className="text-foreground decoration-foreground">
             {link.title}
           </Button>
         );
