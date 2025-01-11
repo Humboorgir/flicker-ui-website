@@ -6,11 +6,13 @@ export type InputProps = React.InputHTMLAttributes<HTMLInputElement>;
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
   ({ className, type, placeholder, ...props }, ref) => {
+    // TODO: rewrite this according to my codepen
+    // so many accessibility issues with this
     return (
-      <div className={cn("relative w-[200px] h-10", className)}>
+      <div className={cn("relative w-fit h-fit", className)}>
         <input
           type={type}
-          className="absolute flex top-0 left-0 bottom-0 right-0 rounded-md bg-background px-3 py-2 text-sm
+          className="flex top-0 left-0 bottom-0 right-0 rounded-md bg-background px-3.5 py-4
         ring-offset-background focus-visible:outline-none border border-ring
          disabled:cursor-not-allowed disabled:opacity-50 focus:ring-offset-3 focus:border-3
          focus:border-primary transition-[border] placeholder:text-transparent peer text-foreground"
