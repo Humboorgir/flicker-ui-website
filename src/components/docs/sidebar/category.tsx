@@ -34,17 +34,16 @@ const Category = ({ category }: CategoryProps) => {
         rippleColor="#8c8c8c"
         variant="ghost"
         onClick={toggleOpen}
-        className="hover:bg-transparent w-fit h-fit !p-0">
-        <Typography className="text-[15px] flex items-center tracking-wide pl-6 pr-3 mb-2" variant="h4">
+        className="hover:bg-transparent w-full h-fit !py-0 px-3 mb-1 flex items-center justify-start">
+        <Typography className="text-[15px] flex items-center tracking-wide" variant="h4">
           {category.label}
-
-          <ArrowDown
-            className={cn(
-              "absolute top-2 left-0 h-4 w-4 ml-auto transition-transform ease-out duration-[250ms]",
-              !open && "rotate-180"
-            )}
-          />
         </Typography>
+        <ArrowDown
+          className={cn(
+            "h-4 w-4 ml-auto transition-transform ease-out duration-[250ms]",
+            !open && "-rotate-90"
+          )}
+        />
       </Button>
 
       <AnimatePresence>
@@ -76,7 +75,7 @@ const Category = ({ category }: CategoryProps) => {
                     variant="link"
                     href={item.href}
                     className={cn(
-                      "text-sm py-1.5 justify-start text-left text-foreground-light/80 pl-6 pr-3.5 w-full",
+                      "text-sm py-2 justify-start text-left text-foreground-light/80 pl-6 pr-3.5 w-full",
                       isCurrentPage && "bg-foreground-light/10 text-foreground"
                     )}>
                     {item.label}
