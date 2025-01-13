@@ -22,13 +22,13 @@ const Category = ({ category }: CategoryProps) => {
   const router = useRouter();
   const [open, setOpen] = useState(true);
   const easeOut = [0, 0, 0.2, 1];
-  const duration = category.items.length > 3 ? 0.5 : 0.4;
+  const duration = category.items.length > 3 ? 0.4 : 0.3;
   function toggleOpen() {
     setOpen((prev) => !prev);
   }
 
   return (
-    <div className="relative mb-4">
+    <div className="relative mb-1">
       {/* title  */}
       <Button
         rippleColor="#8c8c8c"
@@ -52,23 +52,16 @@ const Category = ({ category }: CategoryProps) => {
           <motion.div
             initial={{
               height: 0,
-              scale: 0.97,
+              y: -8,
               opacity: 0,
             }}
             animate={{
               height: "auto",
-              scale: 1,
+              y: 0,
               opacity: 1,
             }}
-            exit={{ height: 0, scale: 0.97, opacity: 0 }}
+            exit={{ height: 0, y: -8, opacity: 0 }}
             transition={{
-              opacity: {
-                delay: 0.2,
-              },
-              scale: {
-                delay: 0.3,
-                duration: 0.2,
-              },
               duration: duration,
               delay: 0.1,
               ease: easeOut,
@@ -83,7 +76,7 @@ const Category = ({ category }: CategoryProps) => {
                     variant="link"
                     href={item.href}
                     className={cn(
-                      "text-sm py-2 justify-start text-left text-foreground-light/80 pl-6 pr-3.5 w-full",
+                      "text-sm py-1.5 justify-start text-left text-foreground-light/80 pl-6 pr-3.5 w-full",
                       isCurrentPage && "bg-foreground-light/10 text-foreground"
                     )}>
                     {item.label}
