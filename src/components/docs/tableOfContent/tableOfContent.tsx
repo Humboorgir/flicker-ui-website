@@ -16,9 +16,7 @@ const TableOfContent = ({ tableOfContent }: { tableOfContent: any }) => {
               key={i}
               variant="link"
               href={content.href}
-              className={cn(
-                "py-2 justify-start text-left text-foreground-light/80 p-1 text-[15px]"
-              )}>
+              className={cn("py-2 justify-start text-left text-foreground-light/80 p-1 text-[15px]")}>
               {content.title}
             </Button>
           );

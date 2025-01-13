@@ -46,7 +46,7 @@ const Category = ({ category }: CategoryProps) => {
         />
       </Button>
 
-      <AnimatePresence>
+      <AnimatePresence initial={false}>
         {open && (
           <motion.div
             initial={{
