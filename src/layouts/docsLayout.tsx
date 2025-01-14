@@ -13,32 +13,24 @@ import Typography from "@/components/ui/typography";
 import Button from "@/components/ui/button";
 import PreviewBox from "@/components/docs/previewBox";
 
-import {
-  FaArrowLeftLong as ArrowBack,
-  FaArrowRight as ArrowForward,
-} from "react-icons/fa6";
+import { FaArrowLeftLong as ArrowBack, FaArrowRight as ArrowForward } from "react-icons/fa6";
 import { IoIosArrowForward as Arrow } from "react-icons/io";
 import Column from "@/components/ui/column";
 
 type Props = {
   children: React.ReactNode;
-  docsPages: string[];
-  tableOfContent: any;
+  tableOfContent?: any;
   meta: { title: string; description: string; preview?: string };
 };
 const DocsLayout = ({ children, tableOfContent, meta }: Props) => {
   const router = useRouter();
 
-  const allPages = docsPages.map((category) => category.items).flat();
-  const currentPageIndex = allPages.findIndex(
-    (page) => page.href == router.pathname
-  );
-  const prevPage = allPages[currentPageIndex - 1]
-    ? allPages[currentPageIndex - 1]
-    : null;
-  const nextPage = allPages[currentPageIndex + 1]
-    ? allPages[currentPageIndex + 1]
-    : null;
+  const allPages = docsPages
+    .map((category) => [{ label: category.label, href: category.href }, ...category.items])
+    .flat();
+  const currentPageIndex = allPages.findIndex((page) => page.href == router.pathname);
+  const prevPage = allPages[currentPageIndex - 1] ? allPages[currentPageIndex - 1] : null;
+  const nextPage = allPages[currentPageIndex + 1] ? allPages[currentPageIndex + 1] : null;
   return (
     <>
       <Head>
@@ -61,11 +53,7 @@ const DocsLayout = ({ children, tableOfContent, meta }: Props) => {
             </Typography>
             <Typography variant="lead">{meta.description}</Typography>
 
-            {meta.preview ? (
-              <PreviewBox className="mt-4 mb-16" component={meta.preview} />
-            ) : (
-              <br />
-            )}
+            {meta.preview ? <PreviewBox className="mt-4 mb-16" component={meta.preview} /> : <br />}
             {children}
 
             <div className="mt-32 flex items-stretch">
@@ -77,7 +65,7 @@ const DocsLayout = ({ children, tableOfContent, meta }: Props) => {
                   <Button
                     href={prevPage.href}
                     size="lg"
-                    className="flex items-center bg-secondary/10 mr-auto"
+                    className="flex text-base items-center bg-secondary/10 mr-auto"
                     variant="outline">
                     <ArrowBack className="w-4 h-4 mr-2" />
                     {prevPage.label}
@@ -92,7 +80,7 @@ const DocsLayout = ({ children, tableOfContent, meta }: Props) => {
                   <Button
                     href={nextPage.href}
                     size="lg"
-                    className="flex items-center bg-secondary/10"
+                    className="flex text-base items-center bg-secondary/10"
                     variant="outline">
                     {nextPage.label}
                     <ArrowForward className="w-4 h-4 ml-2" />

@@ -1,10 +1,13 @@
 export const docsPages = [
   {
     label: "Getting Started",
+    // category overview
+    href: "/docs/getting-started",
     items: [{ label: "Installation", href: "/docs/installation" }],
   },
   {
     label: "Components",
+    href: "/docs/components",
     items: [
       { label: "Typography", href: "/docs/components/typography" },
       { label: "Container", href: "/docs/components/container" },
@@ -19,6 +22,7 @@ export const docsPages = [
   },
   {
     label: "Snippets",
+    href: "/docs/snippets",
     items: [
       // TODO: implement all of these
       { label: "Alert", href: "/docs/snippets/alert" },

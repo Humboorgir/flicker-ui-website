@@ -22,7 +22,7 @@ const Category = ({ category }: CategoryProps) => {
   const router = useRouter();
   const [open, setOpen] = useState(true);
   const easeOut = [0, 0, 0.2, 1];
-  const duration = category.items.length > 3 ? 0.4 : 0.3;
+  const duration = category.items.length > 3 ? 0.35 : 0.3;
   function toggleOpen() {
     setOpen((prev) => !prev);
   }
