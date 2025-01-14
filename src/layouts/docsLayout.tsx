@@ -56,16 +56,16 @@ const DocsLayout = ({ children, tableOfContent, meta }: Props) => {
             {meta.preview ? <PreviewBox className="mt-4 mb-16" component={meta.preview} /> : <br />}
             {children}
 
-            <div className="mt-32 flex items-stretch">
+            <div className="mt-12 sm:mt-32 space-y-5 sm:space-y-0 flex flex-col items-center sm:items-stretch sm:flex-row">
               {prevPage && (
-                <Column className="mr-auto" items="start">
+                <Column className="sm:mr-auto w-full sm:w-auto" items="start">
                   <Typography className="ml-1.5" variant="lead">
                     Previous
                   </Typography>
                   <Button
                     href={prevPage.href}
                     size="lg"
-                    className="flex text-base items-center bg-secondary/10 mr-auto"
+                    className="flex w-full sm:w-auto text-base items-center bg-secondary/10 mr-auto"
                     variant="outline">
                     <ArrowBack className="w-4 h-4 mr-2" />
                     {prevPage.label}
@@ -73,14 +73,14 @@ const DocsLayout = ({ children, tableOfContent, meta }: Props) => {
                 </Column>
               )}
               {nextPage && (
-                <Column className="ml-auto" items="start">
+                <Column className="sm:ml-auto w-full sm:w-auto" items="start">
                   <Typography className="ml-1.5" variant="lead">
                     Next
                   </Typography>
                   <Button
                     href={nextPage.href}
                     size="lg"
-                    className="flex text-base items-center bg-secondary/10"
+                    className="flex w-full sm:w-auto text-base items-center bg-secondary/10"
                     variant="outline">
                     {nextPage.label}
                     <ArrowForward className="w-4 h-4 ml-2" />
