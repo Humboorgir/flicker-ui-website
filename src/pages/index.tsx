@@ -42,7 +42,7 @@ const Home = () => {
       <div className="flex w-full md:w-fit flex-col md:flex-row items-center justify-center">
         <Button
           className="shrink-0 mb-3 md:mb-0 md:mr-4 w-full max-w-[380px] md:max-w-none md:w-fit md:text-lg md:py-3"
-          href="/docs/components">
+          href="/docs/components/overview">
           View Components
         </Button>
         <Button

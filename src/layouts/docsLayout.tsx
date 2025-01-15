@@ -25,9 +25,7 @@ type Props = {
 const DocsLayout = ({ children, tableOfContent, meta }: Props) => {
   const router = useRouter();
 
-  const allPages = docsPages
-    .map((category) => [{ label: category.label, href: category.href }, ...category.items])
-    .flat();
+  const allPages = docsPages.map((category) => category.items).flat();
   const currentPageIndex = allPages.findIndex((page) => page.href == router.pathname);
   const prevPage = allPages[currentPageIndex - 1] ? allPages[currentPageIndex - 1] : null;
   const nextPage = allPages[currentPageIndex + 1] ? allPages[currentPageIndex + 1] : null;

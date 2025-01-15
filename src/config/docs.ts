@@ -9,6 +9,7 @@ export const docsPages = [
     label: "Components",
     href: "/docs/components",
     items: [
+      { label: "Overview", href: "/docs/components/overview" },
       { label: "Typography", href: "/docs/components/typography" },
       { label: "Container", href: "/docs/components/container" },
       { label: "Button", href: "/docs/components/button" },
