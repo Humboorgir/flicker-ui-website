@@ -1,14 +1,13 @@
 // Served as the overview page for 'docs/components'
 
 import DocsLayout from "@/layouts/docsLayout";
-import Container from "@/components/ui/container";
 import Typography from "@/components/ui/typography";
-import Column from "@/components/ui/column";
 import Row from "@/components/ui/row";
 
 import Link from "next/link";
 
 import { LuTextCursor as TypingCursor } from "react-icons/lu";
+import { FcCursor as Cursor } from "react-icons/fc";
 
 const Page = () => {
   const components = [
@@ -17,10 +16,62 @@ const Page = () => {
       description: "Your average button component. has Material-Design's ripple effect implemented",
       shape: <div className="flex w-[120px] h-[40px] bg-white rounded-md shadow-md" />,
     },
+
+    {
+      title: "Input",
+      description: "A part of ui where users can enter text. Animated",
+      shape: (
+        <div className="relative">
+          <div
+            className="top-0 left-0 translate-y-[-50%] translate-x-[-50%] text-lg text-black/30 shadow-md
+              absolute bg-white rounded-lg border-2 border-black/30 py-2 px-5 whitespace-nowrap">
+            User Input
+          </div>
+          <TypingCursor className="top-0 left-0 translate-x-[250%] translate-y-[-50%] absolute text-black/80" />
+        </div>
+      ),
+    },
     {
       title: "Container",
       description: "Used to position common page elements properly and center them.",
       shape: <div className="flex w-[80px] h-[100px] bg-white rounded-md shadow-md" />,
+    },
+    {
+      title: "Typography",
+      description: "Includes a set of styled h1, h2, h3, ..., h5 and p tags made for reusability",
+      shape: (
+        <div
+          className="relative flex items-center w-[170px] pl-2 h-[45px] bg-white
+             shadow-md border border-neutral-300 rounded-md">
+          <span className="text-gray-900 text-3xl font-black tracking-tigher">How to </span>
+          <div
+            className="absolute right-0 h-[38px] w-[56px] border-l-[1.5px]
+               border-l-black"
+          />
+        </div>
+      ),
+    },
+    {
+      title: "Tabs",
+      description: "A box with a bunch of buttons that change the content displayed when clicked.",
+      shape: (
+        <div className="relative flex flex-col">
+          <div className="flex mb-2">
+            <Cursor className="top-0 w-6 h-6 left-0 translate-x-[100%] translate-y-[100%] absolute text-black/80 z-10" />{" "}
+            <div className="bg-white text-black translate-y-[-1px] grid place-items-center rounded-md shadow-md w-[55px] h-[45px] mr-1">
+              Tab 1
+            </div>
+            <div className="bg-white text-black/60 grid place-items-center rounded-md shadow-md w-[55px] h-[45px]">
+              Tab 2
+            </div>
+          </div>
+          <div className="bg-white text-black p-[4px] overflow-hidden rounded-md shadow-md w-[114px] h-[60px] mr-1 text-xs flex flex-col justify-around">
+            <div className="bg-gray-400/80 h-[8px] w-[60%] rounded-md" />
+            <div className="bg-gray-400/80 h-[8px] w-full rounded-md" />
+            <div className="bg-gray-400/80 h-[8px] w-full rounded-md" />
+          </div>
+        </div>
+      ),
     },
     {
       title: "Row",
@@ -41,35 +92,6 @@ const Page = () => {
           <div className="bg-white rounded-md shadow-md flex w-[60px] h-[30px] mb-1" />
           <div className="bg-white rounded-md shadow-md flex w-[60px] h-[30px] mb-1" />
           <div className="bg-white rounded-md shadow-md flex w-[60px] h-[30px]" />
-        </div>
-      ),
-    },
-    {
-      title: "Typography",
-      description: "Includes a set of styled h1, h2, h3, ..., h5 and p tags made for reusability",
-      shape: (
-        <div
-          className="relative flex items-center w-[170px] pl-2 h-[45px] bg-white
-             shadow-md border border-neutral-300 rounded-md">
-          <span className="text-gray-900 text-3xl font-black tracking-tigher">How to </span>
-          <div
-            className="absolute right-0 h-[38px] w-[56px] border-l-[1.5px]
-               border-l-black"
-          />
-        </div>
-      ),
-    },
-    {
-      title: "Input",
-      description: "A part of ui where users can enter text. Animated",
-      shape: (
-        <div className="relative">
-          <div
-            className="top-0 left-0 translate-y-[-50%] translate-x-[-50%] text-lg text-black/30 shadow-md
-              absolute text-black bg-white rounded-lg border-2 border-black/30 py-2 px-5 whitespace-nowrap">
-            User Input
-          </div>
-          <TypingCursor className="top-0 left-0 translate-x-[250%] translate-y-[-50%] absolute text-black/80" />
         </div>
       ),
     },
