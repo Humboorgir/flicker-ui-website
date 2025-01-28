@@ -1,0 +1,58 @@
+---
+title: "Tabs"
+description: "A box with a bunch of buttons that change the displayed content when clicked."
+preview: "tabs-styled"
+---
+
+import PreviewBox from "@/components/docs/previewBox";
+import Note from '@/components/docs/note';
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+
+## Installation
+
+The following command will add the Tabs component into your `components/ui` folder
+
+```bash
+$ npx flicker-ui@latest add tabs
+```
+
+<br />
+
+## Usage
+
+<Note>The 'Tabs' component does NOT come pre-styled. It contains the logic required to make tabs function. Styling it is on your own!</Note>
+
+The 'component' actually consists of 4 components that work together: Tabs, TabsList, TabsTrigger and TabsContent.
+- `Tabs` wraps all other elements. Use the `openByDefault` prop to specify which tab should be open by default. (required)
+- `TabsList` wraps all the tab triggers.
+- `TabsTrigger` opens the tab associated with its value. Use the `value` prop to specify a tab. (required)
+- `TabsContent` wraps content associated with a unique value. Use the `value` prop to specify a value. (required)
+
+The `value` property is similar to an ID.
+ Here's a brief demonstration of how it's meant to be used:
+```js
+<Tabs openByDefault="one">
+
+  <TabsList>
+    <TabsTrigger value="one">Tab One</TabsTrigger>
+    <TabsTrigger value="two">Tab Two</TabsTrigger>
+  </TabsList>
+
+  <TabsContent value="one">Hey, You found Tab one! Good job.</TabsContent>
+  <TabsContent value="two">Tab two?! This is getting real.</TabsContent>
+      
+</Tabs>
+```
+
+<br />
+<br />
+
+### Raw example
+
+<PreviewBox className="mb-12" component="tabs-default"/>
+
+### Styled example
+
+<PreviewBox className="mb-12" component="tabs-styled"/>
+
+<Note>The sliding animation will look bad if the TabContent elements don't have the same height.</Note>

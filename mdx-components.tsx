@@ -45,6 +45,17 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         {children}
       </pre>
     ),
+    ul: ({ children, ...props }) => (
+      <ul className="pl-5 text-foreground-light" {...(props as any)}>
+        {children}
+      </ul>
+    ),
+    li: ({ children, ...props }) => (
+      <li className="list-disc" {...(props as any)}>
+        {children}
+      </li>
+    ),
+
     ...components,
   };
 }

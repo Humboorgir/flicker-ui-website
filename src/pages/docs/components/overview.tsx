@@ -53,7 +53,7 @@ const Page = () => {
     },
     {
       title: "Tabs",
-      description: "A box with a bunch of buttons that change the content displayed when clicked.",
+      description: "A box with a bunch of buttons that change the displayed content when clicked.",
       shape: (
         <div className="relative flex flex-col">
           <div className="flex mb-2">
