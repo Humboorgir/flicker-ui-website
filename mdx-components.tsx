@@ -11,10 +11,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       </Typography>
     ),
     h2: ({ children, className, ...props }) => (
-      <Typography
-        variant="h2"
-        className="my-3.5 text-2xl sm:text-3xl"
-        {...(props as any)}>
+      <Typography variant="h2" className="my-3.5 text-2xl sm:text-3xl" {...(props as any)}>
         {children}
       </Typography>
     ),
@@ -34,12 +31,14 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       </Typography>
     ),
     p: ({ children, className, ...props }) => (
-      <Typography
-        variant="p"
-        className={cn("my-2.5", className)}
-        {...(props as any)}>
+      <Typography variant="p" className={cn("my-2.5", className)} {...(props as any)}>
         {children}
       </Typography>
+    ),
+    figure: ({ children, ...props }) => (
+      <figure className="w-[1px] min-w-full" {...(props as any)}>
+        {children}
+      </figure>
     ),
     pre: ({ children, ...props }) => (
       <pre className="p-3 rounded-md" {...(props as any)}>
