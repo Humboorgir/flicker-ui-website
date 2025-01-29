@@ -32,7 +32,7 @@ const ThemeComponent = () => {
     <Select
       variant="ghost"
       options={options}
-      className="flex items-center mr-2 ml-auto"
+      className="sm:flex items-center mr-2 ml-auto hidden"
       onChange={(option) => {
         setTheme(option.value);
       }}>
