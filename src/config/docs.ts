@@ -10,12 +10,13 @@ export const docsPages = [
     href: "/docs/components",
     items: [
       { label: "Overview", href: "/docs/components/overview" },
-      { label: "Typography", href: "/docs/components/typography" },
-      { label: "Container", href: "/docs/components/container" },
       { label: "Button", href: "/docs/components/button" },
+      { label: "Input", href: "/docs/components/input" },
+      { label: "Container", href: "/docs/components/container" },
+      { label: "Typography", href: "/docs/components/typography" },
+      { label: "Tabs", href: "/docs/components/tabs" },
       { label: "Row", href: "/docs/components/row" },
       { label: "Column", href: "/docs/components/column" },
-      { label: "Input", href: "/docs/components/input" },
       { label: "Modal", href: "/docs/components/modal" },
       // TODO: implement this
       { label: "Accordion", href: "/docs/components/accordion" },
