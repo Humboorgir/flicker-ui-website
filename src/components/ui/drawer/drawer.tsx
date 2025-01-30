@@ -25,8 +25,8 @@ const Drawer = ({ children, isOpen, className }: DrawerProps) => {
               ease: [0.76, 0, 0.24, 1],
             }}
             className={cn(
-              `fixed z-50 right-0 left-5 top-0 bottom-0 bg-background border-r 
-              border-ring flex flex-col px-8 py-3`,
+              `fixed z-50 right-0 left-5 top-0 bottom-0 bg-background
+              border-ring/60 flex flex-col px-8 py-3 border`,
               className
             )}>
             {children}
