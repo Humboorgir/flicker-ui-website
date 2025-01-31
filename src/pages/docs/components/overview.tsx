@@ -95,6 +95,23 @@ const Page = () => {
         </div>
       ),
     },
+    {
+      title: "Modal",
+      description: "A window that pops when triggered and attempts to draw the user's attention",
+      shape: (
+        <div className="grid place-items-center">
+          <div className="flex flex-col p-5 pb-4 bg-white rounded-md shadow-md w-[180px] h-[100px]">
+            <div className="bg-gray-500/50 h-[8px] mb-1.5 shrink-0 w-[60%] rounded-md" />
+            <div className="bg-gray-500/50 h-[8px] mb-1.5 shrink-0 w-full rounded-md" />
+            <div className="bg-gray-500/50 h-[8px] mb-1.5 shrink-0 w-[80%] rounded-md" />
+            <div className="mt-auto flex self-end items-center">
+              <div className="bg-gray-400/50 h-[14px] w-[40px] rounded-sm mr-2" />
+              <div className="bg-gray-400/50 h-[14px] w-[40px] rounded-sm" />
+            </div>
+          </div>
+        </div>
+      ),
+    },
   ];
 
   return (
