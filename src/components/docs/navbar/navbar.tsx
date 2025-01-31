@@ -51,7 +51,7 @@ const Navbar = () => {
         <BarsIcon className="h-8 w-8" />
       </DrawerTrigger>
 
-      <Drawer className="overflow-y-scroll" isOpen={isOpen}>
+      <Drawer direction="right" className="left-10" isOpen={isOpen} scrollable>
         <DrawerTrigger toggleOpen={toggleOpen} className="ml-auto !p-1 shrink-0" variant="ghost">
           <XIcon className="h-8 w-8" />
         </DrawerTrigger>
@@ -69,7 +69,7 @@ const Navbar = () => {
         {/* TODO: Turn this into a divider component */}
         {/* TODO: Take the badge component from your portfolio and turn it into another component */}
         <Typography className="mt-6 mb-4" variant="lead">
-          COMPONENTS
+          DOCUMENTATION
         </Typography>
         {docsPages.map((category, i) => {
           return <Category key={i} category={category} />;
