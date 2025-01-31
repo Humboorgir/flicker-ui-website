@@ -1,16 +1,14 @@
-import { Drawer, DrawerTrigger } from "@/components/ui/drawer";
-import Theme from "./theme";
 import Button from "@/components/ui/button";
 import Row from "@/components/ui/row";
+import { DrawerTrigger } from "@/components/ui/drawer";
+
+import Theme from "./theme";
+import MobileNav from "./mobile-nav";
 
 import { FaGithub as GithubIcon } from "react-icons/fa";
 import { FaBars as BarsIcon } from "react-icons/fa6";
-import { LuX as XIcon } from "react-icons/lu";
 
 import { useState } from "react";
-import Typography from "@/components/ui/typography";
-import { docsPages } from "@/config/docs";
-import Category from "../sidebar/category";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -47,34 +45,12 @@ const Navbar = () => {
         Flicker UI
       </span>
 
+      {/* only visible on small screens  */}
       <DrawerTrigger toggleOpen={toggleOpen} className="md:hidden ml-auto !p-1" variant="ghost">
         <BarsIcon className="h-8 w-8" />
       </DrawerTrigger>
 
-      <Drawer direction="right" className="left-10" isOpen={isOpen} scrollable>
-        <DrawerTrigger toggleOpen={toggleOpen} className="ml-auto !p-1 shrink-0" variant="ghost">
-          <XIcon className="h-8 w-8" />
-        </DrawerTrigger>
-        {links.map((link, i) => {
-          return (
-            <Button
-              className="shrink-0 w-fit text-foreground-light decoration-foreground"
-              key={i}
-              variant="link"
-              href={link.href}>
-              {link.title}
-            </Button>
-          );
-        })}
-        {/* TODO: Turn this into a divider component */}
-        {/* TODO: Take the badge component from your portfolio and turn it into another component */}
-        <Typography className="mt-6 mb-4" variant="lead">
-          DOCUMENTATION
-        </Typography>
-        {docsPages.map((category, i) => {
-          return <Category key={i} category={category} />;
-        })}
-      </Drawer>
+      <MobileNav links={links} isOpen={isOpen} toggleOpen={toggleOpen} />
 
       {links.map((link, i) => {
         return (
@@ -87,13 +63,13 @@ const Navbar = () => {
           </Button>
         );
       })}
-      <Theme />
+      <Theme className="md:flex items-center mr-2 ml-auto hidden" />
       <Button
         href="https://github.com/Humboorgir/flicker-ui"
         // @ts-ignore
         target="_blank"
         variant="ghost"
-        className="sm:flex items-center hidden">
+        className="md:flex items-center hidden">
         Github
         <GithubIcon className="text-xl ml-2" />
       </Button>

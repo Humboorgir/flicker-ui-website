@@ -3,11 +3,15 @@ import Select from "@/components/ui/select";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 
-import { IoIosColorWand as Theme } from "react-icons/io";
+import { IoIosColorWand as ThemeIcon } from "react-icons/io";
 
-const ThemeComponent = () => {
+type ThemeProps = {
+  className?: string;
+};
+
+const ThemeComponent = ({ className }: ThemeProps) => {
   const [mounted, setMounted] = useState(false);
-  const { theme, setTheme } = useTheme();
+  const { setTheme } = useTheme();
 
   useEffect(() => {
     setMounted(true);
@@ -32,12 +36,12 @@ const ThemeComponent = () => {
     <Select
       variant="ghost"
       options={options}
-      className="sm:flex items-center mr-2 ml-auto hidden"
+      className={className}
       onChange={(option) => {
         setTheme(option.value);
       }}>
       Theme
-      <Theme className="text-xl ml-1" />
+      <ThemeIcon className="text-xl ml-1" />
     </Select>
   );
 };
