@@ -101,13 +101,28 @@ const Page = () => {
       shape: (
         <div className="grid place-items-center">
           <div className="flex flex-col p-5 pb-4 bg-white rounded-md shadow-md w-[180px] h-[100px]">
-            <div className="bg-gray-500/50 h-[8px] mb-1.5 shrink-0 w-[60%] rounded-md" />
-            <div className="bg-gray-500/50 h-[8px] mb-1.5 shrink-0 w-full rounded-md" />
-            <div className="bg-gray-500/50 h-[8px] mb-1.5 shrink-0 w-[80%] rounded-md" />
+            <div className="bg-gray-400/50 h-[8px] mb-1.5 shrink-0 w-[60%] rounded-md" />
+            <div className="bg-gray-400/50 h-[8px] mb-1.5 shrink-0 w-full rounded-md" />
+            <div className="bg-gray-400/50 h-[8px] mb-1.5 shrink-0 w-[80%] rounded-md" />
             <div className="mt-auto flex self-end items-center">
-              <div className="bg-gray-400/50 h-[14px] w-[40px] rounded-sm mr-2" />
-              <div className="bg-gray-400/50 h-[14px] w-[40px] rounded-sm" />
+              <div className="bg-gray-400/50 h-[12px] w-[40px] rounded-sm mr-2" />
+              <div className="bg-gray-400/50 h-[12px] w-[40px] rounded-sm" />
             </div>
+          </div>
+        </div>
+      ),
+    },
+    {
+      title: "Dropdown",
+      description: "Displays a list of links on a temporary surface that can be opened / closed",
+      shape: (
+        <div className="flex flex-col items-center justify-center">
+          <Cursor className="top-[94px] w-6 h-6 left-[90px] absolute text-black/80 z-10" />
+          <div className="w-[74px] h-[26px] bg-white rounded-md shadow-md mb-2" />
+          <div className="flex flex-col w-[100px] h-[74px] bg-white shadow-md translate-x-[-14px] rounded-md">
+            <div className=" shrink-0 w-full h-1/3 rounded-tl-md rounded-tr-md" />
+            <div className="bg-black/20 shrink-0 w-full h-1/3" />
+            <div className=" shrink-0 w-full h-1/3 " />
           </div>
         </div>
       ),

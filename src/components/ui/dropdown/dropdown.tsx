@@ -11,7 +11,7 @@ type DropdownProps = {
   triggerClassName?: string;
   listClassName?: string;
   triggerVariant?: VariantProps<typeof buttonVariants>["variant"];
-  items: { name: string; value: string }[];
+  links: { name: string; href: string }[];
 };
 
 export default function Dropdown({
@@ -20,7 +20,7 @@ export default function Dropdown({
   triggerClassName,
   listClassName,
   triggerVariant = "outline",
-  items,
+  links,
 }: DropdownProps) {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -57,9 +57,12 @@ export default function Dropdown({
             divide-y divide-foreground/10 absolute right-0 top-full mt-2 w-52`,
               listClassName
             )}>
-            {items.map((item) => {
+            {links.map((item) => {
               return (
-                <Button variant="ghost" className="justify-start w-full px-4 py-2 rounded-none">
+                <Button
+                  variant="ghost"
+                  className="justify-start w-full px-4 py-2 rounded-none"
+                  href={item.href}>
                   {item.name}
                 </Button>
               );
