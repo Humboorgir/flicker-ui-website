@@ -28,7 +28,7 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
   return (
     <main className={roboto.className}>
       <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-        <NextNProgress options={{ showSpinner: false }} />
+        <NextNProgress color="hsl(var(--foreground))" options={{ showSpinner: true }} />
         {getLayout(<Component {...pageProps} />)}
       </ThemeProvider>
     </main>
