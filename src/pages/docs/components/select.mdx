@@ -19,13 +19,14 @@ $ npx flicker-ui@latest add select
 
 ## Usage
 
-Takes in two properties:
+Takes in these properties:
 - `options`: An array of \{name: string, value: string\}
 - `onChange`: A Function you provide to the component. It will run everytime the selected option changes.
  The function takes the selected option as a parameter.
 - `variant`: The variant of the button used as a trigger. Same thing you'd find in the Button component. (`default` by default)
 - `scrollable`: Boolean. If true, `scroll-y` will be set to `auto` causing the Y axis to become scrollable in case of an overflow. (`false` by default)
 
+<br/>
 ```js /options/ /onChange/ /variant/ /scrollable/
   const options = [
     {
