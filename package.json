@@ -34,6 +34,7 @@
     "shikiji": "^0.9.0",
     "simple-functional-loader": "^1.2.1",
     "stringify-object": "^5.0.0",
+    "swr": "^2.3.0",
     "tailwind-merge": "^2.2.0",
     "unified": "^11.0.4"
   },
