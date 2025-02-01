@@ -1,0 +1,62 @@
+---
+title: "Select"
+description: "Displays a list of choices that can be selected on a temporary surface"
+preview: "select-default"
+---
+
+import Select from '@/components/ui/select';
+import PreviewBox from '@/components/docs/previewBox';
+
+## Installation
+
+The following command will add the Select component into your `components/ui` folder
+
+```bash
+$ npx flicker-ui@latest add select
+```
+
+<br />
+
+## Usage
+
+Takes in two properties:
+- `options`: An array of \{name: string, value: string\}
+- `onChange`: A Function you provide to the component. It will run everytime the selected option changes.
+ The function takes the selected option as a parameter.
+- `variant`: The variant of the button used as a trigger. Same thing you'd find in the Button component. (`default` by default)
+- `scrollable`: Boolean. If true, `scroll-y` will be set to `auto` causing the Y axis to become scrollable in case of an overflow. (`false` by default)
+
+```js /options/ /onChange/ /variant/ /scrollable/
+  const options = [
+    {
+      name: `Light theme`,
+      value: "light",
+    },
+    {
+      name: "Dark theme",
+      value: "dark",
+    },
+    {
+      name: "Use system",
+      value: "system",
+    },
+  ];
+  return (
+    <Select
+      options={options}
+      variant="ghost"
+      onChange={(option) => {
+        setTheme(option.value);
+      }}
+      {/* Not required  */}
+      scrollable={false}>
+      Theme
+    </Select>
+  );
+```
+
+<br />
+<br />
+
+### Simple example
+<PreviewBox component="select-default"/>

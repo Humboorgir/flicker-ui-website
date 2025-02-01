@@ -116,13 +116,68 @@ const Page = () => {
       title: "Dropdown",
       description: "Displays a list of links on a temporary surface that can be opened / closed",
       shape: (
-        <div className="flex flex-col items-center justify-center">
-          <Cursor className="top-[94px] w-6 h-6 left-[90px] absolute text-black/80 z-10" />
+        <div className="relative flex flex-col items-center justify-center h-full w-full">
+          <Cursor className="top-[80px] w-6 h-6 left-[84px] absolute text-black/80 z-10" />
           <div className="w-[74px] h-[26px] bg-white rounded-md shadow-md mb-2" />
           <div className="flex flex-col w-[100px] h-[74px] bg-white shadow-md translate-x-[-14px] rounded-md">
             <div className=" shrink-0 w-full h-1/3 rounded-tl-md rounded-tr-md" />
             <div className="bg-black/20 shrink-0 w-full h-1/3" />
             <div className=" shrink-0 w-full h-1/3 " />
+          </div>
+        </div>
+      ),
+    },
+    {
+      title: "Select",
+      description: "Displays a list of choices that can be selected on a temporary surface",
+      shape: (
+        <div className="relative flex flex-col items-center justify-center h-full w-full">
+          <Cursor className="top-[80px] w-6 h-6 left-[84px] absolute text-black/80 z-10" />
+          <div className="w-[74px] h-[26px] bg-white rounded-md shadow-md mb-2" />
+          <div className="flex flex-col w-[100px] h-[74px] bg-white shadow-md translate-x-[-14px] rounded-md">
+            <div className=" shrink-0 w-full h-1/3 rounded-tl-md rounded-tr-md" />
+            <div className="bg-black/20 shrink-0 w-full h-1/3" />
+            <div className=" shrink-0 w-full h-1/3 " />
+          </div>
+        </div>
+      ),
+    },
+    {
+      title: "Drawer",
+      description: "Similar to modals with the exception that they open from sides",
+      shape: (
+        <div className="relative grid place-items-center h-full w-full">
+          <Cursor className="top-[111px] w-6 h-6 left-[54px] absolute text-black/80 z-20" />
+          <div
+            className="absolute left-0 top-0 bottom-0 w-[94px] border-r border-black/40 bg-white z-10
+          flex flex-col items-end pt-2 pb-3.5 px-3">
+            <div className="bg-gray-400/50 h-[8px] mb-1.5 shrink-0 w-[60%] rounded-md" />
+            <div className="bg-gray-400/50 h-[8px] mb-1.5 shrink-0 w-full rounded-md" />
+            <div className="bg-gray-400/50 h-[8px] mb-1.5 shrink-0 w-[80%] rounded-md" />
+            <div className="bg-gray-400/50 h-[8px] mb-1.5 shrink-0 w-full rounded-md" />
+            <div className="bg-gray-400/50 h-[8px] mb-1.5 shrink-0 w-full rounded-md" />
+            <div className="bg-gray-400/50 h-[8px] mb-1.5 shrink-0 w-[80%] rounded-md" />
+
+            <div className="mt-auto flex self-end items-center">
+              <div className="bg-gray-400/50 h-[12px] w-[30px] rounded-sm mr-2" />
+              <div className="bg-gray-500 h-[12px] w-[30px] rounded-sm translate-y-[-2px]" />
+            </div>
+          </div>
+          <div className="absolute left-0 top-0 bottom-0 right-0 bg-black/20" />
+          <div className="flex w-[90px] h-[30px] bg-white rounded-md shadow-md" />
+        </div>
+      ),
+    },
+    {
+      title: "Badge",
+      description: "Displays something that sort of looks like a badge",
+      shape: (
+        <div className="relative h-full w-full">
+          <div className="absolute left-[50%] -translate-x-1/2 top-[60%] -translate-y-1/2 h-[80px] w-[100px] blur-md bg-white/60" />
+          <div
+            className="absolute left-[50%] -translate-x-1/2 top-[50%] -translate-y-1/2
+           rounded-full px-7 shadow-lg py-1.5 text-lg font-bold bg-white text-black/60 z-10">
+            Badge
           </div>
         </div>
       ),
