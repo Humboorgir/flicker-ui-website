@@ -57,9 +57,7 @@ const nextConfig = {
           let codeBottom = `export default function Page({ children }) {
             const tableOfContent = ${JSON.stringify(tableOfContent)}
             return (
-              <DocsLayout tableOfContent={tableOfContent} meta={${JSON.stringify(
-                meta
-              )}}>
+              <DocsLayout tableOfContent={tableOfContent} meta={${JSON.stringify(meta)}}>
                 {children}
               </DocsLayout>
             );
