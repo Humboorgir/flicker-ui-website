@@ -31,7 +31,7 @@ const ComponentPropInfo = ({ componentName }: ComponentPropInfoProps) => {
                 <td className="w-[25%] p-4">{prop}</td>
                 <td className="w-[35%] min-w-[160px] text-sm md:text-base p-4">{description}</td>
                 <td className="w-[15%] p-4">
-                  <span className="lowercase text-sm text-foreground/90 bg-secondary/40 border border-ring rounded-md p-1.5">
+                  <span className="font-mono lowercase text-sm text-foreground/90 bg-secondary/40 border border-ring rounded-md p-1.5">
                     {type}
                   </span>
                 </td>
