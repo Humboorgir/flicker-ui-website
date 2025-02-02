@@ -36,7 +36,13 @@ const buttonVariants = cva(
 
 export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> &
   VariantProps<typeof buttonVariants> & {
+    /**
+     * Color used for the button's ripple effect.
+     */
     rippleColor?: string;
+    /**
+     * Url to redirect to on button click.
+     */
     href?: string;
   };
 

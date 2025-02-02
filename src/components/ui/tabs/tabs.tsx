@@ -21,9 +21,21 @@ const TabsContext = createContext<{ tabs: Tab[]; setTabs: SetTabs }>({ tabs: [],
 const SetSelectedContext = createContext<{ setSelected: SetSelected }>({ setSelected: () => {} });
 
 type TabsProps = {
+  /**
+   * Which tab should be open by default?
+   */
   openByDefault: string;
+  /**
+   * A function that runs everytime the active tab changes.
+   */
   onChange?: (selected: string) => void;
+  /**
+   * Tab triggers and content.
+   */
   children: React.ReactNode;
+  /**
+   * For customization purposes.
+   */
   className?: string;
 };
 

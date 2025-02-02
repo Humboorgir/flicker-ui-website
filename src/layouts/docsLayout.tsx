@@ -16,11 +16,12 @@ import PreviewBox from "@/components/docs/previewBox";
 import { FaArrowLeftLong as ArrowBack, FaArrowRight as ArrowForward } from "react-icons/fa6";
 import { IoIosArrowForward as Arrow } from "react-icons/io";
 import Column from "@/components/ui/column";
+import ComponentPropInfo from "@/components/docs/componentPropInfo/componentPropInfo";
 
 type Props = {
   children: React.ReactNode;
   tableOfContent?: any;
-  meta: { title: string; description: string; preview?: string };
+  meta: { title: string; description: string; preview?: string; componentName?: string };
 };
 const DocsLayout = ({ children, tableOfContent, meta }: Props) => {
   const router = useRouter();
@@ -52,6 +53,7 @@ const DocsLayout = ({ children, tableOfContent, meta }: Props) => {
             <Typography variant="lead">{meta.description}</Typography>
 
             {meta.preview ? <PreviewBox className="mt-4 mb-16" component={meta.preview} /> : <br />}
+            {meta.componentName && <ComponentPropInfo componentName={meta.componentName} />}
             {children}
 
             <div className="mt-12 sm:mt-32 space-y-5 sm:space-y-0 flex flex-col items-center sm:items-stretch sm:flex-row">

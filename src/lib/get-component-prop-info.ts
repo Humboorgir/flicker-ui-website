@@ -1,37 +1,4 @@
-// NOTE: I'm commiting this to keep the code safe for now.
-// I spent hours on it and really don't want to have it wiped out
-// TODO: Optimize everything in here. Try to replace for loops with regular expressions
-// TODO: Move this into something like a lib folder
-
-const componentCode = `import React from "react";
-
-import { cn } from "@/lib/utils";
-
-export type ContainerProps = React.HTMLProps<HTMLDivElement> & {
- /**
-   * List of links to display
-   */
-hello: string;
-/**
-   * How much to delay each child
-   */
-hello2: string;
-};
-
-/** Used to center items on a page. responsive by default. */ 
-const Container = React.forwardRef<HTMLDivElement, ContainerProps>(
-  ({ children, className, ...props }, ref) => {
-    return (
-      <div className={cn("w-fit mx-auto max-w-screen-xl px-6 sm:px-8", className)} ref={ref} {...props}>
-        {children}
-      </div>
-    );
-  }
-);
-
-Container.displayName = "Container";
-
-export default Container;`;
+// TODO: Optimize this
 
 // How does this work?
 // First, we get the component name from `export default ...`
@@ -65,27 +32,51 @@ function getComponentName(code: string) {
   return componentName;
 }
 
-function getComponentProps(code: string, componentName: string) {
+function getComponentPropInfo(code: string) {
+  const componentName = getComponentName(code);
+
+  if (!componentName) throw new Error("Couldn't find component export");
+
   const linesOfCode = code.split("\n");
   const propsTypeName = componentName + "Props";
   // Looping over every line of code
-  let foundDefinition = false;
-  let braceStart = null;
-  let braceEnd = null;
+  let definitionStart = null;
   for (let i = 0; i < linesOfCode.length; i++) {
     if (linesOfCode[i].includes(`type ${propsTypeName}`)) {
-      foundDefinition = true;
-    }
-    if (!foundDefinition) continue;
-
-    if (linesOfCode[i].includes("{")) braceStart = i;
-    if (linesOfCode[i].includes("}") && braceStart) {
-      braceEnd = i;
-      break;
+      definitionStart = i;
     }
   }
+  console.log(definitionStart);
 
-  const typeDefinitionLines = linesOfCode.slice(braceStart!, braceEnd! + 1);
+  //   God bless chat gpt
+  function findNestedBraces(text: string) {
+    let openCount = 0;
+    let result = "";
+    let startIndex = -1;
+
+    for (let i = 0; i < text.length; i++) {
+      if (text[i] === "{") {
+        if (openCount === 0) {
+          startIndex = i; // Capture the starting index of the first '{'
+        }
+        openCount++;
+      } else if (text[i] === "}") {
+        openCount--;
+      }
+
+      // If we close off all opened braces
+      if (openCount === 0 && startIndex !== -1) {
+        result = text.substring(startIndex, i + 1); // Capture the full token
+        break; // Exit the loop after finding the complete match
+      }
+    }
+
+    return result;
+  }
+
+  const typeDefinitionLines = findNestedBraces(
+    linesOfCode.slice(definitionStart!, linesOfCode.length).join("\n")
+  ).split("\n");
 
   let seenCommentStart = false;
   let currentStart = null;
@@ -111,33 +102,37 @@ function getComponentProps(code: string, componentName: string) {
   });
 
   // strip out code comments
-  const typeDefLinesWithoutComments = typeDefinitionLines
-    .join(" ")
-    .replace(/\/\*[\s\S]*?\*\/|([^\\:]|^)\/\/.*$/gm, "$1");
+  const typeDefLinesWithoutComments = typeDefinitionLines.join("\n").replace(/\/\*\*[\s\S]*?\*\//g, "");
 
-  const propsNamesAndTypes = /{(.*?)}/
-    .exec(typeDefLinesWithoutComments)![0]
-    .replace("{", "")
-    .replace("}", "")
-    .split(";")
+  const typeDefinitions = typeDefLinesWithoutComments
+    .replace(/{/, "")
+    .replace(/(.*?)(})[^}]*$/, "")
+    .split("\n")
     .map((x) => x.trim())
-    .filter(Boolean)
-    .map((x) => {
-      const args = x.split(":").map((y) => y.trim());
-      return { prop: args[0], type: args[1] };
-    });
+    .filter(Boolean);
 
+  const propsNamesAndTypes = typeDefinitions.map((x) => {
+    const argsSplit = x.split(":");
+    // prevents splitting by : after the first :
+    const firstArgument = argsSplit[0];
+    const restOfTheArgument = argsSplit.slice(1, argsSplit.length).join(":");
+    const args = [firstArgument, restOfTheArgument];
+    let prop = args[0];
+    let type = args[1];
+
+    const required = prop.endsWith("?") ? false : true;
+    // Remove question mark at the end of the prop name
+    if (!required) prop = prop.slice(0, -1);
+    const endsWithSemicolon = type.endsWith(";");
+    if (endsWithSemicolon) type = type.slice(0, -1);
+    return { prop, type, required };
+  });
   const props = populatedComments.map((comment, i) => ({
-    prop: propsNamesAndTypes[i].prop,
-    type: propsNamesAndTypes[i].type,
+    ...propsNamesAndTypes[i],
     description: comment,
   }));
 
   return props;
 }
 
-const componentName = getComponentName(componentCode);
-
-if (!componentName) throw new Error("Couldn't find component export");
-
-console.log(getComponentProps(componentCode, componentName));
+export default getComponentPropInfo;

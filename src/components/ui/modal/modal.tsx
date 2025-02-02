@@ -2,14 +2,26 @@ import { motion, cubicBezier, AnimatePresence } from "framer-motion";
 
 import { cn } from "@/lib/utils";
 
-type Props = {
+type ModalProps = {
+  /**
+   * Modal content
+   */
   children: React.ReactNode;
+  /**
+   * Determines whether the modal should be open or not.
+   */
   open: boolean;
+  /**
+   * Function that sets the open prop to false when called.
+   */
   handleClose: React.MouseEventHandler;
+  /**
+   * For customization purposes.
+   */
   className?: string;
 };
 
-const Modal = ({ children, open, handleClose, className, ...props }: Props) => {
+const Modal = ({ children, open, handleClose, className, ...props }: ModalProps) => {
   // TODO: update the component in the CLI
   const easeOut = [0, 0, 0.2, 1];
   return (
