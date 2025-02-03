@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils";
 // TODO: write stories for this
 const drawerVariants = cva(`fixed z-50 bg-background border-ring/60 flex flex-col px-8 py-3 border`, {
   variants: {
+    // Which side should the drawer open from?
     direction: {
       left: "h-full left-0 top-0 bottom-0",
       top: "w-full top-0 left-0 right-0",

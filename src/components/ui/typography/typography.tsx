@@ -5,6 +5,9 @@ import { cn } from "@/lib/utils";
 
 const typographyVariants = cva("", {
   variants: {
+    /**
+     *  The HTML element you're looking to use.
+     */
     variant: {
       h1: "text-foreground text-4xl lg:text-5xl tracking-tight font-black my-2",
       h2: "text-foreground text-3xl font-bold my-2",
@@ -17,13 +20,9 @@ const typographyVariants = cva("", {
   },
 });
 
-type Typography = Extract<
-  keyof JSX.IntrinsicElements,
-  "p" | "h1" | "h2" | "h3" | "h4" | "h5"
->;
+type Typography = Extract<keyof JSX.IntrinsicElements, "p" | "h1" | "h2" | "h3" | "h4" | "h5">;
 
-export type TypographyProps = React.HTMLProps<Typography> &
-  VariantProps<typeof typographyVariants>;
+export type TypographyProps = React.HTMLProps<Typography> & VariantProps<typeof typographyVariants>;
 
 /** Includes a set of styled h1, h2, ..., h5 and p elements made for reusability */
 const Typography = React.forwardRef<Typography, TypographyProps>(

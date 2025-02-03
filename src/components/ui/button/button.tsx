@@ -14,6 +14,9 @@ const buttonVariants = cva(
    disabled:pointer-events-none disabled:opacity-50 relative overflow-hidden`,
   {
     variants: {
+      /**
+       * The button style of your choice.
+       */
       variant: {
         default: "bg-primary text-neutral-100 hover:bg-primary/80",
         secondary: "bg-secondary text-foreground hover:bg-secondary/80",
@@ -21,6 +24,9 @@ const buttonVariants = cva(
         ghost: "text-foreground hover:bg-accent",
         link: "text-primary underline-offset-4 hover:underline",
       },
+      /**
+       * How large should the button be?
+       */
       size: {
         default: "text-base px-3 py-2",
         sm: "text-sm rounded-md px-2 py-1.5",

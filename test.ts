@@ -48,10 +48,7 @@ function getComponentVariantInfo(code: string) {
     }
   }
 
-  if (!definitionStart) {
-    console.log("No variants included");
-    return [];
-  }
+  if (!definitionStart) return console.log("No variants included");
 
   function findNestedBraces(text: string) {
     let openCount = 0;
@@ -223,7 +220,7 @@ function getComponentPropInfo(code: string) {
   // The code above doesn't include variants, let's fix that!
   const variantInfo = getComponentVariantInfo(code);
 
-  return [...props, ...variantInfo];
+  return [...props, ...variantInfo!];
 }
 
 export default getComponentPropInfo;
