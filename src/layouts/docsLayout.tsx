@@ -18,10 +18,10 @@ import { IoIosArrowForward as Arrow } from "react-icons/io";
 import Column from "@/components/ui/column";
 import ComponentPropInfo from "@/components/docs/componentPropInfo/componentPropInfo";
 
-type Props = {
+type DocsLayoutProps = {
   children: React.ReactNode;
   tableOfContent?: any;
-  componentCode: string | null;
+  componentCode?: string;
   meta: {
     title: string;
     description: string;
@@ -29,7 +29,7 @@ type Props = {
     componentName?: string;
   };
 };
-const DocsLayout = ({ children, componentCode, tableOfContent, meta }: Props) => {
+const DocsLayout = ({ children, componentCode, tableOfContent, meta }: DocsLayoutProps) => {
   const router = useRouter();
 
   const allPages = docsPages.map((category) => category.items).flat();

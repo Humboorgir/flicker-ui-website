@@ -1,7 +1,7 @@
 import getComponentPropInfo from "@/lib/get-component-prop-info";
 
 type ComponentPropInfoProps = {
-  componentCode: string | null;
+  componentCode?: string;
 };
 
 const ComponentPropInfo = ({ componentCode }: ComponentPropInfoProps) => {
