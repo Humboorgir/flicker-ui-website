@@ -27,8 +27,19 @@ const ComponentPropInfo = ({ componentCode }: ComponentPropInfoProps) => {
               <tr>
                 <td className="w-[25%] p-4">{prop}</td>
                 <td className="w-[35%] min-w-[160px] text-sm md:text-base p-4">{description}</td>
-                <td className="w-[15%] p-4">
-                  <span className="font-mono lowercase text-sm text-foreground/90 bg-secondary/40 border border-ring rounded-md p-1.5">
+                <td className="relative w-[15%] p-4">
+                  <span
+                    className="peer font-mono text-sm text-foreground/90 bg-secondary/40 border border-ring rounded-md p-1.5
+                  overflow-hidden text-ellipsis whitespace-nowrap inline-block max-w-[160px]">
+                    {type}
+                  </span>
+                  {/* TODO: This has terrible UX. 
+                  Create a component for it and replace it with this 
+                  */}
+                  <span
+                    className="absolute left-0 bottom-[calc(100%-8px)] bg-background rounded-md
+                  font-mono text-sm text-blue-400 border border-blue-400/50 p-2 opacity-0 scale-75
+                  peer-hover:opacity-100 peer-hover:scale-100 transition ease-out duration-200 w-max max-w-[90vw]">
                     {type}
                   </span>
                 </td>
