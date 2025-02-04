@@ -1,16 +1,13 @@
-import useComponentCode from "@/hooks/useComponentCode";
 import getComponentPropInfo from "@/lib/get-component-prop-info";
 
 type ComponentPropInfoProps = {
-  componentName: string;
+  componentCode: string | null;
 };
 
-const ComponentPropInfo = ({ componentName }: ComponentPropInfoProps) => {
-  if (!componentName) throw new Error("Component name was not provided");
-  const { code } = useComponentCode(componentName, "ui");
-  if (!code) return null;
+const ComponentPropInfo = ({ componentCode }: ComponentPropInfoProps) => {
+  if (!componentCode) return null;
 
-  const props = getComponentPropInfo(code);
+  const props = getComponentPropInfo(componentCode);
 
   if (!props.length) return null;
   return (

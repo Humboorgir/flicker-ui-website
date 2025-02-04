@@ -5,6 +5,7 @@ import rehypeSlug from "rehype-slug";
 import frontMatter from "front-matter";
 import { createLoader } from "simple-functional-loader";
 
+import { readFileSync } from "fs";
 import * as path from "path";
 import * as url from "url";
 const __dirname = url.fileURLToPath(new URL(".", import.meta.url));
@@ -52,12 +53,24 @@ const nextConfig = {
           };
           tableOfContent.unshift(titleHeading);
 
+          const { componentName } = meta;
+
+          let componentCode = null;
+          if (componentName) {
+            componentCode = readFileSync(`./src/components/ui/${componentName}/${componentName}.tsx`, {
+              encoding: "utf-8",
+            });
+            componentCode = JSON.stringify(componentCode);
+          }
+
           let codeTop = `import DocsLayout from "@/layouts/docsLayout";`;
 
           let codeBottom = `export default function Page({ children }) {
             const tableOfContent = ${JSON.stringify(tableOfContent)}
             return (
-              <DocsLayout tableOfContent={tableOfContent} meta={${JSON.stringify(meta)}}>
+              <DocsLayout componentCode={${componentCode}} tableOfContent={tableOfContent} meta={${JSON.stringify(
+            meta
+          )}}>
                 {children}
               </DocsLayout>
             );

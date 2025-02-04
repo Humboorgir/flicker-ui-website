@@ -1,4 +1,3 @@
-// This hook takes a preview component's name (like button-default) and return its code
 import useSWR, { type Fetcher } from "swr";
 
 function useComponentCode(component: string, previewComponentOrUI: "preview" | "ui" = "preview") {
@@ -8,6 +7,7 @@ function useComponentCode(component: string, previewComponentOrUI: "preview" | "
     component ? `/api/component-code/${previewComponentOrUI}/${component}` : null,
     fetcher
   );
+
   return {
     code: data?.componentCode,
     isLoading,

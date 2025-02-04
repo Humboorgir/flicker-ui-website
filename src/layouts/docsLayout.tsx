@@ -21,9 +21,15 @@ import ComponentPropInfo from "@/components/docs/componentPropInfo/componentProp
 type Props = {
   children: React.ReactNode;
   tableOfContent?: any;
-  meta: { title: string; description: string; preview?: string; componentName?: string };
+  componentCode: string | null;
+  meta: {
+    title: string;
+    description: string;
+    preview?: string;
+    componentName?: string;
+  };
 };
-const DocsLayout = ({ children, tableOfContent, meta }: Props) => {
+const DocsLayout = ({ children, componentCode, tableOfContent, meta }: Props) => {
   const router = useRouter();
 
   const allPages = docsPages.map((category) => category.items).flat();
@@ -53,7 +59,7 @@ const DocsLayout = ({ children, tableOfContent, meta }: Props) => {
             <Typography variant="lead">{meta.description}</Typography>
 
             {meta.preview ? <PreviewBox className="mt-4 mb-16" component={meta.preview} /> : <br />}
-            {meta.componentName && <ComponentPropInfo componentName={meta.componentName} />}
+            {meta.componentName && <ComponentPropInfo componentCode={componentCode} />}
             {children}
 
             <div className="mt-12 sm:mt-32 space-y-5 sm:space-y-0 flex flex-col items-center sm:items-stretch sm:flex-row">
