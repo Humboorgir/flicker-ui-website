@@ -2,20 +2,19 @@ import type { VariantProps } from "class-variance-authority";
 
 import Button, { buttonVariants } from "@/components/ui/button";
 
-import React, { useContext, useState, createContext, memo, useMemo, useEffect } from "react";
+import React, { useContext, useState, createContext, memo, useMemo, useEffect, useRef } from "react";
 import usePrevious from "@/hooks/usePrevious";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 
 type SetSelected = React.Dispatch<React.SetStateAction<string>>;
-type SetTabs = React.Dispatch<React.SetStateAction<{ value: string }[]>>;
-type Tab = { value: string };
+type SetTabs = React.Dispatch<React.SetStateAction<string[]>>;
 
 // Three separate contexts because they have different change patterns
 const SelectedContext = createContext<{ selected: string }>({
   selected: "",
 });
-const TabsContext = createContext<{ tabs: Tab[]; setTabs: SetTabs }>({ tabs: [], setTabs: () => {} });
+const TabsContext = createContext<{ tabs: string[]; setTabs: SetTabs }>({ tabs: [], setTabs: () => {} });
 const SetSelectedContext = createContext<{ setSelected: SetSelected }>({ setSelected: () => {} });
 
 type TabsProps = {
@@ -39,7 +38,7 @@ type TabsProps = {
 
 export const Tabs = ({ openByDefault, onChange, children, className }: TabsProps) => {
   const [selected, setSelected] = useState(openByDefault);
-  const [tabs, setTabs] = useState<{ value: string }[]>([]);
+  const [tabs, setTabs] = useState<string[]>([]);
 
   useEffect(() => {
     if (onChange) onChange(selected);
@@ -72,12 +71,25 @@ export const TabsTrigger = memo(function TabsTrigger({
   value,
   ...props
 }: TabsTriggerProps) {
+  const buttonRef = useRef<HTMLButtonElement>(null);
   const { setSelected } = useContext(SetSelectedContext);
+  const { selected } = useContext(SelectedContext);
+
+  const isActive = selected == value;
+
+  if (isActive) {
+    buttonRef.current?.focus();
+  }
   return (
     <Button
+      role="tab"
+      tabIndex={isActive ? 0 : -1}
+      aria-controls={value}
+      aria-selected={isActive}
       className={cn("mr-3 last-of-type:mr-0", className)}
       onClick={() => setSelected(value)}
       variant={variant}
+      ref={buttonRef}
       {...props}>
       {children}
     </Button>
@@ -90,8 +102,35 @@ type TabsListProps = {
 };
 
 export const TabsList = ({ children, className, ...props }: TabsListProps) => {
+  const { selected } = useContext(SelectedContext);
+  const { setSelected } = useContext(SetSelectedContext);
+  const { tabs } = useContext(TabsContext);
+
+  const handleKeyboardNavigation: React.KeyboardEventHandler<HTMLDivElement> = (e) => {
+    const activeTab = tabs.find((tab) => tab == selected);
+
+    if (e.key === "ArrowRight") {
+      // If we've reached the end of the tablist:
+      if (tabs.indexOf(selected) == tabs.length - 1) {
+        return setSelected(tabs[0]);
+      }
+      // Otherwise:
+      setSelected(tabs[tabs.indexOf(activeTab!) + 1]);
+    } else if (e.key === "ArrowLeft") {
+      // If we've reached the beginning of the tablist:
+      if (tabs.indexOf(selected) == 0) {
+        return setSelected(tabs[tabs.length - 1]);
+      }
+      // Otherwise:
+      setSelected(tabs[tabs.indexOf(activeTab!) + -1]);
+    }
+  };
   return (
-    <div className={cn("flex items-center", className)} {...props}>
+    <div
+      role="tablist"
+      onKeyDown={handleKeyboardNavigation}
+      className={cn("flex items-center", className)}
+      {...props}>
       {children}
     </div>
   );
@@ -109,7 +148,7 @@ export const TabsContent = ({ children, className, value, ...props }: TabsConten
   const prevSelected = usePrevious(selected);
 
   useEffect(() => {
-    setTabs((prev) => [...prev, { value }]);
+    setTabs((prev) => [...prev, value]);
 
     return () => {
       setTabs((prev) => {
@@ -124,14 +163,17 @@ export const TabsContent = ({ children, className, value, ...props }: TabsConten
 
   if (selected != value) return null;
 
-  const prevSelectedTabIndex = tabs.findIndex((tab) => tab.value == prevSelected);
-  const currentTabIndex = tabs.findIndex((tab) => tab.value == value);
+  const prevSelectedTabIndex = tabs.findIndex((tab) => tab == prevSelected);
+  const currentTabIndex = tabs.findIndex((tab) => tab == value);
   // Directional aware transition
   const initialX = currentTabIndex > prevSelectedTabIndex ? 20 : -20;
 
   return (
     selected == value && (
       <motion.div
+        role="tabpanel"
+        id={value}
+        tabIndex={0}
         initial={{ opacity: 0, x: initialX }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.2, ease: [0, 0, 0.2, 1] }}
