@@ -7,15 +7,21 @@ import usePrevious from "@/hooks/usePrevious";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 
-type SetSelected = React.Dispatch<React.SetStateAction<string>>;
-type SetTabs = React.Dispatch<React.SetStateAction<string[]>>;
+type ReactSetState<T> = React.Dispatch<React.SetStateAction<T>>;
 
-// Three separate contexts because they have different change patterns
-const SelectedContext = createContext<{ selected: string }>({
-  selected: "",
+type TTabsContext = {
+  active: string;
+  setActive: ReactSetState<string>;
+  tabs: string[];
+  setTabs: ReactSetState<string[]>;
+};
+
+const TabsContext = createContext<TTabsContext>({
+  active: "",
+  setActive: () => {},
+  tabs: [],
+  setTabs: () => {},
 });
-const TabsContext = createContext<{ tabs: string[]; setTabs: SetTabs }>({ tabs: [], setTabs: () => {} });
-const SetSelectedContext = createContext<{ setSelected: SetSelected }>({ setSelected: () => {} });
 
 type TabsProps = {
   /**
@@ -37,24 +43,21 @@ type TabsProps = {
 };
 
 export const Tabs = ({ openByDefault, onChange, children, className }: TabsProps) => {
-  const [selected, setSelected] = useState(openByDefault);
+  const [active, setActive] = useState(openByDefault);
   const [tabs, setTabs] = useState<string[]>([]);
 
   useEffect(() => {
-    if (onChange) onChange(selected);
-  }, [selected]);
+    if (onChange) onChange(active);
+  }, [active]);
 
-  const selectedContext = useMemo(() => ({ selected }), [selected]);
-  const tabsContext = useMemo(() => ({ tabs, setTabs }), [tabs, setTabs]);
-  const setSelectedContext = useMemo(() => ({ setSelected }), [setSelected]);
+  const tabsContext = useMemo(
+    () => ({ active, setActive, tabs, setTabs }),
+    [active, setActive, tabs, setTabs]
+  );
   return (
-    <SelectedContext.Provider value={selectedContext}>
-      <TabsContext.Provider value={tabsContext}>
-        <SetSelectedContext.Provider value={setSelectedContext}>
-          <div className={cn("relative w-min h-fit flex flex-col", className)}>{children}</div>
-        </SetSelectedContext.Provider>
-      </TabsContext.Provider>
-    </SelectedContext.Provider>
+    <TabsContext.Provider value={tabsContext}>
+      <div className={cn("relative w-min h-fit flex flex-col", className)}>{children}</div>
+    </TabsContext.Provider>
   );
 };
 
@@ -72,22 +75,28 @@ export const TabsTrigger = memo(function TabsTrigger({
   ...props
 }: TabsTriggerProps) {
   const buttonRef = useRef<HTMLButtonElement>(null);
-  const { setSelected } = useContext(SetSelectedContext);
-  const { selected } = useContext(SelectedContext);
+  const { active, setActive } = useContext(TabsContext);
 
-  const isActive = selected == value;
+  const isActive = active == value;
 
   if (isActive) {
     buttonRef.current?.focus();
   }
+
+  function activateTab() {
+    setActive(value);
+  }
+
   return (
     <Button
       role="tab"
+      id={`${value}-trigger`}
       tabIndex={isActive ? 0 : -1}
-      aria-controls={value}
+      aria-controls={`${value}-content`}
       aria-selected={isActive}
       className={cn("mr-3 last-of-type:mr-0", className)}
-      onClick={() => setSelected(value)}
+      onClick={activateTab}
+      onFocus={activateTab}
       variant={variant}
       ref={buttonRef}
       {...props}>
@@ -102,27 +111,26 @@ type TabsListProps = {
 };
 
 export const TabsList = ({ children, className, ...props }: TabsListProps) => {
-  const { selected } = useContext(SelectedContext);
-  const { setSelected } = useContext(SetSelectedContext);
+  const { active, setActive } = useContext(TabsContext);
   const { tabs } = useContext(TabsContext);
 
   const handleKeyboardNavigation: React.KeyboardEventHandler<HTMLDivElement> = (e) => {
-    const activeTab = tabs.find((tab) => tab == selected);
+    const activeTab = tabs.find((tab) => tab == active);
 
     if (e.key === "ArrowRight") {
       // If we've reached the end of the tablist:
-      if (tabs.indexOf(selected) == tabs.length - 1) {
-        return setSelected(tabs[0]);
+      if (tabs.indexOf(active) == tabs.length - 1) {
+        return setActive(tabs[0]);
       }
       // Otherwise:
-      setSelected(tabs[tabs.indexOf(activeTab!) + 1]);
+      setActive(tabs[tabs.indexOf(activeTab!) + 1]);
     } else if (e.key === "ArrowLeft") {
       // If we've reached the beginning of the tablist:
-      if (tabs.indexOf(selected) == 0) {
-        return setSelected(tabs[tabs.length - 1]);
+      if (tabs.indexOf(active) == 0) {
+        return setActive(tabs[tabs.length - 1]);
       }
       // Otherwise:
-      setSelected(tabs[tabs.indexOf(activeTab!) + -1]);
+      setActive(tabs[tabs.indexOf(activeTab!) + -1]);
     }
   };
   return (
@@ -143,9 +151,8 @@ type TabsContentProps = {
 };
 
 export const TabsContent = ({ children, className, value, ...props }: TabsContentProps) => {
-  const { selected } = useContext(SelectedContext);
-  const { tabs, setTabs } = useContext(TabsContext);
-  const prevSelected = usePrevious(selected);
+  const { tabs, setTabs, active } = useContext(TabsContext);
+  const prevSelected = usePrevious(active);
 
   useEffect(() => {
     setTabs((prev) => [...prev, value]);
@@ -161,7 +168,8 @@ export const TabsContent = ({ children, className, value, ...props }: TabsConten
     };
   }, []);
 
-  if (selected != value) return null;
+  const isActive = active == value;
+  if (!isActive) return null;
 
   const prevSelectedTabIndex = tabs.findIndex((tab) => tab == prevSelected);
   const currentTabIndex = tabs.findIndex((tab) => tab == value);
@@ -169,10 +177,11 @@ export const TabsContent = ({ children, className, value, ...props }: TabsConten
   const initialX = currentTabIndex > prevSelectedTabIndex ? 20 : -20;
 
   return (
-    selected == value && (
+    isActive && (
       <motion.div
         role="tabpanel"
-        id={value}
+        aria-labelledby={`${value}-trigger`}
+        id={`${value}-content`}
         tabIndex={0}
         initial={{ opacity: 0, x: initialX }}
         animate={{ opacity: 1, x: 0 }}
