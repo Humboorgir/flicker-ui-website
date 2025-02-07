@@ -190,13 +190,34 @@ const Page = () => {
           <Cursor className="top-[86px] w-6 h-6 left-[140px] absolute text-black/80 z-20" />
           <div className="relative text-black/60 font-bold translate-y-[12px] text-center px-2 py-1 bg-white rounded-md shadow-md">
             Hover
-            <div className="bg-white z-10 absolute bottom-full w-full p-2 mb-3 right-0 rounded-md">
+            <div className="shadow-md bg-white z-10 absolute bottom-full w-full p-2 mb-3 right-0 rounded-md">
               <div
                 className="top-full left-1/2 -translate-x-1/2 border-[6px] absolute"
                 style={{ borderColor: "white transparent transparent transparent" }}></div>
               <div className="bg-gray-400/40 h-[6px] mb-1.5 shrink-0 w-full rounded-md" />
               <div className="bg-gray-400/40 h-[6px] shrink-0 w-[80%] rounded-md" />
             </div>
+          </div>
+        </div>
+      ),
+    },
+    {
+      title: "Accordion",
+      description: "A set of headings that each reveal or hide a section of content",
+      shape: (
+        <div className="relative h-full w-[80%] flex justify-center flex-col">
+          <Cursor className="top-[24px] w-6 h-6 left-[160px] absolute text-black/80 z-20" />
+          <div className="bg-white rounded-md shadow-md">
+            <div className="p-3 bg-blue-200/40 shadow-md">
+              <div className="bg-gray-400/60 h-[6px] shrink-0 w-[60%] rounded-md" />
+            </div>
+            <div className="w-full h-[1.5px] bg-gray-400/40 mb-2" />
+            <div className="mx-5 bg-gray-400/40 h-[6px] mb-1.5 shrink-0 w-[40%] rounded-md" />
+            <div className="mx-5 bg-gray-400/40 h-[6px] mb-1.5 shrink-0 w-[80%] rounded-md" />
+            <div className="mx-5 bg-gray-400/40 h-[6px] shrink-0 w-[60%] rounded-md" />
+            <div className="w-full h-[1.5px] bg-gray-400/40 mt-2 mb-2" />
+            <div className="mx-3 bg-gray-400/60 h-[6px] shrink-0 mb-2 w-[70%] rounded-md" />
+            <div className="mb-3 mx-3 bg-gray-400/60 h-[6px] shrink-0 w-[55%] rounded-md" />
           </div>
         </div>
       ),
