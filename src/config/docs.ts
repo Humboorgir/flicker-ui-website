@@ -19,6 +19,10 @@ export const docsPages = [
       { label: "Column", href: "/docs/components/column" },
       { label: "Modal", href: "/docs/components/modal" },
       { label: "Dropdown", href: "/docs/components/dropdown" },
+      { label: "Select", href: "/docs/components/select" },
+      { label: "Drawer", href: "/docs/components/drawer" },
+      { label: "Badge", href: "/docs/components/badge" },
+      { label: "Tooltip", href: "/docs/components/tooltip" },
       // TODO: implement this
       { label: "Accordion", href: "/docs/components/accordion" },
     ],
