@@ -4,7 +4,7 @@ import { VariantProps } from "class-variance-authority";
 type DrawerTriggerProps = {
   children: React.ReactNode;
   className?: string;
-  variant: VariantProps<typeof buttonVariants>["variant"];
+  variant?: VariantProps<typeof buttonVariants>["variant"];
   toggleOpen: React.MouseEventHandler<HTMLButtonElement>;
 };
 const DrawerTrigger = ({ children, className, variant = "outline", toggleOpen }: DrawerTriggerProps) => {
