@@ -21,7 +21,7 @@ function getComponentName(code: string) {
     piecesOfCode.shift();
 
     // After removing 'export default', the first word that comes after is the component name.
-    const componentDeclaration = piecesOfCode[0];
+    const componentDeclaration = piecesOfCode[0].trim();
     // If it ends with a semicolon, remove it (for instance: export default Button; => Button; => Button)
     if (componentDeclaration.endsWith(";")) {
       componentName = componentDeclaration.split(";")[0];
@@ -222,7 +222,6 @@ function getComponentPropInfo(code: string) {
 
   // The code above doesn't include variants, let's fix that!
   const variantInfo = getComponentVariantInfo(code);
-
   return [...props, ...variantInfo];
 }
 
