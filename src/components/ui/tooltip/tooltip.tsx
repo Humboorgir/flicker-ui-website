@@ -45,10 +45,14 @@ export const Tooltip = ({ children }: TooltipProps) => {
   );
 };
 
-type TooltipTriggerProps = React.ComponentProps<"p">;
+type TooltipTriggerProps = React.ComponentProps<"div">;
 
-export const TooltipTrigger = ({ children }: TooltipTriggerProps) => {
-  return <p tabIndex={0}>{children}</p>;
+export const TooltipTrigger = ({ children, className }: TooltipTriggerProps) => {
+  return (
+    <div className={className} tabIndex={0}>
+      {children}
+    </div>
+  );
 };
 
 type TooltipContentProps = HTMLMotionProps<"div"> & {
