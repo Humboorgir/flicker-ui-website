@@ -182,6 +182,25 @@ const Page = () => {
         </div>
       ),
     },
+    {
+      title: "Tooltip",
+      description: "A popup that displays information related to an element",
+      shape: (
+        <div className="relative h-full w-full grid place-items-center">
+          <Cursor className="top-[86px] w-6 h-6 left-[140px] absolute text-black/80 z-20" />
+          <div className="relative text-black/60 font-bold translate-y-[12px] text-center px-2 py-1 bg-white rounded-md shadow-md">
+            Hover
+            <div className="bg-white z-10 absolute bottom-full w-full p-2 mb-3 right-0 rounded-md">
+              <div
+                className="top-full left-1/2 -translate-x-1/2 border-[6px] absolute"
+                style={{ borderColor: "white transparent transparent transparent" }}></div>
+              <div className="bg-gray-400/40 h-[6px] mb-1.5 shrink-0 w-full rounded-md" />
+              <div className="bg-gray-400/40 h-[6px] shrink-0 w-[80%] rounded-md" />
+            </div>
+          </div>
+        </div>
+      ),
+    },
   ];
 
   return (
