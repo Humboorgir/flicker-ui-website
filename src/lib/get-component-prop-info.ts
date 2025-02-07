@@ -36,7 +36,10 @@ function getComponentName(code: string) {
 function getComponentVariantInfo(code: string) {
   const componentName = getComponentName(code);
 
-  if (!componentName) throw new Error("Couldn't find component export");
+  if (!componentName) {
+    console.log("No default export was found.");
+    return [];
+  }
 
   const linesOfCode = code.split("\n");
   const variantsDefName = componentName.toLowerCase() + "Variants";
@@ -125,7 +128,10 @@ function getComponentVariantInfo(code: string) {
 function getComponentPropInfo(code: string) {
   const componentName = getComponentName(code);
 
-  if (!componentName) throw new Error("Couldn't find component export");
+  if (!componentName) {
+    console.log("No default export was found.");
+    return [];
+  }
 
   const linesOfCode = code.split("\n");
   const propsTypeName = componentName + "Props";

@@ -1,0 +1,27 @@
+---
+title: "Tooltip"
+description: "A popup that displays information related to an element"
+componentName: "tooltip"
+preview: "tooltip-default"
+---
+
+import PreviewBox from "@/components/docs/previewBox";
+
+## Installation
+
+The following command will add the Tooltip component into your `components/ui` folder
+
+```bash
+$ npx flicker-ui@latest add tooltip
+```
+
+<br />
+
+## Usage
+
+```js /TooltipTrigger/ /TooltipContent/ /Tooltip/
+<Tooltip>
+  <TooltipTrigger> tooltip trigger text here </TooltipTrigger>
+  <TooltipContent> tooltip content here</TooltipContent>
+</Tooltip>
+```

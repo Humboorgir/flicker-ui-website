@@ -48,10 +48,12 @@ export const Tooltip = ({ children }: TooltipProps) => {
 type TooltipTriggerProps = React.ComponentProps<"p">;
 
 export const TooltipTrigger = ({ children }: TooltipTriggerProps) => {
-  return <p>{children}</p>;
+  return <p tabIndex={0}>{children}</p>;
 };
 
-type TooltipContentProps = HTMLMotionProps<"div">;
+type TooltipContentProps = HTMLMotionProps<"div"> & {
+  children: React.ReactNode;
+};
 
 export const TooltipContent = ({ children, className, ...props }: TooltipContentProps) => {
   const { isOpen } = useContext(TooltipContext);
@@ -59,17 +61,25 @@ export const TooltipContent = ({ children, className, ...props }: TooltipContent
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="pb-2 absolute bottom-full right-0">
+        <div className="pb-2 absolute bottom-full left-1/2 -translate-x-1/2">
           <motion.div
-            initial={{ opacity: 0, scale: 0.85 }}
+            initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.85 }}
+            exit={{ opacity: 0, scale: 0.9 }}
             transition={{
               duration: 0.2,
               ease: [0, 0, 0.2, 1],
             }}
-            className={cn("border border-ring py-1 px-1.5 ease-out rounded-md bg-background", className)}
+            className={cn(
+              "relative whitespace-nowrap text-background py-1 px-1.5 ease-out rounded-md bg-foreground",
+              className
+            )}
             {...props}>
+            <div
+              aria-hidden
+              className="top-full left-1/2 -translate-x-1/2 border-[6px] absolute"
+              style={{ borderColor: "hsl(var(--foreground)) transparent transparent transparent" }}
+            />
             {children}
           </motion.div>
         </div>
