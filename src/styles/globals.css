@@ -54,10 +54,10 @@ pre {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: hsl(var(--border));
+  background: hsl(var(--ring));
   border-radius: 5px;
 }
 * {
   scrollbar-width: thin;
-  scrollbar-color: hsl(var(--border)) transparent;
+  scrollbar-color: hsl(var(--ring)) transparent;
 }
