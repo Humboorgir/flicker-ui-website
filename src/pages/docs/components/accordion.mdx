@@ -1,0 +1,46 @@
+---
+title: "Accordion"
+description: "A set of headings that each reveal or hide a section of content"
+componentName: "accordion"
+preview: "accordion-default"
+---
+
+import PreviewBox from "@/components/docs/previewBox";
+
+## Installation
+
+The following command will add the Accordion component into your `components/ui` folder
+
+```bash
+$ npx flicker-ui@latest add accordion
+```
+
+<br />
+
+## Usage
+
+Use the `items` prop to specify accordion items.
+Here's an example of how you would do that:
+
+```js /accordionItems/ /items/
+ const accordionItems = [
+    {
+      trigger: "Accordion tab 1",
+      content: "Accordion tab 1 content",
+    },
+    {
+      trigger: "Accordion tab 2",
+      content: "Accordion tab 2 content",
+    },
+    {
+      trigger: "Accordion tab 3",
+      content: "Accordion tab 3 content",
+    },
+    {
+      trigger: "Accordion tab 4",
+      content: "Accordion tab 4 content",
+    },
+  ];
+
+  return <Accordion className="max-w-[600px]" items={accordionItems} />;
+```
