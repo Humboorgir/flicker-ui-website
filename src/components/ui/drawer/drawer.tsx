@@ -28,7 +28,7 @@ export type DrawerProps = HTMLMotionProps<"div"> &
   };
 
 const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(
-  ({ children, direction, isOpen, scrollable = false, className, ...props }: DrawerProps, ref) => {
+  ({ children, direction = "left", isOpen, scrollable = false, className, ...props }: DrawerProps, ref) => {
     function getAnimationVariants(direction: DrawerProps["direction"]) {
       if (direction == "right") return { outOfView: { opacity: 0, x: "50%" }, inView: { opacity: 1, x: 0 } };
       if (direction == "left") return { outOfView: { opacity: 0, x: "-50%" }, inView: { opacity: 1, x: 0 } };
