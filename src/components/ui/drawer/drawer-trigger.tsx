@@ -7,7 +7,7 @@ type DrawerTriggerProps = {
   variant?: VariantProps<typeof buttonVariants>["variant"];
   toggleOpen: React.MouseEventHandler<HTMLButtonElement>;
 };
-const DrawerTrigger = ({ children, className, variant = "outline", toggleOpen }: DrawerTriggerProps) => {
+const DrawerTrigger = ({ children, className, variant, toggleOpen }: DrawerTriggerProps) => {
   return (
     <Button className={className} variant={variant} onClick={toggleOpen}>
       {children}

@@ -1,0 +1,33 @@
+---
+title: "Drawer"
+description: "Similar to modals with the exception that they open from sides"
+componentName: "drawer"
+preview: "drawer-default"
+---
+
+import PreviewBox from "@/components/docs/previewBox";
+
+## Installation
+
+The following command will add the Drawer component into your `components/ui` folder
+
+```bash
+$ npx flicker-ui@latest add drawer
+```
+
+<br />
+
+## Usage
+
+Use the `direction` prop to specify which direction should the drawer open from.
+
+```js /items="center"/ /justify="center"/
+<Badge variant="success" size="md">Badge</Badge>
+```
+
+<br />
+<br />
+
+### Different drawer directions
+
+<PreviewBox className="mb-12" component="drawer-directions"/>
