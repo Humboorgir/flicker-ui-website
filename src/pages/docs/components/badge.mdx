@@ -1,0 +1,38 @@
+---
+title: "Badge"
+description: "Displays something that sort of looks like a badge"
+componentName: "badge"
+preview: "badge-default"
+---
+
+import PreviewBox from "@/components/docs/previewBox";
+import Column from "@/components/ui/column";
+
+## Installation
+
+The following command will add the Badge component into your `components/ui` folder
+
+```bash
+$ npx flicker-ui@latest add badge
+```
+
+<br />
+
+## Usage
+
+Use the `variant` prop to specify badge variant, and `size` to specify badge size.
+
+```js /items="center"/ /justify="center"/
+<Badge variant="success" size="md">Badge</Badge>
+```
+
+<br />
+<br />
+
+### Badge variants
+
+<PreviewBox className="mb-12" component="badge-variants"/>
+
+### Badge sizes
+
+<PreviewBox component="badge-sizes"/>

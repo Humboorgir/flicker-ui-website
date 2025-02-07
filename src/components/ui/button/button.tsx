@@ -19,7 +19,7 @@ const buttonVariants = cva(
        * The button style of your choice.
        */
       variant: {
-        default: "bg-primary text-neutral-100 hover:bg-primary/80",
+        default: "bg-primary text-primary-foreground hover:bg-primary/80",
         secondary: "bg-secondary text-foreground hover:bg-secondary/80",
         outline: "border border-ring text-foreground bg-background hover:bg-accent",
         ghost: "text-foreground hover:bg-accent",

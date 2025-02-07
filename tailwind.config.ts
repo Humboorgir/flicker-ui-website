@@ -18,7 +18,10 @@ const config: Config = {
           muted: "hsl(var(--foreground-muted))",
         },
         background: "hsl(var(--background))",
-        primary: "hsl(var(--primary))",
+        primary: {
+          DEFAULT: "hsl(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
+        },
         secondary: "hsl(var(--secondary))",
         accent: "hsl(var(--accent))",
         ring: "hsl(var(--ring))",

@@ -9,50 +9,23 @@
     --foreground-light: 0 0% 25%;
     --foreground-muted: 240 3.8% 46.1%;
     --background: 0 0% 100%;
-    --primary: 211 100% 50%;
+    --primary: 240 5.9% 10%;
+    --primary-foreground: 0 0% 98%;
     --secondary: 240 4% 95%;
     --accent: 240 4% 95%;
     --ring: 240 3% 87%;
-
-    scrollbar-color: #555 #101010 !important;
-    scrollbar-width: 4px !important;
   }
   .dark {
     --foreground: 0 0% 98%;
     --foreground-light: 0 0% 83%;
     --foreground-muted: 0 0% 64%;
     --background: 0, 0%, 2%;
-    --primary: 211 100% 50%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 240 5.9% 10%;
     --secondary: 240 4% 18%;
     --accent: 240 4% 15%;
     --ring: 240 6% 23%;
-
-    scrollbar-color: #555 #101010 !important;
-    scrollbar-width: 4px !important;
   }
-}
-
-.waves {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  overflow: hidden;
-  line-height: 0;
-}
-
-.waves svg {
-  object-fit: contain;
-  position: relative;
-  display: block;
-  width: 205%;
-  height: 368px;
-  color: #0069d984;
-  transform: rotateY(180deg);
-}
-
-.waves .shape-fill {
-  fill: url("#WaveGradient");
 }
 
 [data-highlighted-chars] {
@@ -75,23 +48,16 @@ pre {
 }
 
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 5px;
 }
-
 ::-webkit-scrollbar-track {
-  background: #38383838;
+  background: transparent;
 }
-
 ::-webkit-scrollbar-thumb {
-  background: #555;
-  border-radius: 999px;
+  background: hsl(var(--border));
+  border-radius: 5px;
 }
-
-::-webkit-scrollbar-thumb:hover {
-  background: #888;
-}
-
-::-webkit-scrollbar-corner {
-  background: rgba(0, 0, 0, 0);
+* {
+  scrollbar-width: thin;
+  scrollbar-color: hsl(var(--border)) transparent;
 }
