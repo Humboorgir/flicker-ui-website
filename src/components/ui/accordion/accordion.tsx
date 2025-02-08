@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import { forwardRef, useState } from "react";
+import { forwardRef, useId, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
 import { FaAngleDown as AngleDownIcon } from "react-icons/fa6";
@@ -13,6 +13,7 @@ export type AccordionProps = React.HTMLProps<HTMLDivElement> & {
 
 const Accordion = forwardRef<HTMLDivElement, AccordionProps>(
   ({ children, className, items, ...props }, ref) => {
+    const id = useId();
     const [open, setOpen] = useState<number | null>(null);
 
     function toggleOpen(i: number) {
@@ -24,28 +25,36 @@ const Accordion = forwardRef<HTMLDivElement, AccordionProps>(
       <div className={cn("w-full", className)} {...props}>
         <div className="relative w-full divide-y divide-blue-200/15 z-10">
           {items.map((item, i) => {
+            const isOpen = open == i;
             return (
               <>
-                <button
-                  onClick={() => toggleOpen(i)}
-                  className={cn(
-                    `w-full active:bg-blue-200/15 active:transition-all flex flex-col py-2 -ml-3 px-3 rounded-sm`,
-                    open == i && "shadow-sm"
-                  )}>
-                  <div className="flex justify-between w-full pointer-events-none">
-                    <h3 className="text-foreground flex text-left font-medium">{item.trigger}</h3>
-                    <AngleDownIcon
-                      className={cn(
-                        "text-lg mr-1 mt-3 transition-all duration-300 pointer-events-none",
-                        open == i && "rotate-180 ease-out"
-                      )}
-                    />
-                  </div>
-                </button>
+                <h3 className="w-full text-foreground text-left font-medium">
+                  <button
+                    type="button"
+                    id={`${id}-${i}-header`}
+                    aria-expanded={isOpen}
+                    aria-controls={`${id}-${i}-panel`}
+                    onClick={() => toggleOpen(i)}
+                    className="w-full active:bg-blue-200/15 active:transition-all flex flex-col py-2 px-3 rounded-sm">
+                    <div className="flex justify-between w-full pointer-events-none">
+                      {item.trigger}
+                      <AngleDownIcon
+                        aria-hidden
+                        className={cn(
+                          "text-lg mr-1 mt-3 transition-all duration-300 pointer-events-none",
+                          isOpen && "rotate-180 ease-out"
+                        )}
+                      />
+                    </div>
+                  </button>
+                </h3>
                 <AnimatePresence>
-                  {open == i && (
+                  {isOpen && (
                     <motion.div
                       key={open}
+                      role="region"
+                      id={`${id}-${i}-panel`}
+                      aria-labelledby={`${id}-${i}-header`}
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}

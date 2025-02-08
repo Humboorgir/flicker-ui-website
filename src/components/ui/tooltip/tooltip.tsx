@@ -1,15 +1,17 @@
 import { cn } from "@/lib/utils";
-import React, { createContext, useContext, useMemo, useState } from "react";
+import React, { createContext, useContext, useId, useMemo, useState } from "react";
 import { AnimatePresence, HTMLMotionProps, motion } from "framer-motion";
 
 type ReactSetState<T> = React.Dispatch<React.SetStateAction<T>>;
 
 type TTooltipContext = {
+  id: string;
   isOpen: boolean;
   setIsOpen: ReactSetState<boolean>;
 };
 
 const TooltipContext = createContext<TTooltipContext>({
+  id: "",
   isOpen: false,
   setIsOpen: () => {},
 });
@@ -19,9 +21,10 @@ type TooltipProps = {
 };
 
 export const Tooltip = ({ children }: TooltipProps) => {
+  const id = useId();
   const [isOpen, setIsOpen] = useState(false);
 
-  const tooltipContext = useMemo(() => ({ isOpen, setIsOpen }), [isOpen, setIsOpen]);
+  const tooltipContext = useMemo(() => ({ id, isOpen, setIsOpen }), [id, isOpen, setIsOpen]);
 
   function handleOpen() {
     setIsOpen(true);
@@ -30,6 +33,7 @@ export const Tooltip = ({ children }: TooltipProps) => {
   function handleClose() {
     setIsOpen(false);
   }
+
   return (
     <TooltipContext.Provider value={tooltipContext}>
       <div
@@ -48,8 +52,9 @@ export const Tooltip = ({ children }: TooltipProps) => {
 type TooltipTriggerProps = React.ComponentProps<"div">;
 
 export const TooltipTrigger = ({ children, className }: TooltipTriggerProps) => {
+  const { id } = useContext(TooltipContext);
   return (
-    <div className={className} tabIndex={0}>
+    <div className={className} aria-describedby={`${id}-content`} tabIndex={0}>
       {children}
     </div>
   );
@@ -60,13 +65,14 @@ type TooltipContentProps = HTMLMotionProps<"div"> & {
 };
 
 export const TooltipContent = ({ children, className, ...props }: TooltipContentProps) => {
-  const { isOpen } = useContext(TooltipContext);
+  const { isOpen, id } = useContext(TooltipContext);
 
   return (
     <AnimatePresence>
       {isOpen && (
         <div className="pb-2 absolute bottom-full left-1/2 -translate-x-1/2">
           <motion.div
+            id={`${id}-content`}
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.9 }}

@@ -16,7 +16,7 @@ const Preview = () => {
         <Typography className="mb-8" variant="p">
           Lorem ipsum, dolor sit amet consectetur adipisicing elit.
         </Typography>
-        <Button className="ml-auto" variant="outline" onClick={() => setOpen(false)}>
+        <Button className="ml-auto" onClick={() => setOpen(false)}>
           Close
         </Button>
       </Modal>
