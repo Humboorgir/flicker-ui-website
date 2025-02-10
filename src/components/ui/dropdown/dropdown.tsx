@@ -6,11 +6,29 @@ import { AnimatePresence, motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 type DropdownProps = {
+  /**
+   *  Dropdown trigger label
+   */
   children: React.ReactNode;
+  /**
+   * classNames to apply to the component's container
+   */
   className?: string;
+  /**
+   * classNames to apply to the dropdown trigger
+   */
   triggerClassName?: string;
+  /**
+   * classNames to apply to the dropdown menu
+   */
   listClassName?: string;
+  /**
+   * Variant to use for the trigger's button
+   */
   triggerVariant?: VariantProps<typeof buttonVariants>["variant"];
+  /**
+   * List of links to display
+   */
   links: { name: string; href: string }[];
 };
 

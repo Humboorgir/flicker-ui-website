@@ -62,8 +62,17 @@ export const Tabs = ({ openByDefault, onChange, children, className }: TabsProps
 };
 
 type TabsTriggerProps = {
+  /**
+   * Tab trigger label.
+   */
   children: React.ReactNode;
+  /**
+   * For customization purposes.
+   */
   className?: string;
+  /**
+   * Specifies the trigger's corresponding tab.
+   */
   value: string;
 } & VariantProps<typeof buttonVariants>;
 
@@ -106,7 +115,13 @@ export const TabsTrigger = memo(function TabsTrigger({
 });
 
 type TabsListProps = {
+  /**
+   * Tab triggers.
+   */
   children: React.ReactNode;
+  /**
+   * For customization purposes.
+   */
   className?: string;
 };
 
@@ -145,8 +160,17 @@ export const TabsList = ({ children, className, ...props }: TabsListProps) => {
 };
 
 type TabsContentProps = {
+  /**
+   * Tab content.
+   */
   children: React.ReactNode;
+  /**
+   * For customization purposes.
+   */
   className?: string;
+  /**
+   * A unique string.
+   */
   value: string;
 };
 

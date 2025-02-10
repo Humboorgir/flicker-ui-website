@@ -8,39 +8,7 @@
 // Then we get props and their description from `ButtonProps` and `buttonVariants` (if there is one)
 // Note that this only works with files that have a very specific format.
 
-function getComponentName(code: string) {
-  const linesOfCode = code.split("\n");
-  let componentName;
-  // Looping over every line of lcode
-  for (let i = 0; i < linesOfCode.length; i++) {
-    if (!linesOfCode[i].includes("export default")) continue;
-    const piecesOfCode = linesOfCode[i].split(" ");
-    // Remove the first words (with them being 'export' and 'default')
-    // so we can get the component name that comes after them
-    piecesOfCode.shift();
-    piecesOfCode.shift();
-
-    // After removing 'export default', the first word that comes after is the component name.
-    const componentDeclaration = piecesOfCode[0].trim();
-    // If it ends with a semicolon, remove it (for instance: export default Button; => Button; => Button)
-    if (componentDeclaration.endsWith(";")) {
-      componentName = componentDeclaration.split(";")[0];
-    } else {
-      componentName = componentDeclaration;
-    }
-  }
-
-  return componentName;
-}
-
-function getComponentVariantInfo(code: string) {
-  const componentName = getComponentName(code);
-
-  if (!componentName) {
-    console.log("No default export was found.");
-    return [];
-  }
-
+function getComponentVariantInfo(code: string, componentName: string) {
   const linesOfCode = code.split("\n");
   const variantsDefName = componentName.toLowerCase() + "Variants";
   // Looping over every line of code
@@ -125,14 +93,7 @@ function getComponentVariantInfo(code: string) {
   return parseVariantsInfo(variantDefinition);
 }
 
-function getComponentPropInfo(code: string) {
-  const componentName = getComponentName(code);
-
-  if (!componentName) {
-    console.log("No default export was found.");
-    return [];
-  }
-
+function getComponentPropInfo(code: string, componentName: string) {
   const linesOfCode = code.split("\n");
   const propsTypeName = componentName + "Props";
   // Looping over every line of code
@@ -227,8 +188,40 @@ function getComponentPropInfo(code: string) {
   }));
 
   // The code above doesn't include variants, let's fix that!
-  const variantInfo = getComponentVariantInfo(code);
+  const variantInfo = getComponentVariantInfo(code, componentName);
   return [...props, ...variantInfo];
 }
 
-export default getComponentPropInfo;
+function findExportedComponents(code: string) {
+  const exports = [];
+
+  // Match named exports (const or function)
+  const namedExportRegex = /export\s+(?:const|function)\s+(\w+)/g;
+  let match;
+  while ((match = namedExportRegex.exec(code))) {
+    exports.push(match[1]);
+  }
+
+  // Match default exports (both function and variable forms)
+  const defaultExportRegex = /export\s+default\s+(?:function\s+(\w+)|(\w+))/g;
+  while ((match = defaultExportRegex.exec(code))) {
+    const name = match[1] || match[2];
+    if (name) exports.push(name);
+  }
+
+  return exports;
+}
+
+function getComponentsPropInfo(code: string) {
+  const components = findExportedComponents(code);
+
+  const componentsPropInfo = components.map((component) => {
+    const componentName = component;
+    const componentPropInfo = getComponentPropInfo(code, componentName);
+
+    return { componentName, componentPropInfo };
+  });
+  return componentsPropInfo;
+}
+
+export default getComponentsPropInfo;
