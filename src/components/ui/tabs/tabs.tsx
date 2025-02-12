@@ -1,11 +1,10 @@
-import type { VariantProps } from "class-variance-authority";
-
-import Button, { buttonVariants } from "@/components/ui/button";
+import Button from "@/components/ui/button";
 
 import React, { useContext, useState, createContext, memo, useMemo, useEffect, useRef } from "react";
 import usePrevious from "@/hooks/usePrevious";
 import { cn } from "@/lib/utils";
-import { motion } from "framer-motion";
+import { HTMLMotionProps, motion } from "framer-motion";
+import { ButtonProps } from "@/components/ui/button/button";
 
 type ReactSetState<T> = React.Dispatch<React.SetStateAction<T>>;
 
@@ -23,7 +22,7 @@ const TabsContext = createContext<TTabsContext>({
   setTabs: () => {},
 });
 
-type TabsProps = {
+export type TabsProps = React.ComponentProps<"div"> & {
   /**
    * Which tab should be open by default?
    */
@@ -32,14 +31,6 @@ type TabsProps = {
    * A function that runs everytime the active tab changes.
    */
   onChange?: (selected: string) => void;
-  /**
-   * Tab triggers and content.
-   */
-  children: React.ReactNode;
-  /**
-   * For customization purposes.
-   */
-  className?: string;
 };
 
 export const Tabs = ({ openByDefault, onChange, children, className }: TabsProps) => {
@@ -61,20 +52,12 @@ export const Tabs = ({ openByDefault, onChange, children, className }: TabsProps
   );
 };
 
-type TabsTriggerProps = {
-  /**
-   * Tab trigger label.
-   */
-  children: React.ReactNode;
-  /**
-   * For customization purposes.
-   */
-  className?: string;
+export type TabsTriggerProps = ButtonProps & {
   /**
    * Specifies the trigger's corresponding tab.
    */
   value: string;
-} & VariantProps<typeof buttonVariants>;
+};
 
 export const TabsTrigger = memo(function TabsTrigger({
   children,
@@ -114,16 +97,7 @@ export const TabsTrigger = memo(function TabsTrigger({
   );
 });
 
-type TabsListProps = {
-  /**
-   * Tab triggers.
-   */
-  children: React.ReactNode;
-  /**
-   * For customization purposes.
-   */
-  className?: string;
-};
+export type TabsListProps = React.ComponentProps<"div">;
 
 export const TabsList = ({ children, className, ...props }: TabsListProps) => {
   const { active, setActive } = useContext(TabsContext);
@@ -159,15 +133,7 @@ export const TabsList = ({ children, className, ...props }: TabsListProps) => {
   );
 };
 
-type TabsContentProps = {
-  /**
-   * Tab content.
-   */
-  children: React.ReactNode;
-  /**
-   * For customization purposes.
-   */
-  className?: string;
+export type TabsContentProps = HTMLMotionProps<"div"> & {
   /**
    * A unique string.
    */

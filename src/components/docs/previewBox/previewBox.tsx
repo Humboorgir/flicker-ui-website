@@ -1,96 +1,63 @@
-import Column from "@/components/ui/column";
-import Button from "@/components/ui/button";
-import Row from "@/components/ui/row";
+import type { TabsProps } from "@/components/ui/tabs/tabs";
 
-import { highlightCode } from "@/components/docs/code";
-import { Suspense, useEffect, useState } from "react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+
+import React, { useState } from "react";
 import { cn } from "@/lib/utils";
-
-import React from "react";
-import Typography from "@/components/ui/typography";
 import useComponentCode from "@/hooks/useComponentCode";
-import Skeleton from "@/components/ui/skeleton";
+import useComponentPreview from "@/hooks/useComponentPreview";
+import useHighlightCode from "@/hooks/useHighlightCode";
 
-type Props = React.HTMLProps<HTMLDivElement> & {
+type Props = Omit<TabsProps, "openByDefault"> & {
   component: string;
   textSmall?: boolean;
 };
 
 const PreviewBox = ({ children, component, textSmall = false, className, ...props }: Props) => {
-  const [state, setState] = useState<"code" | "preview">("preview");
-  const [code, setCode] = useState<any>();
+  const [activeTab, setActiveTab] = useState<"code" | "preview">("preview");
 
   const { code: componentCode } = useComponentCode(component);
-
-  // TODO: turn this into a custom hook
-  useEffect(() => {
-    if (!componentCode) return;
-    highlightCode(`\`\`\`tsx
-${componentCode}
-\`\`\``).then((formatted) => setCode(formatted));
-  }, [componentCode]);
-
-  const preview = React.useMemo(() => {
-    if (!component) return;
-    const componentName = component.split("-")[0];
-    const componentType = component.split("-").slice(1).join("-");
-    const Component = React.lazy(() => import(`@/components/preview/${componentName}/${componentType}.tsx`));
-
-    return (
-      // TODO: Skeleton isn't animated properly here, fix it
-      <Suspense fallback={<Skeleton className="animate-pulse w-full h-full" />}>
-        <Component />
-      </Suspense>
-    );
-  }, [component]);
-
-  function openPreview() {
-    setState("preview");
-  }
-
-  function openCodeView() {
-    setState("code");
-  }
+  const { preview: componentPreview } = useComponentPreview(component);
+  const { highlightedCode } = useHighlightCode(componentCode);
 
   return (
-    // @ts-ignore
-    <Column items="start" className={cn("flex flex-col w-[100%]", className)} {...props}>
-      <Row className="w-fit relative">
+    <Tabs
+      openByDefault="preview"
+      onChange={(activeTab) => setActiveTab(activeTab as "code" | "preview")}
+      className={cn("w-full h-[400px]", className)}
+      {...props}>
+      <TabsList className="relative">
         <span
+          aria-hidden
           className={cn(
-            `absolute bottom-0 left-0 bg-foreground rounded-md h-[2px] w-[50%] flex z-10
-            transition-transform duration-200 delay-[50ms]`,
-            state == "code" && "translate-x-[100%] "
+            `absolute bottom-0 left-0 bg-foreground rounded-md h-[2px] w-[80px] z-10
+            transition-transform duration-200`,
+            activeTab == "code" && "translate-x-[92px] "
           )}
         />
-        <Button className="w-[80px]" onClick={openPreview} variant="ghost">
+        <TabsTrigger className="w-[80px]" value="preview" variant="ghost">
           Preview
-        </Button>
-        <Button className="w-[80px]" onClick={openCodeView} variant="ghost">
+        </TabsTrigger>
+        <TabsTrigger className="w-[80px]" value="code" variant="ghost">
           Code
-        </Button>
-      </Row>
-      <div className="relative pt-4 w-full min-w-[1] h-[1px] min-h-[340px] place-items-center">
-        <div
-          className={cn(
-            `absolute grid place-items-center h-full w-full border border-ring rounded-md p-3
-             opacity-0 -left-[20px] invisible transition-none`,
-            state == "preview" && "opacity-100 left-0 transition-all visible duration-[180ms]"
-          )}>
-          {preview}
-        </div>
-        <div
-          dangerouslySetInnerHTML={{ __html: code }}
-          className={cn(
-            `absolute flex w-full h-full overflow-auto
-            [&_pre]:w-full [&_figure]:grow [&_pre]:p-3 [&_pre]:rounded-md
-            [&_pre]:text-base left-[20px] opacity-0 invisible transition-none`,
-            state == "code" && "opacity-100 left-0 duration-[180ms] visible transition-all",
-            textSmall && "[&_pre]:text-[15px]"
-          )}
-        />
-      </div>
-    </Column>
+        </TabsTrigger>
+      </TabsList>
+
+      <TabsContent
+        className="h-[360px] grid place-items-center border border-ring rounded-md"
+        value="preview">
+        {componentPreview}
+      </TabsContent>
+
+      <TabsContent
+        dangerouslySetInnerHTML={{ __html: highlightedCode }}
+        className={cn(
+          `w-[1px] min-w-full h-full overflow-auto [&_pre]:text-sm md:[&_pre]:text-base`,
+          textSmall && "md:[&_pre]:text-[15px]"
+        )}
+        value="code"
+      />
+    </Tabs>
   );
 };
 

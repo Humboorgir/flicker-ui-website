@@ -15,22 +15,22 @@
     --accent: 240 4% 95%;
     --ring: 240 3% 87%;
 
-    --skeleton-base: 0, 0%, 92%;
-    --skeleton-highlight: 0, 0%, 96%;
+    --skeleton-base: 0 0% 92%;
+    --skeleton-highlight: 0 0% 96%;
   }
   .dark {
     --foreground: 0 0% 98%;
     --foreground-light: 0 0% 83%;
     --foreground-muted: 0 0% 64%;
-    --background: 0, 0%, 2%;
+    --background: 0 0% 2%;
     --primary: 0 0% 98%;
     --primary-foreground: 240 5.9% 10%;
     --secondary: 240 4% 18%;
     --accent: 240 4% 15%;
     --ring: 240 6% 23%;
 
-    --skeleton-base: 0, 0%, 13%;
-    --skeleton-highlight: 0, 0%, 2%;
+    --skeleton-base: 0 0% 13%;
+    --skeleton-highlight: 0 0% 27%;
   }
 }
 
@@ -39,10 +39,9 @@
 }
 
 pre {
+  padding: 12px;
+  border-radius: 6px;
   font-size: 14px;
-}
-
-pre {
   overflow-x: auto;
   max-width: 100%;
 }
