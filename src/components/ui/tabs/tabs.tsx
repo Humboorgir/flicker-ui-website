@@ -67,13 +67,21 @@ export const TabsTrigger = memo(function TabsTrigger({
   ...props
 }: TabsTriggerProps) {
   const buttonRef = useRef<HTMLButtonElement>(null);
+  const isFirstRender = useRef<boolean>(true);
   const { active, setActive } = useContext(TabsContext);
 
   const isActive = active == value;
 
-  if (isActive) {
-    buttonRef.current?.focus();
-  }
+  // Prevents focus on the first render
+  // Removing this would cause the focus to be triggered on page load
+  useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
+
+    if (isActive) buttonRef.current?.focus();
+  }, [isActive]);
 
   function activateTab() {
     setActive(value);
