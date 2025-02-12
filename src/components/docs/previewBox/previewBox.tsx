@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils";
 import React from "react";
 import Typography from "@/components/ui/typography";
 import useComponentCode from "@/hooks/useComponentCode";
+import Skeleton from "@/components/ui/skeleton";
 
 type Props = React.HTMLProps<HTMLDivElement> & {
   component: string;
@@ -36,15 +37,8 @@ ${componentCode}
     const Component = React.lazy(() => import(`@/components/preview/${componentName}/${componentType}.tsx`));
 
     return (
-      // TODO: implement a good looking loading state for this (like a loading skeleton)
-      // I'll probably add a Skeleton component to the project
-      // because I use it in a lot of projects and its generally useful
-      <Suspense
-        fallback={
-          <Typography className="animate-pulse" variant="h3">
-            Loading...
-          </Typography>
-        }>
+      // TODO: Skeleton isn't animated properly here, fix it
+      <Suspense fallback={<Skeleton className="animate-pulse w-full h-full" />}>
         <Component />
       </Suspense>
     );
