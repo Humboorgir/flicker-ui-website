@@ -13,17 +13,14 @@ const Home = () => {
         <span>Your Own</span> Component Library
       </h1>
       <p className="max-w-sm md:max-w-xl text-lg md:text-xl text-slate-500 mb-8 md:mb-6 z-10">
-        Kinda like if MUI and ShadcnUI had a child! Production-ready React components made with Tailwindcss
-        and Framer-motion.
+        Kinda like if MUI and ShadcnUI had a child! Production-ready React
+        components made with Tailwindcss and Framer-motion.
       </p>
 
       {/* Button group  */}
       <div className="flex w-full md:w-fit flex-col md:flex-row items-center justify-center">
-        {/* TODO: if the vercel-styled buttons happen to be used a lot in the app, 
-        replace the default variant with them */}
         <Button
-          className="shrink-0 mb-3 md:mb-0 md:mr-4 w-full max-w-[380px] md:max-w-none md:w-fit
-          bg-black/90 dark:bg-white/90 text-background"
+          className="shrink-0 mb-3 md:mb-0 md:mr-4 w-full max-w-[380px] md:max-w-none md:w-fit"
           size="lg"
           href="/docs/components/overview">
           View Components
