@@ -215,13 +215,26 @@ function findExportedComponents(code: string) {
 function getComponentsPropInfo(code: string) {
   const components = findExportedComponents(code);
 
-  const componentsPropInfo = components.map((component) => {
-    const componentName = component;
-    const componentPropInfo = getComponentPropInfo(code, componentName);
+  const componentsPropInfo = components
+    .map((component) => {
+      const componentName = component;
+      const componentPropInfo = getComponentPropInfo(code, componentName);
 
-    return { componentName, componentPropInfo };
-  });
-  return componentsPropInfo;
+      // If a component doesn't have prop info, don't include it in the generated list
+      if (!componentPropInfo.length) return null;
+      return { componentName, componentPropInfo };
+    })
+    .filter(Boolean);
+
+  return componentsPropInfo as Array<{
+    componentName: string;
+    componentPropInfo: Array<{
+      prop: string;
+      type: string;
+      required: boolean;
+      description: string;
+    }>;
+  }>;
 }
 
 export default getComponentsPropInfo;
