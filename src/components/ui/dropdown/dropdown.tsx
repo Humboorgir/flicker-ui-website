@@ -49,7 +49,10 @@ export default function Dropdown({
   //   TODO: use React.forwardRef to make this truly reusable
   return (
     <div className={cn("relative w-fit h-fit", className)}>
-      <Button className={triggerClassName} variant={triggerVariant} onClick={toggleOpen}>
+      <Button
+        className={triggerClassName}
+        variant={triggerVariant}
+        onClick={toggleOpen}>
         {children}
       </Button>
 
@@ -75,9 +78,10 @@ export default function Dropdown({
             divide-y divide-foreground/10 absolute right-0 top-full mt-2 w-52`,
               listClassName
             )}>
-            {links.map((item) => {
+            {links.map((item, i) => {
               return (
                 <Button
+                  key={i}
                   variant="ghost"
                   className="justify-start w-full px-4 py-2 rounded-none"
                   href={item.href}>

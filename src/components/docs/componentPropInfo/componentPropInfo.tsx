@@ -1,5 +1,7 @@
 import Badge from "@/components/ui/badge";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
+
+import React from "react";
 import getComponentsPropInfo from "@/lib/get-component-prop-info";
 
 type ComponentPropInfoProps = {
@@ -14,9 +16,9 @@ const ComponentPropInfo = ({ componentCode }: ComponentPropInfoProps) => {
 
   if (!components.length) return null;
 
-  return components.map(({ componentName, componentPropInfo }) => {
+  return components.map(({ componentName, componentPropInfo }, i) => {
     return (
-      <>
+      <React.Fragment key={i}>
         <div className="overflow-x-auto w-[1px] min-w-full mb-12">
           <Badge className="ml-2 rounded-md rounded-b-none" variant="primary">
             {componentName}
@@ -53,7 +55,7 @@ const ComponentPropInfo = ({ componentCode }: ComponentPropInfoProps) => {
             </tbody>
           </table>
         </div>
-      </>
+      </React.Fragment>
     );
   });
 };

@@ -64,7 +64,8 @@ const Category = ({ category }: CategoryProps) => {
               duration: duration,
               delay: 0.1,
               ease: easeOut,
-            }}>
+            }}
+            className="origin-bottom">
             {category.items &&
               category.items.map((item, i) => {
                 const isCurrentPage = router.pathname == item.href;

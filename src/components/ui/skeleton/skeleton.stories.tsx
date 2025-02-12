@@ -23,8 +23,8 @@ export const SkeletonComponent: Story = {
           <Skeleton />
         </h2>
         <p>
-          {[1, 2, 3, 4, 5].map(() => {
-            return <Skeleton></Skeleton>;
+          {[1, 2, 3, 4, 5].map((x, i) => {
+            return <Skeleton key={i}></Skeleton>;
           })}
         </p>
       </div>

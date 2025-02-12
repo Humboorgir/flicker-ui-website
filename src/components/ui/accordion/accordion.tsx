@@ -1,3 +1,4 @@
+import React from "react";
 import { cn } from "@/lib/utils";
 import { forwardRef, useId, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
@@ -27,7 +28,7 @@ const Accordion = forwardRef<HTMLDivElement, AccordionProps>(
           {items.map((item, i) => {
             const isOpen = open == i;
             return (
-              <>
+              <React.Fragment key={`${id}-${i}`}>
                 <h3 className="w-full text-foreground text-left font-medium">
                   <button
                     type="button"
@@ -70,7 +71,7 @@ const Accordion = forwardRef<HTMLDivElement, AccordionProps>(
                     </motion.div>
                   )}
                 </AnimatePresence>
-              </>
+              </React.Fragment>
             );
           })}
         </div>

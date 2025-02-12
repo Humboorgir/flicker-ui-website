@@ -1,6 +1,6 @@
 import { DrawerTrigger, Drawer } from "@/components/ui/drawer";
+import React, { useState } from "react";
 import { cn } from "@/lib/utils";
-import { useState } from "react";
 
 type Open = null | "Left" | "Right" | "Top" | "Bottom";
 
@@ -18,14 +18,14 @@ const Preview = () => {
 
   return (
     <div className="flex items-center space-x-2">
-      {drawers.map((drawerName) => {
+      {drawers.map((drawerName, i) => {
         const direction = drawerName?.toLowerCase() as
           | "left"
           | "right"
           | "top"
           | "bottom";
         return (
-          <>
+          <React.Fragment key={i}>
             <DrawerTrigger toggleOpen={() => toggleOpen(drawerName as Open)}>
               {drawerName}
             </DrawerTrigger>
@@ -54,7 +54,7 @@ const Preview = () => {
               </DrawerTrigger>
               {/* Drawer content end  */}
             </Drawer>
-          </>
+          </React.Fragment>
         );
       })}
     </div>
