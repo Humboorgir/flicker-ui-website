@@ -8,13 +8,17 @@ import Link from "next/link";
 
 import { LuTextCursor as TypingCursor } from "react-icons/lu";
 import { FcCursor as Cursor } from "react-icons/fc";
+import Skeleton from "@/components/ui/skeleton";
 
 const Page = () => {
   const components = [
     {
       title: "Button",
-      description: "Your average button component. has Material-Design's ripple effect implemented",
-      shape: <div className="flex w-[120px] h-[40px] bg-white rounded-md shadow-md" />,
+      description:
+        "Your average button component. has Material-Design's ripple effect implemented",
+      shape: (
+        <div className="flex w-[120px] h-[40px] bg-white rounded-md shadow-md" />
+      ),
     },
 
     {
@@ -33,17 +37,23 @@ const Page = () => {
     },
     {
       title: "Container",
-      description: "Used to position common page elements properly and center them.",
-      shape: <div className="flex w-[80px] h-[100px] bg-white rounded-md shadow-md" />,
+      description:
+        "Used to position common page elements properly and center them.",
+      shape: (
+        <div className="flex w-[80px] h-[100px] bg-white rounded-md shadow-md" />
+      ),
     },
     {
       title: "Typography",
-      description: "Includes a set of styled h1, h2, h3, ..., h5 and p tags made for reusability",
+      description:
+        "Includes a set of styled h1, h2, h3, ..., h5 and p tags made for reusability",
       shape: (
         <div
           className="relative flex items-center w-[170px] pl-2 h-[45px] bg-white
              shadow-md border border-neutral-300 rounded-md">
-          <span className="text-gray-900 text-3xl font-black tracking-tigher">How to </span>
+          <span className="text-gray-900 text-3xl font-black tracking-tigher">
+            How to{" "}
+          </span>
           <div
             className="absolute right-0 h-[38px] w-[56px] border-l-[1.5px]
                border-l-black"
@@ -53,7 +63,8 @@ const Page = () => {
     },
     {
       title: "Tabs",
-      description: "A box with a bunch of buttons that change the displayed content when clicked.",
+      description:
+        "A box with a bunch of buttons that change the displayed content when clicked.",
       shape: (
         <div className="relative flex flex-col">
           <div className="flex mb-2">
@@ -75,7 +86,8 @@ const Page = () => {
     },
     {
       title: "Row",
-      description: "Flexbox container with flex-direction set to row. used for more improved readability",
+      description:
+        "Flexbox container with flex-direction set to row. used for more improved readability",
       shape: (
         <div className="flex">
           <div className="bg-white rounded-md shadow-md flex w-[55px] h-[45px] mr-1" />
@@ -86,7 +98,8 @@ const Page = () => {
     },
     {
       title: "Column",
-      description: "Flexbox container with flex-direction set to column. used for more improved readability",
+      description:
+        "Flexbox container with flex-direction set to column. used for more improved readability",
       shape: (
         <div className="flex flex-col">
           <div className="bg-white rounded-md shadow-md flex w-[60px] h-[30px] mb-1" />
@@ -97,7 +110,8 @@ const Page = () => {
     },
     {
       title: "Modal",
-      description: "A window that pops when triggered and attempts to draw the user's attention",
+      description:
+        "A window that pops when triggered and attempts to draw the user's attention",
       shape: (
         <div className="grid place-items-center">
           <div className="flex flex-col p-5 pb-4 bg-white rounded-md shadow-md w-[180px] h-[100px]">
@@ -114,7 +128,8 @@ const Page = () => {
     },
     {
       title: "Dropdown",
-      description: "Displays a list of links on a temporary surface that can be opened / closed",
+      description:
+        "Displays a list of links on a temporary surface that can be opened / closed",
       shape: (
         <div className="relative flex flex-col items-center justify-center h-full w-full">
           <Cursor className="top-[80px] w-6 h-6 left-[84px] absolute text-black/80 z-10" />
@@ -129,7 +144,8 @@ const Page = () => {
     },
     {
       title: "Select",
-      description: "Displays a list of choices that can be selected on a temporary surface",
+      description:
+        "Displays a list of choices that can be selected on a temporary surface",
       shape: (
         <div className="relative flex flex-col items-center justify-center h-full w-full">
           <Cursor className="top-[80px] w-6 h-6 left-[84px] absolute text-black/80 z-10" />
@@ -144,7 +160,8 @@ const Page = () => {
     },
     {
       title: "Drawer",
-      description: "Similar to modals with the exception that they open from sides",
+      description:
+        "Similar to modals with the exception that they open from sides",
       shape: (
         <div className="relative grid place-items-center h-full w-full">
           <Cursor className="top-[111px] w-6 h-6 left-[54px] absolute text-black/80 z-20" />
@@ -193,7 +210,9 @@ const Page = () => {
             <div className="shadow-md bg-white z-10 absolute bottom-full w-full p-2 mb-3 right-0 rounded-md">
               <div
                 className="top-full left-1/2 -translate-x-1/2 border-[6px] absolute"
-                style={{ borderColor: "white transparent transparent transparent" }}></div>
+                style={{
+                  borderColor: "white transparent transparent transparent",
+                }}></div>
               <div className="bg-gray-400/40 h-[6px] mb-1.5 shrink-0 w-full rounded-md" />
               <div className="bg-gray-400/40 h-[6px] shrink-0 w-[80%] rounded-md" />
             </div>
@@ -203,7 +222,8 @@ const Page = () => {
     },
     {
       title: "Accordion",
-      description: "A set of headings that each reveal or hide a section of content",
+      description:
+        "A set of headings that each reveal or hide a section of content",
       shape: (
         <div className="relative h-full w-[80%] flex justify-center flex-col">
           <Cursor className="top-[24px] w-6 h-6 left-[160px] absolute text-black/80 z-20" />
@@ -218,6 +238,25 @@ const Page = () => {
             <div className="w-full h-[1.5px] bg-gray-400/40 mt-2 mb-2" />
             <div className="mx-3 bg-gray-400/60 h-[6px] shrink-0 mb-2 w-[70%] rounded-md" />
             <div className="mb-3 mx-3 bg-gray-400/60 h-[6px] shrink-0 w-[55%] rounded-md" />
+          </div>
+        </div>
+      ),
+    },
+    {
+      title: "Skeleton",
+      description: "Used as a placeholder while content is loading",
+      shape: (
+        <div className="relative w-full h-full grid place-items-center light">
+          <div className="bg-white h-[100px] w-[200px] p-3 rounded-md">
+            <h1 className="text-2xl">
+              <Skeleton />
+            </h1>
+            <p className="text-sm">
+              <Skeleton />
+            </p>
+            <p className="text-sm">
+              <Skeleton />
+            </p>
           </div>
         </div>
       ),

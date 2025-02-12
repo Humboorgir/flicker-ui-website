@@ -1,0 +1,34 @@
+---
+title: "Skeleton"
+description: "Used as a placeholder while content is loading"
+componentName: "skeleton"
+preview: "skeleton-default"
+---
+
+import PreviewBox from "@/components/docs/previewBox";
+import Note from '@/components/docs/note';
+
+## Installation
+
+The following command will add the Skeleton component into your `components/ui` folder
+
+```bash
+$ npx flicker-ui@latest add skeleton
+```
+
+<br />
+
+## Usage
+
+The Skeleton component automatically adjusts its height according to its container. You can also manually provide
+a width and height via the `className` prop. 
+
+<Note>Make sure to define "--skeleton-base" and "--skeleton-highlight" as HSL color codes (CSS variables) for the component to work. <br/>
+For instance: --skeleton-base: 0 0% 92%;</Note>
+
+```js /items="center"/ /justify="center"/
+<Badge variant="success" size="md">Badge</Badge>
+```
+
+<br />
+<br />

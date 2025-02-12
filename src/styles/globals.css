@@ -16,7 +16,7 @@
     --ring: 240 3% 87%;
 
     --skeleton-base: 0 0% 92%;
-    --skeleton-highlight: 0 0% 96%;
+    --skeleton-highlight: 0 0% 87%;
   }
   .dark {
     --foreground: 0 0% 98%;

@@ -23,8 +23,8 @@ export const docsPages = [
       { label: "Drawer", href: "/docs/components/drawer" },
       { label: "Badge", href: "/docs/components/badge" },
       { label: "Tooltip", href: "/docs/components/tooltip" },
-      // TODO: implement this
       { label: "Accordion", href: "/docs/components/accordion" },
+      { label: "Skeleton", href: "/docs/components/skeleton" },
     ],
   },
   {
