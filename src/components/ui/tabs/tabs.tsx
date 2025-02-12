@@ -22,7 +22,7 @@ const TabsContext = createContext<TTabsContext>({
   setTabs: () => {},
 });
 
-export type TabsProps = React.ComponentProps<"div"> & {
+export type TabsProps = Omit<React.ComponentProps<"div">, "onChange"> & {
   /**
    * Which tab should be open by default?
    */
