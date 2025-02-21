@@ -1,0 +1,32 @@
+---
+title: "usePrevious"
+description: "Tracks the previous value of a React state."
+---
+
+## Installation
+
+The following command will add the usePrevious hook into your `hooks` folder
+
+```bash
+$ npx flicker-ui@latest --hook add usePrevious
+```
+
+<br />
+
+## Usage
+
+Pass in the state and it returns its previous value.
+```js
+const [state, setState] = useState(1);
+const previousState = usePrevious(state);
+
+function increment() {
+    setState(prev => prev + 1);
+}
+
+increment();
+console.log(state);
+// output: 2
+console.log(previousState); 
+// output: 1
+```

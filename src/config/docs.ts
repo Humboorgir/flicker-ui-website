@@ -1,13 +1,10 @@
 export const docsPages = [
   {
     label: "Getting Started",
-    // category overview
-    href: "/docs/getting-started",
     items: [{ label: "Installation", href: "/docs/installation" }],
   },
   {
     label: "Components",
-    href: "/docs/components",
     items: [
       { label: "Overview", href: "/docs/components/overview" },
       { label: "Button", href: "/docs/components/button" },
@@ -28,8 +25,15 @@ export const docsPages = [
     ],
   },
   {
+    label: "Hooks",
+    items: [
+      { label: "Overview", href: "/docs/hooks/overview" },
+      { label: "usePrevious", href: "/docs/hooks/useprevious" },
+      { label: "useClickOutside", href: "/docs/hooks/useclickoutside" },
+    ],
+  },
+  {
     label: "Snippets",
-    href: "/docs/snippets",
     items: [
       // TODO: implement all of these
       { label: "Alert", href: "/docs/snippets/alert" },

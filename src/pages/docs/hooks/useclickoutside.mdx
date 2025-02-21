@@ -1,0 +1,27 @@
+---
+title: "useClickOutside"
+description: "Executes a function once the user clicks outside of the given element."
+---
+
+## Installation
+
+The following command will add the useClickOutside hook into your `hooks` folder
+
+```bash
+$ npx flicker-ui@latest --hook add useClickOutside
+```
+
+<br />
+
+## Usage
+
+The hook takes in a function (handler) and returns a ref.
+Attach the ref to an element. Once the user clicks outside of that element, your function will be called.
+```js
+const [isOpen, setIsOpen] = useState(false);
+const ref = useClickOutside(() => setIsOpen(false));
+
+// For instance:
+<div ref={ref}>Clicking outside of this element would trigger the handler</div>
+
+```
