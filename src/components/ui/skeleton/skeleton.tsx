@@ -2,11 +2,11 @@ import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 import React from "react";
 
-type SkeletonProps = React.ComponentProps<"span">;
+type SkeletonProps = React.ComponentProps<"div">;
 
-const Skeleton = React.forwardRef<HTMLSpanElement, SkeletonProps>(({ className, ...props }, ref) => {
+const Skeleton = React.forwardRef<HTMLDivElement, SkeletonProps>(({ className, ...props }, ref) => {
   return (
-    <span
+    <div
       ref={ref}
       className={cn("relative rounded-sm inline-flex leading-none overflow-hidden w-full", className)}
       style={{ backgroundColor: "hsl(var(--skeleton-base))" }}
@@ -31,7 +31,7 @@ const Skeleton = React.forwardRef<HTMLSpanElement, SkeletonProps>(({ className, 
            hsl(var(--skeleton-base)) 100%)`,
         }}
       />
-    </span>
+    </div>
   );
 });
 
