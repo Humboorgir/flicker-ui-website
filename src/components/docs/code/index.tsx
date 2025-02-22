@@ -1,1 +1,1 @@
-export { default, highlightCode } from "./code";
+export { highlightCode } from "./code";
