@@ -46,7 +46,8 @@ const DocsLayout = ({ children, componentCode, tableOfContent, meta }: DocsLayou
         <Navbar />
         <Container className="flex w-full max-w-[90rem] px-0 md:px-0">
           <Sidebar />
-          <div className="py-8 px-6 md:px-12 mr-auto grow w-full">
+          {/* Main page content  */}
+          <div className="py-8 px-6 md:px-12 mr-auto min-h-screen w-full">
             <Row className="mb-4 text-sm">
               <span className="flex items-center text-foreground-muted mr-2">
                 Docs <Arrow className="h-3.5 w-3.5 ml-2" />
@@ -97,6 +98,7 @@ const DocsLayout = ({ children, componentCode, tableOfContent, meta }: DocsLayou
               )}
             </div>
           </div>
+
           <TableOfContent tableOfContent={tableOfContent} />
         </Container>
         <Footer />
