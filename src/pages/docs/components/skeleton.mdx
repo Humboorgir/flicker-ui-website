@@ -27,7 +27,18 @@ a width and height via the `className` prop.
 For instance: --skeleton-base: 0 0% 92%;</Note>
 
 ```js /items="center"/ /justify="center"/
-<Badge variant="success" size="md">Badge</Badge>
+<h2 className="text-5xl font-bold">
+    {/* Automatically adapts to the h2 element's size  */}
+    <Skeleton />
+</h2>
+
+<p className="text-lg">
+    {/* Automatically adapts to the p element's size  */}
+    <Skeleton />
+</p>
+
+{/* You can also specify widths and heights manually  */}
+<Skeleton className="h-4 w-20" />
 ```
 
 <br />
