@@ -49,10 +49,7 @@ export default function Dropdown({
   //   TODO: use React.forwardRef to make this truly reusable
   return (
     <div className={cn("relative w-fit h-fit", className)}>
-      <Button
-        className={triggerClassName}
-        variant={triggerVariant}
-        onClick={toggleOpen}>
+      <Button className={triggerClassName} variant={triggerVariant} onClick={toggleOpen}>
         {children}
       </Button>
 

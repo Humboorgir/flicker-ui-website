@@ -4,8 +4,9 @@
 import Button, { buttonVariants } from "@/components/ui/button";
 
 import { type VariantProps } from "class-variance-authority";
+import { AnimatePresence, motion } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { useState } from "react";
+import React, { useState } from "react";
 
 type SelectProps = Omit<React.HTMLProps<HTMLDivElement>, "onChange"> & {
   /**
@@ -55,39 +56,46 @@ const Select = ({
 
   // select component
   return (
-    <div className={cn("relative w-fit h-fit", className)}>
-      <Button
-        className={cn("transition-all", open && "rounded-b-none")}
-        rippleColor="#7C72FF"
-        variant={variant}
-        onClick={toggleOpen}>
+    <div className={cn("relative inline-block", className)}>
+      <Button variant={variant} onClick={toggleOpen}>
         {selected.value ? selected.name : children}
       </Button>
-      {/* select options  */}
 
-      <div
-        className={cn(
-          `absolute invisible top-full right-0 bg-neutral-900 z-20 scale-[.8]
-           opacity-0 transition-all duration-100 origin-top max-h-[200px] delay-100 rounded-b-md
-           border-b border-b-secondary`,
-          scrollable && "overflow-y-scroll",
-          open && "scale-100 opacity-100 visible"
-        )}>
-        {options &&
-          options.map((option, i) => (
-            <Button
-              key={i}
-              className={cn(
-                `w-full justify-start border-secondary border-t-0 first-of-type:border-t rounded-none
-            last-of-type:rounded-b-md`
-              )}
-              rippleColor="#7C72FF"
-              variant="outline"
-              onClick={() => selectOption(option)}>
-              {option.name}
-            </Button>
-          ))}
-      </div>
+      {/* select options  */}
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{
+              opacity: 0,
+              scale: 0.87,
+            }}
+            animate={{
+              opacity: 1,
+              scale: 1,
+            }}
+            exit={{ opacity: 0, scale: 0.9 }}
+            transition={{
+              duration: 0.25,
+              delay: 0.1,
+              ease: [0.76, 0, 0.24, 1],
+            }}
+            className={cn(
+              `absolute top-full right-0 origin-top-right mt-1 max-h-[200px] rounded-md flex flex-col items-stretch`,
+              scrollable && "overflow-y-scroll"
+            )}>
+            {options &&
+              options.map((option, i) => (
+                <Button
+                  key={i}
+                  className="border-t-0 first-of-type:border-t rounded-none first-of-type:rounded-t-md last-of-type:rounded-b-md"
+                  variant="outline"
+                  onClick={() => selectOption(option)}>
+                  {option.name}
+                </Button>
+              ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
