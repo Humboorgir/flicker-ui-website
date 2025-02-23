@@ -6,7 +6,7 @@ type SkeletonProps = React.ComponentProps<"div">;
 
 const Skeleton = React.forwardRef<HTMLDivElement, SkeletonProps>(({ className, ...props }, ref) => {
   return (
-    <div
+    <span
       ref={ref}
       className={cn("relative rounded-sm inline-flex leading-none overflow-hidden w-full", className)}
       style={{ backgroundColor: "hsl(var(--skeleton-base))" }}
@@ -15,7 +15,7 @@ const Skeleton = React.forwardRef<HTMLDivElement, SkeletonProps>(({ className, .
       {...props}>
       {/* Invisible character */}
       &zwnj;
-      <motion.div
+      <motion.span
         initial={{ x: "-100%" }}
         animate={{ x: "100%" }}
         transition={{
@@ -31,7 +31,7 @@ const Skeleton = React.forwardRef<HTMLDivElement, SkeletonProps>(({ className, .
            hsl(var(--skeleton-base)) 100%)`,
         }}
       />
-    </div>
+    </span>
   );
 });
 
