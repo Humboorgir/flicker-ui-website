@@ -71,7 +71,8 @@ const DocsLayout = ({ children, componentCode, tableOfContent, meta }: DocsLayou
                   <Button
                     href={prevPage.href}
                     size="lg"
-                    className="flex w-full sm:w-auto text-base items-center bg-secondary/10 mr-auto"
+                    className="flex w-full sm:w-auto text-base items-center
+                     bg-gray-300/20 dark:bg-gray-400/10 border border-neutral-300/80 dark:border-neutral-800 mr-auto"
                     variant="outline">
                     <ArrowBack className="w-4 h-4 mr-2" />
                     {prevPage.label}
@@ -86,7 +87,8 @@ const DocsLayout = ({ children, componentCode, tableOfContent, meta }: DocsLayou
                   <Button
                     href={nextPage.href}
                     size="lg"
-                    className="flex w-full sm:w-auto text-base items-center bg-secondary/10"
+                    className="flex w-full sm:w-auto text-base items-center
+                     bg-gray-300/20 dark:bg-gray-400/10 border border-neutral-300/80 dark:border-neutral-800"
                     variant="outline">
                     {nextPage.label}
                     <ArrowForward className="w-4 h-4 ml-2" />
