@@ -1,11 +1,11 @@
 import type { TabsProps } from "@/components/ui/tabs/tabs";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import ComponentPreview from "./component-preview";
 
 import React, { useState } from "react";
 import { cn } from "@/lib/utils";
 import useComponentCode from "@/hooks/useComponentCode";
-import useComponentPreview from "@/hooks/useComponentPreview";
 import useHighlightCode from "@/hooks/useHighlightCode";
 
 type Props = Omit<TabsProps, "openByDefault"> & {
@@ -17,7 +17,6 @@ const PreviewBox = ({ children, component, textSmall = false, className, ...prop
   const [activeTab, setActiveTab] = useState<"code" | "preview">("preview");
 
   const { code: componentCode } = useComponentCode(component);
-  const { preview: componentPreview } = useComponentPreview(component);
   const { highlightedCode } = useHighlightCode(componentCode);
 
   return (
@@ -46,7 +45,7 @@ const PreviewBox = ({ children, component, textSmall = false, className, ...prop
       <TabsContent
         className="h-[360px] grid place-items-center border border-ring rounded-md"
         value="preview">
-        {componentPreview}
+        <ComponentPreview component={component} />
       </TabsContent>
 
       <TabsContent
