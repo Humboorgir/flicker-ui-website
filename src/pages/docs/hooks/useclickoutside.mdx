@@ -17,7 +17,7 @@ $ npx flicker-ui@latest --hook add useClickOutside
 
 The hook takes in a function (handler) and returns a ref.
 Attach the ref to an element. Once the user clicks outside of that element, your function will be called.
-```js {2-3}
+```ts "const ref = useClickOutside(() => setIsOpen(false));" "{ref}"
 const [isOpen, setIsOpen] = useState(false);
 const ref = useClickOutside(() => setIsOpen(false));
 
