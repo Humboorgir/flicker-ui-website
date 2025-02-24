@@ -36,10 +36,12 @@ const DocsLayout = ({ children, componentCode, tableOfContent, meta }: DocsLayou
   const currentPageIndex = allPages.findIndex((page) => page.href == router.pathname);
   const prevPage = allPages[currentPageIndex - 1] ? allPages[currentPageIndex - 1] : null;
   const nextPage = allPages[currentPageIndex + 1] ? allPages[currentPageIndex + 1] : null;
+
+  const metaTitle = `${meta.title} ~ Flicker UI`;
   return (
     <>
       <Head>
-        <title>{meta.title} ~ Flicker UI</title>
+        <title>{metaTitle}</title>
         <meta name="description" content={meta.description} />
       </Head>
       <div className="grid grid-rows-[auto,1fr,auto] min-h-screen bg-background">

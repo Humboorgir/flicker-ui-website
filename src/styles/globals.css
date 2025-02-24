@@ -38,6 +38,22 @@
   @apply bg-zinc-600/60 rounded;
 }
 
+/* figure and pre are put in here instead of mdx-components because they are also used outside of mdx (in PreviewBox) */
+figure {
+  width: 1px;
+  min-width: 100%;
+}
+
+pre {
+  padding: 12px;
+  font-size: 14px;
+  background-color: #141516;
+  border: 1px solid #262626;
+  border-radius: 6px;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
 @media (min-width: 680px) {
   pre {
     font-size: 16px;

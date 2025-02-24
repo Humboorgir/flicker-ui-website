@@ -40,13 +40,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         {children}
       </figure>
     ),
-    pre: ({ children, ...props }) => (
-      <pre
-        className="p-3 text-sm bg-[#141516] border border-neutral-800 rounded-md max-w-full overflow-x-auto"
-        {...(props as any)}>
-        {children}
-      </pre>
-    ),
+    // styles for pre and figure are put in globalThis.css because the component's used outside of markdown too
     ul: ({ children, ...props }) => (
       <ul className="pl-5 text-foreground-light" {...(props as any)}>
         {children}

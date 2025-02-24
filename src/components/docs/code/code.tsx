@@ -8,7 +8,9 @@ export async function highlightCode(code: string) {
   const file = await unified()
     .use(remarkParse)
     .use(remarkRehype)
-    .use(rehypePrettyCode)
+    .use(rehypePrettyCode, {
+      keepBackground: false,
+    })
     .use(rehypeStringify)
     .process(code);
 
