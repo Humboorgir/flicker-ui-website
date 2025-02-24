@@ -41,7 +41,9 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       </figure>
     ),
     pre: ({ children, ...props }) => (
-      <pre className="p-3 rounded-md" {...(props as any)}>
+      <pre
+        className="p-3 text-sm bg-[#141516] border border-neutral-800 rounded-md max-w-full overflow-x-auto"
+        {...(props as any)}>
         {children}
       </pre>
     ),

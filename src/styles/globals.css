@@ -38,14 +38,6 @@
   @apply bg-zinc-600/60 rounded;
 }
 
-pre {
-  padding: 12px;
-  border-radius: 6px;
-  font-size: 14px;
-  overflow-x: auto;
-  max-width: 100%;
-}
-
 @media (min-width: 680px) {
   pre {
     font-size: 16px;

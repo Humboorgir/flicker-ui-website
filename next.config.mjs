@@ -11,7 +11,9 @@ import * as url from "url";
 const __dirname = url.fileURLToPath(new URL(".", import.meta.url));
 
 /** @type {import('rehype-pretty-code').Options} */
-const options = {};
+const options = {
+  keepBackground: false,
+};
 const withMDX = nextMDX({
   extension: /\.mdx?$/,
   options: {
