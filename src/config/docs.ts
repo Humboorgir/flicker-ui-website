@@ -32,14 +32,14 @@ export const docsPages = [
       { label: "useClickOutside", href: "/docs/hooks/useclickoutside" },
     ],
   },
-  {
-    label: "Snippets",
-    items: [
-      // TODO: implement all of these
-      { label: "Alert", href: "/docs/snippets/alert" },
-      { label: "Navbar", href: "/docs/snippets/alert" },
-      { label: "Footer", href: "/docs/snippets/alert" },
-      { label: "Hero section", href: "/docs/snippets/alert" },
-    ],
-  },
+  // TODO: implement snippets
+  // {
+  //   label: "Snippets",
+  //   items: [
+  //     { label: "Alert", href: "/docs/snippets/alert" },
+  //     { label: "Navbar", href: "/docs/snippets/alert" },
+  //     { label: "Footer", href: "/docs/snippets/alert" },
+  //     { label: "Hero section", href: "/docs/snippets/alert" },
+  //   ],
+  // },
 ];

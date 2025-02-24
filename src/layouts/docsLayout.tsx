@@ -39,7 +39,7 @@ const DocsLayout = ({ children, componentCode, tableOfContent, meta }: DocsLayou
   return (
     <>
       <Head>
-        <title>{meta.title}</title>
+        <title>{meta.title} ~ Flicker UI</title>
         <meta name="description" content={meta.description} />
       </Head>
       <div className="grid grid-rows-[auto,1fr,auto] min-h-screen bg-background">

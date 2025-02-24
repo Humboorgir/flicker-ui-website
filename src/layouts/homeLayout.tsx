@@ -6,7 +6,7 @@ export default function HomeLayout({ children }: { children: React.ReactNode }) 
   return (
     <>
       <Head>
-        <title>FlickerUI ~ Your own component library</title>
+        <title>Flicker UI ~ Your own component library</title>
         <meta
           name="description"
           content="Kind of like if Material UI and Shadcn UI had a child!
