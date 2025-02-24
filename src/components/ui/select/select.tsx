@@ -7,12 +7,9 @@ import { type VariantProps } from "class-variance-authority";
 import { AnimatePresence, motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import React, { useState } from "react";
+import { useClickOutside } from "@/hooks/useClickOutside";
 
-type SelectProps = Omit<React.HTMLProps<HTMLDivElement>, "onChange"> & {
-  /**
-   * The component's title. Visible before any user interaction takes place.
-   */
-  children: React.ReactNode;
+type SelectProps = Omit<React.ComponentProps<"div">, "onChange"> & {
   /**
    * List of select options.
    */
@@ -22,7 +19,7 @@ type SelectProps = Omit<React.HTMLProps<HTMLDivElement>, "onChange"> & {
    */
   variant?: VariantProps<typeof buttonVariants>["variant"];
   /**
-   * If true, scroll-y will be set to `auto`
+   * If true, scroll-y will be set to `auto`.
    */
   scrollable?: boolean;
   /**
@@ -31,73 +28,83 @@ type SelectProps = Omit<React.HTMLProps<HTMLDivElement>, "onChange"> & {
   onChange?: (option: { name: string; value: string }) => void;
 };
 
-const Select = ({
-  variant = "default",
-  scrollable = false,
-  children,
-  options,
-  className,
-  onChange = () => {},
-}: SelectProps) => {
-  type Option = { name: string; value: string };
+const Select = React.forwardRef<HTMLDivElement, SelectProps>(
+  ({ variant = "default", scrollable = false, children, options, className, onChange = () => {} }, ref) => {
+    type Option = { name: string; value: string };
 
-  const [open, setOpen] = useState(false);
-  const [selected, setSelected] = useState<Option>({ name: "", value: "" });
+    const [isOpen, setIsOpen] = useState(false);
+    const [selected, setSelected] = useState<Option>({ name: "", value: "" });
 
-  function toggleOpen() {
-    setOpen(!open);
+    function toggleOpen() {
+      setIsOpen(!isOpen);
+    }
+
+    function selectOption(option: Option) {
+      onChange(option);
+      setSelected(option);
+      setIsOpen(false);
+    }
+
+    const clickOutsideRef = useClickOutside(() => setIsOpen(false));
+
+    // Merge forwarded ref and clickOutsideRef
+    const setRefs = (node: HTMLDivElement | null) => {
+      // Handle forwarded ref
+      if (typeof ref === "function") {
+        ref(node);
+      } else if (ref) {
+        ref.current = node;
+      }
+      // Handle clickOutsideRef
+      if (clickOutsideRef) {
+        (clickOutsideRef as React.MutableRefObject<HTMLDivElement | null>).current = node;
+      }
+    };
+
+    return (
+      <div ref={setRefs} className={cn("relative inline-block", className)}>
+        <Button variant={variant} onClick={toggleOpen}>
+          {selected.value ? selected.name : children}
+        </Button>
+
+        {/* select options  */}
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              initial={{
+                opacity: 0,
+                scale: 0.87,
+              }}
+              animate={{
+                opacity: 1,
+                scale: 1,
+              }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              transition={{
+                duration: 0.25,
+                delay: 0.1,
+                ease: [0.76, 0, 0.24, 1],
+              }}
+              className={cn(
+                `absolute top-full right-0 origin-top-right mt-1 max-h-[200px] rounded-md flex flex-col items-stretch`,
+                scrollable && "overflow-y-scroll"
+              )}>
+              {options &&
+                options.map((option, i) => (
+                  <Button
+                    key={i}
+                    className="border-t-0 first-of-type:border-t rounded-none first-of-type:rounded-t-md last-of-type:rounded-b-md"
+                    variant="outline"
+                    onClick={() => selectOption(option)}>
+                    {option.name}
+                  </Button>
+                ))}
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+    );
   }
-
-  function selectOption(option: Option) {
-    onChange(option);
-    setSelected(option);
-    setOpen(false);
-  }
-
-  // select component
-  return (
-    <div className={cn("relative inline-block", className)}>
-      <Button variant={variant} onClick={toggleOpen}>
-        {selected.value ? selected.name : children}
-      </Button>
-
-      {/* select options  */}
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            initial={{
-              opacity: 0,
-              scale: 0.87,
-            }}
-            animate={{
-              opacity: 1,
-              scale: 1,
-            }}
-            exit={{ opacity: 0, scale: 0.9 }}
-            transition={{
-              duration: 0.25,
-              delay: 0.1,
-              ease: [0.76, 0, 0.24, 1],
-            }}
-            className={cn(
-              `absolute top-full right-0 origin-top-right mt-1 max-h-[200px] rounded-md flex flex-col items-stretch`,
-              scrollable && "overflow-y-scroll"
-            )}>
-            {options &&
-              options.map((option, i) => (
-                <Button
-                  key={i}
-                  className="border-t-0 first-of-type:border-t rounded-none first-of-type:rounded-t-md last-of-type:rounded-b-md"
-                  variant="outline"
-                  onClick={() => selectOption(option)}>
-                  {option.name}
-                </Button>
-              ))}
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
-  );
-};
+);
 
 export default Select;

@@ -11,7 +11,6 @@ export function useClickOutside<T extends HTMLElement = any>(handler: () => void
 
       const isClickedElementOutsideOfRef = !ref.current.contains(event.target);
       if (isClickedElementOutsideOfRef) {
-        console.log("running handler2");
         handler();
       }
     };
