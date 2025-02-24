@@ -16,7 +16,7 @@ $ npx flicker-ui@latest --hook add usePrevious
 ## Usage
 
 Pass in the state and it returns its previous value.
-```js /usePrevious/
+```js "const previousState = usePrevious(state);" "previousState"
 const [state, setState] = useState(1);
 const previousState = usePrevious(state);
 
