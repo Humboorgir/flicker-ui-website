@@ -13,8 +13,8 @@ const Home = () => {
         <span>Your Own</span> Component Library
       </h1>
       <p className="max-w-sm md:max-w-xl text-lg md:text-xl text-slate-500 mb-8 md:mb-6 z-10">
-        Kinda like if MUI and ShadcnUI had a child! Production-ready React
-        components made with Tailwindcss and Framer-motion.
+        Kind of like if MUI and ShadcnUI had a child! Production-ready React components made with Tailwindcss
+        and Framer-motion.
       </p>
 
       {/* Button group  */}
