@@ -34,11 +34,24 @@ const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
     function toggleOpen() {
       setIsOpen((prev) => !prev);
     }
-
     const clickOutsideRef = useClickOutside(() => setIsOpen(false));
 
+    // Merge forwarded ref and clickOutsideRef
+    const setRefs = (node: HTMLDivElement | null) => {
+      // Handle forwarded ref
+      if (typeof ref === "function") {
+        ref(node);
+      } else if (ref) {
+        ref.current = node;
+      }
+      // Handle clickOutsideRef
+      if (clickOutsideRef) {
+        (clickOutsideRef as React.MutableRefObject<HTMLDivElement | null>).current = node;
+      }
+    };
+
     return (
-      <div ref={clickOutsideRef} className={cn("relative inline-block", className)} {...props}>
+      <div ref={setRefs} className={cn("relative inline-block", className)} {...props}>
         <Button className={triggerClassName} variant={triggerVariant} onClick={toggleOpen}>
           {children}
         </Button>
