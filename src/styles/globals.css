@@ -38,6 +38,10 @@
   @apply bg-zinc-600/60 rounded;
 }
 
+[data-highlighted-line] {
+  @apply bg-zinc-600/60 rounded;
+}
+
 /* figure and pre are put in here instead of mdx-components because they are also used outside of mdx (in PreviewBox) */
 figure {
   width: 1px;
