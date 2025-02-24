@@ -38,20 +38,14 @@ const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
     const clickOutsideRef = useClickOutside(() => setIsOpen(false));
 
     return (
-      <div ref={ref} className={cn("relative inline-block", className)} {...props}>
-        <Button
-          className={triggerClassName}
-          variant={triggerVariant}
-          onClick={() => {
-            if (!isOpen) setIsOpen(true);
-          }}>
+      <div ref={clickOutsideRef} className={cn("relative inline-block", className)} {...props}>
+        <Button className={triggerClassName} variant={triggerVariant} onClick={toggleOpen}>
           {children}
         </Button>
 
         <AnimatePresence>
           {isOpen && (
             <motion.ul
-              ref={clickOutsideRef}
               initial={{
                 opacity: 0,
                 scale: 0.87,
@@ -75,6 +69,7 @@ const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
                 return (
                   <Button
                     key={i}
+                    onClick={toggleOpen}
                     variant="ghost"
                     className="justify-start w-full px-4 py-2 rounded-none"
                     href={item.href}>
