@@ -5,30 +5,44 @@ description: "How to install and use FlickerUI in your project"
 
 import Typography from '@/components/ui/typography';
 
-## No installation needed
-FlickerUI is not a component library, it's a collection of premade tailwindcss components. <br/>
+### No installation needed
+FlickerUI is not a component library, it's a collection of pre-made, animated React components. <br/>
 You can add each component to your project by using the FlickerUI CLI:
 ```bash "[component]"
 npx flicker-ui@latest add [component]
+```
+<span className="[&>p]:text-sm [&>p]:text-foreground-muted mt-1">
+All the **npm dependencies**, and other **hooks** and **components** used in the specified component will automatically be installed for you.
+</span>
+
+<br/>
+Hooks alone can be added by using the --hook flag
+```bash "[hook]"
+npx flicker-ui@latest --hook add [hook]
 ```
 
 <br/>
 <br/>
 
-## CLI Usage
+### CLI Usage
 View a list of all the available commands
 ```bash
 npx flicker-ui@latest --help
 ```
 <br/>
 
-View a list of all the available components
+View a list of all the available components and hooks
 ```bash
 npx flicker-ui@latest list
 ```
 <br/>
 
 Add a component to your project
+```bash 
+npx flicker-ui@latest add [component]
+```
+<br/>
+Add a hook to your project
 ```bash 
 npx flicker-ui@latest add [component]
 ```
