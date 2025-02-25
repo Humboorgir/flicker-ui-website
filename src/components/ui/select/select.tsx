@@ -1,15 +1,15 @@
-// NOTE: this component hasnt been tested and is only being added for my own usage.
-// TODO: rewrite the animations with framer-motion and organize the code
-
 import Button, { buttonVariants } from "@/components/ui/button";
 
 import { type VariantProps } from "class-variance-authority";
 import { AnimatePresence, motion } from "framer-motion";
 import { cn } from "@/lib/utils";
-import React, { useState } from "react";
+import React, { useEffect, useId, useRef, useState } from "react";
 import { useClickOutside } from "@/hooks/useClickOutside";
+import SelectOption from "./selectOption";
+import SelectMenu from "./selectMenu";
+import SelectTrigger from "./select-trigger";
 
-type SelectProps = Omit<React.ComponentProps<"div">, "onChange"> & {
+export type SelectProps = Omit<React.ComponentProps<"div">, "onChange"> & {
   /**
    * List of select options.
    */
@@ -34,6 +34,8 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>(
 
     const [isOpen, setIsOpen] = useState(false);
     const [selected, setSelected] = useState<Option>({ name: "", value: "" });
+    // Used purely for accessibility-related purposes
+    const [focused, setFocused] = useState<Option>(options[0]);
 
     function toggleOpen() {
       setIsOpen(!isOpen);
@@ -43,7 +45,27 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>(
       onChange(option);
       setSelected(option);
       setIsOpen(false);
+      setFocused(options[0]);
     }
+
+    const numberOfOptions = options.length;
+
+    const moveFocusUp = () => {
+      if (options.indexOf(focused) > 0) {
+        return setFocused(() => options[options.indexOf(focused) - 1]);
+      }
+      setFocused(options[numberOfOptions - 1]);
+    };
+    const selectFocusedOption = () => {
+      selectOption(options[options.indexOf(focused)]);
+    };
+
+    const moveFocusDown = () => {
+      if (options.indexOf(focused) < numberOfOptions - 1) {
+        return setFocused(() => options[options.indexOf(focused) + 1]);
+      }
+      setFocused(options[0]);
+    };
 
     const clickOutsideRef = useClickOutside(() => setIsOpen(false));
 
@@ -61,47 +83,42 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>(
       }
     };
 
-    return (
-      <div ref={setRefs} className={cn("relative inline-block", className)}>
-        <Button variant={variant} onClick={toggleOpen}>
-          {selected.value ? selected.name : children}
-        </Button>
+    // unique component ID, used for accessibility purposes.
+    const id = useId();
+    const triggerId = `${id}-trigger`;
+    const menuId = `${id}-menu`;
 
-        {/* select options  */}
-        <AnimatePresence>
-          {isOpen && (
-            <motion.div
-              initial={{
-                opacity: 0,
-                scale: 0.87,
-              }}
-              animate={{
-                opacity: 1,
-                scale: 1,
-              }}
-              exit={{ opacity: 0, scale: 0.9 }}
-              transition={{
-                duration: 0.25,
-                delay: 0.1,
-                ease: [0.76, 0, 0.24, 1],
-              }}
-              className={cn(
-                `absolute top-full right-0 origin-top-right mt-1 max-h-[200px] rounded-md flex flex-col items-stretch`,
-                scrollable && "overflow-y-scroll"
-              )}>
-              {options &&
-                options.map((option, i) => (
-                  <Button
-                    key={i}
-                    className="border-t-0 first-of-type:border-t rounded-none first-of-type:rounded-t-md last-of-type:rounded-b-md"
-                    variant="outline"
-                    onClick={() => selectOption(option)}>
-                    {option.name}
-                  </Button>
-                ))}
-            </motion.div>
-          )}
-        </AnimatePresence>
+    return (
+      <div
+        // Handling keyboard interactions
+        onKeyDown={(e) => {
+          if (!isOpen) return;
+          if (e.key == "Escape") return toggleOpen();
+          // To prevent scrolling:
+          e.preventDefault();
+          if (e.key == "ArrowUp") return moveFocusUp();
+          if (e.key == "ArrowDown") return moveFocusDown();
+          if (e.key == "Enter" || e.key == "Space") return selectFocusedOption();
+        }}
+        ref={setRefs}
+        className={cn("relative inline-block", className)}>
+        <SelectTrigger
+          triggerId={triggerId}
+          menuId={menuId}
+          isOpen={isOpen}
+          toggleOpen={toggleOpen}
+          variant={variant}>
+          {selected.value ? selected.name : children}
+        </SelectTrigger>
+
+        <SelectMenu
+          isOpen={isOpen}
+          menuId={menuId}
+          options={options}
+          focusedOption={focused}
+          scrollable={scrollable}
+          selectOption={selectOption}
+        />
       </div>
     );
   }
