@@ -40,7 +40,7 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>(
       if (!isOpen) setFocused(options[0]);
       // while closing:
       if (isOpen) triggerRef.current?.focus();
-      if (customIsOpen) setIsOpen(customIsOpen);
+      if (typeof customIsOpen == "boolean") setIsOpen(customIsOpen);
       else setIsOpen((prev) => !prev);
     };
 
