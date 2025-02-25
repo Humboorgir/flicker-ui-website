@@ -36,16 +36,20 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>(
     const [selected, setSelected] = useState<Option>({ name: "", value: "" });
     // Used purely for accessibility-related purposes
     const [focused, setFocused] = useState<Option>(options[0]);
+    const triggerRef = useRef<HTMLButtonElement>(null);
 
     function toggleOpen() {
-      setIsOpen(!isOpen);
+      // while opening:
+      if (!isOpen) setFocused(options[0]);
+      // while closing:
+      if (isOpen) triggerRef.current?.focus();
+      setIsOpen((prev) => !prev);
     }
 
     function selectOption(option: Option) {
       onChange(option);
       setSelected(option);
-      setIsOpen(false);
-      setFocused(options[0]);
+      toggleOpen();
     }
 
     const numberOfOptions = options.length;
@@ -103,6 +107,7 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>(
         ref={setRefs}
         className={cn("relative inline-block", className)}>
         <SelectTrigger
+          ref={triggerRef}
           triggerId={triggerId}
           menuId={menuId}
           isOpen={isOpen}
