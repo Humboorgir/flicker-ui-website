@@ -1,13 +1,10 @@
 import Button, { buttonVariants } from "@/components/ui/button";
 
 import { type VariantProps } from "class-variance-authority";
-import { AnimatePresence, motion } from "framer-motion";
 import { cn } from "@/lib/utils";
-import React, { useEffect, useId, useRef, useState } from "react";
+import React, { MouseEventHandler, useId, useRef, useState } from "react";
 import { useClickOutside } from "@/hooks/useClickOutside";
-import SelectOption from "./selectOption";
 import SelectMenu from "./selectMenu";
-import SelectTrigger from "./select-trigger";
 
 export type SelectProps = Omit<React.ComponentProps<"div">, "onChange"> & {
   /**
@@ -38,13 +35,14 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>(
     const [focused, setFocused] = useState<Option>(options[0]);
     const triggerRef = useRef<HTMLButtonElement>(null);
 
-    function toggleOpen() {
+    const toggleOpen = (customIsOpen?: boolean) => {
       // while opening:
       if (!isOpen) setFocused(options[0]);
       // while closing:
       if (isOpen) triggerRef.current?.focus();
-      setIsOpen((prev) => !prev);
-    }
+      if (customIsOpen) setIsOpen(customIsOpen);
+      else setIsOpen((prev) => !prev);
+    };
 
     function selectOption(option: Option) {
       onChange(option);
@@ -87,7 +85,7 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>(
       }
     };
 
-    // unique component ID, used for accessibility purposes.
+    // unique component ID, used for accessibility-related purposes.
     const id = useId();
     const triggerId = `${id}-trigger`;
     const menuId = `${id}-menu`;
@@ -97,24 +95,34 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>(
         // Handling keyboard interactions
         onKeyDown={(e) => {
           if (!isOpen) return;
-          if (e.key == "Escape") return toggleOpen();
+          const { key } = e;
+          if (key == "Escape") return toggleOpen(false);
           // To prevent scrolling:
-          e.preventDefault();
-          if (e.key == "ArrowUp") return moveFocusUp();
-          if (e.key == "ArrowDown") return moveFocusDown();
-          if (e.key == "Enter" || e.key == "Space") return selectFocusedOption();
+          if (["ArrowUp", "ArrowDown", "Enter", "Escape"].includes(key)) e.preventDefault();
+          if (key == "ArrowUp") return moveFocusUp();
+          if (key == "ArrowDown") return moveFocusDown();
+          if (["Enter", "Space"].includes(key)) return selectFocusedOption();
         }}
         ref={setRefs}
         className={cn("relative inline-block", className)}>
-        <SelectTrigger
+        {/* trigger  */}
+        <Button
+          onKeyDown={(e) => {
+            if (e.key == "ArrowDown") {
+              e.preventDefault();
+              toggleOpen(true);
+            }
+          }}
           ref={triggerRef}
-          triggerId={triggerId}
-          menuId={menuId}
-          isOpen={isOpen}
-          toggleOpen={toggleOpen}
-          variant={variant}>
+          role="combobox"
+          id={triggerId}
+          aria-expanded={isOpen}
+          aria-controls={menuId}
+          aria-haspopup="listbox"
+          variant={variant}
+          onClick={() => toggleOpen()}>
           {selected.value ? selected.name : children}
-        </SelectTrigger>
+        </Button>
 
         <SelectMenu
           isOpen={isOpen}
