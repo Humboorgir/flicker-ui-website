@@ -16,6 +16,9 @@ export default function SelectOption({ option, focusedOption, selectOption }: Se
   useEffect(() => {
     if (option.value != focusedOption.value) return;
     optionRef.current?.focus();
+    optionRef.current?.scrollIntoView({
+      block: "nearest",
+    });
   }, [focusedOption]);
 
   return (
@@ -26,7 +29,7 @@ export default function SelectOption({ option, focusedOption, selectOption }: Se
       key={option.value}
       className={cn(
         buttonVariants({ variant: "outline" }),
-        `focus-visible:bg-secondary focus-visible:ring-0 cursor-pointer border-t-0 
+        `shrink-0 focus-visible:bg-secondary focus-visible:ring-0 cursor-pointer border-t-0 
         first-of-type:border-t rounded-none first-of-type:rounded-t-md last-of-type:rounded-b-md`
       )}
       onClick={() => selectOption(option)}>
